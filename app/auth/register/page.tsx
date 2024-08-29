@@ -1,9 +1,16 @@
 "use client";
 
-import { useState, ChangeEvent } from "react";
 import Link from "next/link";
+import { useState, ChangeEvent, FormEvent } from "react";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
+import { useRegisterMutation } from "@/redux/features/authApiSlice";
+import { Spinner } from "@/components/common";
 
 export default function Page() {
+  const router = useRouter();
+  const [register, { isLoading }] = useRegisterMutation();
+
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -16,6 +23,20 @@ export default function Page() {
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
+  };
+
+  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    register({ username, email, password, re_password })
+      .unwrap()
+      .then(() => {
+        toast.success("Please check your email to activate your account");
+        router.push("/auth/login");
+      })
+      .catch(() => {
+        toast.success("Registration failed!");
+      });
   };
 
   return (
@@ -32,7 +53,7 @@ export default function Page() {
       </div>
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form className="space-y-6">
+        <form className="space-y-6" onSubmit={onSubmit}>
           <div>
             <label
               htmlFor="username"
@@ -120,7 +141,7 @@ export default function Page() {
               type="submit"
               className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
-              Sign Up
+              {isLoading ? <Spinner sm /> : "Sign Up"}
             </button>
           </div>
         </form>
