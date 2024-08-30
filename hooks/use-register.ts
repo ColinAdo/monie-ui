@@ -31,7 +31,7 @@ export default function useRegister() {
         router.push("/auth/login");
       })
       .catch(() => {
-        toast.success("Registration failed!");
+        toast.error("Registration failed!");
       });
   };
   return {
