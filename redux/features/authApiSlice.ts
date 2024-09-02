@@ -5,7 +5,7 @@ interface User {
   email: string;
 }
 
-interface SocialArgs {
+interface SocialAuthArgs {
   provider: string;
   state: string;
   code: string;
@@ -16,12 +16,12 @@ interface CreateUserResponse {
   user: User;
 }
 
-const apiAuthSlice = apiSlice.injectEndpoints({
+const authApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     retrieveUser: builder.query<User, void>({
       query: () => "/users/me/",
     }),
-    socialAuthenticate: builder.mutation<CreateUserResponse, SocialArgs>({
+    socialAuthenticate: builder.mutation<CreateUserResponse, SocialAuthArgs>({
       query: ({ provider, state, code }) => ({
         url: `/o/${provider}/?state=${encodeURIComponent(
           state
@@ -102,4 +102,4 @@ export const {
   useActivationMutation,
   useResetPasswordMutation,
   useResetPasswordConfirmMutation,
-} = apiAuthSlice;
+} = authApiSlice;
