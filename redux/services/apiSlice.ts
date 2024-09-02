@@ -6,7 +6,6 @@ import type {
 } from "@reduxjs/toolkit/query";
 import { setAuth, logout } from "../features/authSlice";
 import { Mutex } from "async-mutex";
-import build from "next/dist/build";
 
 // create a new mutex
 const mutex = new Mutex();
