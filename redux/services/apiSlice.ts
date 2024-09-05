@@ -12,6 +12,7 @@ import build from "next/dist/build";
 const mutex = new Mutex();
 const baseQuery = fetchBaseQuery({
   baseUrl: `${process.env.NEXT_PUBLIC_HOST}/api/v1`,
+  credentials: "include",
 });
 const baseQueryWithReauth: BaseQueryFn<
   string | FetchArgs,
