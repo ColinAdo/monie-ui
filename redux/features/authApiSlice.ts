@@ -1,7 +1,7 @@
 import { apiSlice } from "../services/apiSlice";
 
 interface User {
-  uuername: string;
+  username: string;
   email: string;
 }
 
