@@ -23,7 +23,6 @@ export default function RequireAuth({ children }: Props) {
 
   if (!isAuthenticated) {
     router.push("/auth/login");
-    toast.error("Please login");
   }
   return <>{children}</>;
 }

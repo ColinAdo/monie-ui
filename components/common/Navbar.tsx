@@ -1,7 +1,6 @@
 "use client";
 
-import Link from "next/link";
-import { useRouter, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { useLogoutMutation } from "@/redux/features/authApiSlice";
 import { logout as setLogout } from "@/redux/features/authSlice";
@@ -14,7 +13,6 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import NavLink from "./NavLink";
 
 export default function Navbar() {
-  const route = useRouter();
   const pathname = usePathname();
 
   const dispatch = useAppDispatch();
@@ -27,9 +25,6 @@ export default function Navbar() {
       .unwrap()
       .then(() => {
         dispatch(setLogout());
-      })
-      .finally(() => {
-        route.push("/");
       });
   };
 
