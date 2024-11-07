@@ -1,6 +1,6 @@
 import Card, { CardProps } from "@/components/dashboard/Card";
 import { CardContent } from "@/components/dashboard/Card";
-import { PageTitle, Chart } from "@/components/dashboard";
+import { PageTitle, Chart, AnalyticChart } from "@/components/dashboard";
 import { Activity, CreditCard, DollarSign, Users } from "lucide-react";
 import SalesCard, { SalesProps } from "@/components/dashboard/SalesCard";
 
@@ -81,10 +81,8 @@ export default function Home() {
       </section>
 
       <section className="grid grid-cols-1 gap-4 lg:grid-cols-2 transition-all">
-        <CardContent>
-          <p className="p-4 font-semibold">Overview</p>
-          <Chart />
-        </CardContent>
+        <AnalyticChart />
+
         <CardContent>
           <section>
             <p className="font-semibold">Sales</p>
@@ -101,6 +99,12 @@ export default function Home() {
             ))}
           </section>
         </CardContent>
+        <CardContent>
+          <p className="p-4 font-semibold">Overview</p>
+          <Chart />
+        </CardContent>
+
+        <AnalyticChart />
       </section>
     </div>
   );
