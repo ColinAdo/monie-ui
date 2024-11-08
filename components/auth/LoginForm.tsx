@@ -24,6 +24,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import Link from "next/link";
 
 export default function LoginForm() {
   const router = useRouter();
@@ -75,9 +76,17 @@ export default function LoginForm() {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="uppercase text-xs font-bold text-zinc-500 dark:text-white">
-                    Password
-                  </FormLabel>
+                  <div className="flex justify-between items-center">
+                    <FormLabel className="uppercase text-xs font-bold text-zinc-500 dark:text-white">
+                      Password
+                    </FormLabel>
+                    <Link
+                      className="font-semibold text-indigo-600 hover:text-indigo-500"
+                      href="/password-reset"
+                    >
+                      Forgot password?
+                    </Link>
+                  </div>
                   <FormControl>
                     <Input
                       type="password"
