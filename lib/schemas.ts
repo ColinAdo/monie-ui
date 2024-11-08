@@ -44,3 +44,12 @@ export const resetPasswordSchema = z.object({
       message: "Enter a valid email address",
     }),
 });
+
+export const resetPasswordConfirmSchema = z.object({
+  new_password: z.string().min(1, {
+    message: "new password is required",
+  }),
+  re_new_password: z.string().min(1, {
+    message: "confirm new password is required",
+  }),
+});
