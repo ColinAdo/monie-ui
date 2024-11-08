@@ -33,3 +33,14 @@ export const loginSchema = z.object({
     message: "password is required",
   }),
 });
+
+export const resetPasswordSchema = z.object({
+  email: z
+    .string()
+    .min(1, {
+      message: "email is required",
+    })
+    .email({
+      message: "Enter a valid email address",
+    }),
+});
