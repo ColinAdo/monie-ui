@@ -64,7 +64,7 @@ const SalesData: SalesProps[] = [
   },
 ];
 
-export default function Home() {
+export default function Page() {
   return (
     <div className="flex flex-col gap-5 w-full">
       <PageTitle title="Dasboard" />

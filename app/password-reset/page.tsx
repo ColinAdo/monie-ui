@@ -1,7 +1,7 @@
 import PasswordResetForm from "@/components/auth/PasswordResetForm";
 import { CreativeCommons } from "lucide-react";
 
-export default function AuthPage() {
+export default function Page() {
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm mb-0">
