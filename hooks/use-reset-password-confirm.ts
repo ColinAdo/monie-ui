@@ -1,6 +1,9 @@
-import { useState, ChangeEvent, FormEvent } from "react";
-import { useRouter } from "next/navigation";
+import * as z from "zod";
 import { useResetPasswordConfirmMutation } from "@/redux/features/authApiSlice";
+import { resetPasswordConfirmSchema } from "@/lib/schemas";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
 export default function useResetPasswordConfirm(uid: string, token: string) {
@@ -9,23 +12,16 @@ export default function useResetPasswordConfirm(uid: string, token: string) {
   const [resetPasswordConfirm, { isLoading }] =
     useResetPasswordConfirmMutation();
 
-  const [formData, setFormData] = useState({
-    new_password: "",
-    re_new_password: "",
+  const form = useForm<z.infer<typeof resetPasswordConfirmSchema>>({
+    resolver: zodResolver(resetPasswordConfirmSchema),
+    defaultValues: {
+      new_password: "",
+      re_new_password: "",
+    },
   });
 
-  const { new_password, re_new_password } = formData;
-
-  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    resetPasswordConfirm({ uid, token, new_password, re_new_password })
+  const onSubmit = (data: z.infer<typeof resetPasswordConfirmSchema>) => {
+    resetPasswordConfirm({ ...data, uid, token })
       .unwrap()
       .then(() => {
         toast.success("Password reset successful");
@@ -37,10 +33,8 @@ export default function useResetPasswordConfirm(uid: string, token: string) {
   };
 
   return {
-    new_password,
-    re_new_password,
+    form,
     isLoading,
-    onChange,
     onSubmit,
   };
 }

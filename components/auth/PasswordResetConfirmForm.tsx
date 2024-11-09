@@ -1,14 +1,10 @@
 "use client";
 
-import * as z from "zod";
-import { resetPasswordConfirmSchema } from "@/lib/schemas";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-
+import { useResetPasswordConfirm } from "@/hooks";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Spinner } from "@/components/common";
 import {
   Form,
   FormControl,
@@ -24,18 +20,7 @@ interface Props {
 }
 
 export default function PasswordResetConfirmForm({ uid, token }: Props) {
-  const router = useRouter();
-  const form = useForm<z.infer<typeof resetPasswordConfirmSchema>>({
-    resolver: zodResolver(resetPasswordConfirmSchema),
-    defaultValues: {
-      new_password: "",
-      re_new_password: "",
-    },
-  });
-
-  const handleSubmit = (data: z.infer<typeof resetPasswordConfirmSchema>) => {
-    router.push("/");
-  };
+  const { form, isLoading, onSubmit } = useResetPasswordConfirm(uid, token);
 
   return (
     <Card>
@@ -44,10 +29,7 @@ export default function PasswordResetConfirmForm({ uid, token }: Props) {
       </CardHeader>
       <CardContent className="space-y-2">
         <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(handleSubmit)}
-            className="space-y-6"
-          >
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <FormField
               control={form.control}
               name="new_password"
@@ -58,6 +40,7 @@ export default function PasswordResetConfirmForm({ uid, token }: Props) {
                   </FormLabel>
                   <FormControl>
                     <Input
+                      type="password"
                       placeholder="Enter new password"
                       {...field}
                       className="bg-slate-100 dark:bg-slate-500 text-blak dark:text-slate-100 focus-visible:ring-0 focus-visible:ring-offset-0"
@@ -78,6 +61,7 @@ export default function PasswordResetConfirmForm({ uid, token }: Props) {
                   </FormLabel>
                   <FormControl>
                     <Input
+                      type="password"
                       placeholder="Enter confirm new password"
                       {...field}
                       className="bg-slate-100 dark:bg-slate-500 text-blak dark:text-slate-100 focus-visible:ring-0 focus-visible:ring-offset-0"
@@ -88,8 +72,11 @@ export default function PasswordResetConfirmForm({ uid, token }: Props) {
               )}
             />
 
-            <Button className="w-full dark:text-white dark:bg-slate-800">
-              Reset password
+            <Button
+              className="w-full dark:text-white dark:bg-slate-800"
+              disabled={isLoading}
+            >
+              {isLoading ? <Spinner sm /> : "Reset password"}
             </Button>
           </form>
         </Form>
