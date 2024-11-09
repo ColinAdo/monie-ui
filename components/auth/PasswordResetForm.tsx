@@ -1,14 +1,10 @@
 "use client";
 
-import * as z from "zod";
-import { resetPasswordSchema } from "@/lib/schemas";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-
+import { useResetPassword } from "@/hooks";
+import { Spinner } from "@/components/common";
 import {
   Form,
   FormControl,
@@ -19,17 +15,7 @@ import {
 } from "@/components/ui/form";
 
 export default function PasswordResetForm() {
-  const router = useRouter();
-  const form = useForm<z.infer<typeof resetPasswordSchema>>({
-    resolver: zodResolver(resetPasswordSchema),
-    defaultValues: {
-      email: "",
-    },
-  });
-
-  const handleSubmit = (data: z.infer<typeof resetPasswordSchema>) => {
-    router.push("/");
-  };
+  const { form, isLoading, onSubmit } = useResetPassword();
 
   return (
     <Card>
@@ -38,10 +24,7 @@ export default function PasswordResetForm() {
       </CardHeader>
       <CardContent className="space-y-2">
         <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(handleSubmit)}
-            className="space-y-6"
-          >
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <FormField
               control={form.control}
               name="email"
@@ -62,8 +45,11 @@ export default function PasswordResetForm() {
               )}
             />
 
-            <Button className="w-full dark:text-white dark:bg-slate-800">
-              Request reset password
+            <Button
+              className="w-full dark:text-white dark:bg-slate-800"
+              disabled={isLoading}
+            >
+              {isLoading ? <Spinner sm /> : "Request reset password"}
             </Button>
           </form>
         </Form>
