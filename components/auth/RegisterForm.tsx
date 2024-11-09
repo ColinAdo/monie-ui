@@ -1,11 +1,11 @@
 "use client";
 
-import SocialButtons from "@/components/auth/SocialButtons";
+import { useRegister } from "@/hooks";
+import { useRouter } from "next/navigation";
+import { Spinner } from "@/components/common";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
-import { useRegister } from "@/hooks";
-import { Spinner } from "@/components/common";
+import SocialButtons from "@/components/auth/SocialButtons";
 import {
   Card,
   CardHeader,

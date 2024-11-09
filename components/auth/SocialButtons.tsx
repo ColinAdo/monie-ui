@@ -1,7 +1,7 @@
 "use client";
 
-import SocialButton from "@/components/auth/SocialButton";
 import Image from "next/image";
+import SocialButton from "@/components/auth/SocialButton";
 import { continueWithGoogle, continueWithGithub } from "@/utils";
 
 export default function SocialButtons() {

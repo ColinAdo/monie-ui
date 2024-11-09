@@ -1,10 +1,10 @@
 "use client";
 
+import Link from "next/link";
+import { useLogin } from "@/hooks";
 import { Spinner } from "@/components/common";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useLogin } from "@/hooks";
-import Link from "next/link";
 import SocialButtons from "@/components/auth/SocialButtons";
 import {
   Card,

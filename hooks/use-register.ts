@@ -1,10 +1,10 @@
 import * as z from "zod";
 import { toast } from "react-toastify";
-import { useRouter } from "next/navigation";
-import { useRegisterMutation } from "@/redux/features/authApiSlice";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 import { registerSchema } from "@/lib/schemas";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useRegisterMutation } from "@/redux/features/authApiSlice";
 
 export default function useRegister() {
   const router = useRouter();

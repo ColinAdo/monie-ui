@@ -1,12 +1,12 @@
 import * as z from "zod";
 import { toast } from "react-toastify";
+import { useForm } from "react-hook-form";
+import { loginSchema } from "@/lib/schemas";
 import { useRouter } from "next/navigation";
 import { useAppDispatch } from "@/redux/hooks";
 import { setAuth } from "@/redux/features/authSlice";
-import { useLoginMutation } from "@/redux/features/authApiSlice";
-import { loginSchema } from "@/lib/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { useLoginMutation } from "@/redux/features/authApiSlice";
 
 export default function useLogin() {
   const dispatch = useAppDispatch();

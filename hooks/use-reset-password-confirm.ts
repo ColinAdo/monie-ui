@@ -1,10 +1,10 @@
 import * as z from "zod";
-import { useResetPasswordConfirmMutation } from "@/redux/features/authApiSlice";
-import { resetPasswordConfirmSchema } from "@/lib/schemas";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { resetPasswordConfirmSchema } from "@/lib/schemas";
+import { useResetPasswordConfirmMutation } from "@/redux/features/authApiSlice";
 
 export default function useResetPasswordConfirm(uid: string, token: string) {
   const router = useRouter();

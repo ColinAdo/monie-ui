@@ -1,9 +1,9 @@
 import * as z from "zod";
 import { toast } from "react-toastify";
-import { useResetPasswordMutation } from "@/redux/features/authApiSlice";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { resetPasswordSchema } from "@/lib/schemas";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useResetPasswordMutation } from "@/redux/features/authApiSlice";
 
 export default function useResetPassword() {
   const [resetPassword, { isLoading }] = useResetPasswordMutation();
