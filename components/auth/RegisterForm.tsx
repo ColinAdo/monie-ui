@@ -1,13 +1,11 @@
 "use client";
 
-import * as z from "zod";
-import { registerSchema } from "@/lib/schemas";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import SocialButtons from "@/components/auth/SocialButtons";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import SocialButtons from "@/components/auth/SocialButtons";
+import { useRegister } from "@/hooks";
+import { Spinner } from "@/components/common";
 import {
   Card,
   CardHeader,
@@ -26,20 +24,8 @@ import {
 } from "@/components/ui/form";
 
 export default function RegisterForm() {
+  const { form, isLoading, onSubmit } = useRegister();
   const router = useRouter();
-  const form = useForm<z.infer<typeof registerSchema>>({
-    resolver: zodResolver(registerSchema),
-    defaultValues: {
-      username: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-    },
-  });
-
-  const handleSubmit = (data: z.infer<typeof registerSchema>) => {
-    router.push("/");
-  };
 
   return (
     <Card>
@@ -49,10 +35,7 @@ export default function RegisterForm() {
       </CardHeader>
       <CardContent className="space-y-2">
         <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(handleSubmit)}
-            className="space-y-6"
-          >
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <FormField
               control={form.control}
               name="username"
@@ -113,7 +96,7 @@ export default function RegisterForm() {
             />
             <FormField
               control={form.control}
-              name="confirmPassword"
+              name="re_password"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="uppercase text-xs font-bold text-zinc-500 dark:text-white">
@@ -132,8 +115,11 @@ export default function RegisterForm() {
               )}
             />
 
-            <Button className="w-full dark:text-white dark:bg-slate-800">
-              Submit
+            <Button
+              className="w-full dark:text-white dark:bg-slate-800"
+              disabled={isLoading}
+            >
+              {isLoading ? <Spinner sm /> : "Submit"}
             </Button>
           </form>
           <div className="relative flex items-center my-3 font-bold">
