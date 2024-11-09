@@ -1,12 +1,10 @@
 "use client";
 
-import * as z from "zod";
-import { loginSchema } from "@/lib/schemas";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { Spinner } from "@/components/common";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
+import { useLogin } from "@/hooks";
+import Link from "next/link";
 import SocialButtons from "@/components/auth/SocialButtons";
 import {
   Card,
@@ -24,21 +22,9 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import Link from "next/link";
 
 export default function LoginForm() {
-  const router = useRouter();
-  const form = useForm<z.infer<typeof loginSchema>>({
-    resolver: zodResolver(loginSchema),
-    defaultValues: {
-      email: "",
-      password: "",
-    },
-  });
-
-  const handleSubmit = (data: z.infer<typeof loginSchema>) => {
-    router.push("/");
-  };
+  const { form, isLoading, onSubmit } = useLogin();
 
   return (
     <Card>
@@ -48,10 +34,7 @@ export default function LoginForm() {
       </CardHeader>
       <CardContent className="space-y-2">
         <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(handleSubmit)}
-            className="space-y-6"
-          >
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <FormField
               control={form.control}
               name="email"
@@ -100,8 +83,11 @@ export default function LoginForm() {
               )}
             />
 
-            <Button className="w-full dark:text-white dark:bg-slate-800">
-              Submit
+            <Button
+              className="w-full dark:text-white dark:bg-slate-800"
+              disabled={isLoading}
+            >
+              {isLoading ? <Spinner sm /> : "Submit"}
             </Button>
           </form>
           <div className="relative flex items-center my-3 font-bold">
