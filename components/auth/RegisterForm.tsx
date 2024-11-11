@@ -48,7 +48,7 @@ export default function RegisterForm() {
                     <Input
                       placeholder="Enter Name"
                       {...field}
-                      className="bg-slate-100 dark:bg-slate-500 text-blak dark:text-slate-100 focus-visible:ring-0 focus-visible:ring-offset-0"
+                      className="bg-slate-100 dark:bg-zinc-950 text-blak dark:text-slate-100 focus-visible:ring-0 focus-visible:ring-offset-0"
                     />
                   </FormControl>
                   <FormMessage />
@@ -67,7 +67,7 @@ export default function RegisterForm() {
                     <Input
                       placeholder="Enter Email"
                       {...field}
-                      className="bg-slate-100 dark:bg-slate-500 text-blak dark:text-slate-100 focus-visible:ring-0 focus-visible:ring-offset-0"
+                      className="bg-slate-100 dark:bg-zinc-950 text-blak dark:text-slate-100 focus-visible:ring-0 focus-visible:ring-offset-0"
                     />
                   </FormControl>
                   <FormMessage />
@@ -87,7 +87,7 @@ export default function RegisterForm() {
                       type="password"
                       placeholder="Enter Password"
                       {...field}
-                      className="bg-slate-100 dark:bg-slate-500 text-blak dark:text-slate-100 focus-visible:ring-0 focus-visible:ring-offset-0"
+                      className="bg-slate-100 dark:bg-zinc-950 text-blak dark:text-slate-100 focus-visible:ring-0 focus-visible:ring-offset-0"
                     />
                   </FormControl>
                   <FormMessage />
@@ -107,7 +107,7 @@ export default function RegisterForm() {
                       type="password"
                       placeholder="Confirm Password"
                       {...field}
-                      className="bg-slate-100 dark:bg-slate-500 text-blak dark:text-slate-100 focus-visible:ring-0 focus-visible:ring-offset-0"
+                      className="bg-slate-100 dark:bg-zinc-950 text-blak dark:text-slate-100 focus-visible:ring-0 focus-visible:ring-offset-0"
                     />
                   </FormControl>
                   <FormMessage />
@@ -116,7 +116,7 @@ export default function RegisterForm() {
             />
 
             <Button
-              className="w-full dark:text-white dark:bg-slate-800"
+              className="w-full dark:text-black dark:bg-white font-bold"
               disabled={isLoading}
             >
               {isLoading ? <Spinner sm /> : "Submit"}

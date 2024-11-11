@@ -37,7 +37,7 @@ export default function PasswordResetForm() {
                     <Input
                       placeholder="Enter Email"
                       {...field}
-                      className="bg-slate-100 dark:bg-slate-500 text-blak dark:text-slate-100 focus-visible:ring-0 focus-visible:ring-offset-0"
+                      className="bg-slate-100 dark:bg-zinc-950 text-blak dark:text-slate-100 focus-visible:ring-0 focus-visible:ring-offset-0"
                     />
                   </FormControl>
                   <FormMessage />
@@ -46,7 +46,7 @@ export default function PasswordResetForm() {
             />
 
             <Button
-              className="w-full dark:text-white dark:bg-slate-800"
+              className="w-full dark:text-black dark:bg-white font-bold"
               disabled={isLoading}
             >
               {isLoading ? <Spinner sm /> : "Request reset password"}
