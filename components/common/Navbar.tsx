@@ -7,6 +7,7 @@ import { ThemeToggler } from "@/components/common";
 import { useAppDispatch } from "@/redux/hooks";
 import { useLogoutMutation } from "@/redux/features/authApiSlice";
 import { logout as setLogout } from "@/redux/features/authSlice";
+import { LogOut, BadgePlus, UserRound } from "lucide-react";
 
 import {
   DropdownMenu,
@@ -47,15 +48,18 @@ export default function Navbar() {
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
+              <UserRound className="h-[1.2rem] w-[1.2rem]" />
               <Link href="/">Profile</Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <Link href="#">Blog</Link>
+              <BadgePlus className="h-[1.2rem] w-[1.2rem]" />
+              <Link href="#">Create</Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
               <ThemeToggler />
             </DropdownMenuItem>
             <DropdownMenuItem>
+              <LogOut className="h-[1.2rem] w-[1.2rem]" />
               <button onClick={handleLogout}>Logout</button>
             </DropdownMenuItem>
           </DropdownMenuContent>
