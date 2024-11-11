@@ -1,5 +1,5 @@
 import * as z from "zod";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import { useForm } from "react-hook-form";
 import { resetPasswordSchema } from "@/lib/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";

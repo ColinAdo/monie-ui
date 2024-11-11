@@ -1,5 +1,5 @@
 import * as z from "zod";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import { useForm } from "react-hook-form";
 import { loginSchema } from "@/lib/schemas";
 import { useRouter } from "next/navigation";
