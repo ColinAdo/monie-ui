@@ -31,7 +31,6 @@ export default function useLogin() {
       })
       .catch((err) => {
         toast.error("Wrong email or password!");
-        console.log("Wrong email or password!", err);
       });
   };
 
