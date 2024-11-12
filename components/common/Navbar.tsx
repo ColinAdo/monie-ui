@@ -55,9 +55,7 @@ export default function Navbar() {
               <BadgePlus className="h-[1.2rem] w-[1.2rem]" />
               <Link href="#">Create</Link>
             </DropdownMenuItem>
-            {/* <DropdownMenuItem> */}
             <ThemeToggler />
-            {/* </DropdownMenuItem> */}
             <DropdownMenuItem>
               <LogOut className="h-[1.2rem] w-[1.2rem]" />
               <button onClick={handleLogout}>Logout</button>
