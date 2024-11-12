@@ -3,6 +3,7 @@ import { CardContent } from "@/components/dashboard/Card";
 import { PageTitle, Chart, AnalyticChart } from "@/components/dashboard";
 import { Activity, CreditCard, DollarSign, Users } from "lucide-react";
 import SalesCard, { SalesProps } from "@/components/dashboard/SalesCard";
+import Link from "next/link";
 
 const CardData: CardProps[] = [
   {
@@ -21,7 +22,7 @@ const CardData: CardProps[] = [
     lebal: "Activity",
     icon: Activity,
     amount: "-10,000.00",
-    description: "Website engagement with the whole month",
+    description: "Website engagement ",
   },
   {
     lebal: "Total Revenue",
@@ -70,13 +71,15 @@ export default function Page() {
       <PageTitle title="Dasboard" />
       <section className="grid w-full grid-cols-1 gap-2 sm:grid-cols-2 xl:grid-cols-4 transition-all">
         {CardData.map((d, i) => (
-          <Card
-            key={i}
-            amount={d.amount}
-            icon={d.icon}
-            lebal={d.lebal}
-            description={d.description}
-          />
+          <Link href={`#`}>
+            <Card
+              key={i}
+              amount={d.amount}
+              icon={d.icon}
+              lebal={d.lebal}
+              description={d.description}
+            />
+          </Link>
         ))}
       </section>
 
