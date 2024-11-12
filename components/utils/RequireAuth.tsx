@@ -15,7 +15,7 @@ export default function RequireAuth({ children }: Props) {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center my-8">
+      <div className="flex justify-center items-center my-80">
         <Spinner lg />
       </div>
     );
