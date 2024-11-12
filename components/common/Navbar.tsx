@@ -41,7 +41,9 @@ export default function Navbar() {
           <DropdownMenuTrigger className="focus:outline-none">
             <Avatar>
               <AvatarImage src="https://github.com/shadcn.png" alt="avatar" />
-              <AvatarFallback className="text-black">CA</AvatarFallback>
+              <AvatarFallback className="text-black dark:text-white">
+                CA
+              </AvatarFallback>
             </Avatar>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
