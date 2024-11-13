@@ -17,7 +17,7 @@ export default function Page() {
       <FormDialog
         requiredRoute={isCreatePage}
         onOpenChange={onOpenChange}
-        dialogTitle="Create new post"
+        dialogTitle="Create new account"
       >
         <CreateAccountForm />
       </FormDialog>
