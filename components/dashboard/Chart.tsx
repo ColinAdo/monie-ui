@@ -71,7 +71,7 @@ export default function Chart() {
           fontSize={12}
           tickFormatter={(value) => `$${value}`}
         />
-        <Bar dataKey={"total"} radius={[4, 4, 0, 0]} />
+        <Bar dataKey={"total"} fill="gray" radius={[4, 4, 0, 0]} />
       </BarChart>
     </ResponsiveContainer>
   );
