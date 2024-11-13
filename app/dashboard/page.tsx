@@ -71,7 +71,7 @@ export default function Page() {
       <PageTitle title="Dasboard" />
       <section className="grid w-full grid-cols-1 gap-2 sm:grid-cols-2 xl:grid-cols-4 transition-all">
         {CardData.map((d, i) => (
-          <Link href={`#`}>
+          <Link href="/dashboard/create">
             <Card
               key={i}
               amount={d.amount}

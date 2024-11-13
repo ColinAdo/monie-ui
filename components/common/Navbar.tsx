@@ -55,7 +55,7 @@ export default function Navbar() {
             </DropdownMenuItem>
             <DropdownMenuItem>
               <BadgePlus className="h-[1.2rem] w-[1.2rem]" />
-              <Link href="#">Create</Link>
+              <Link href="/dashboard/create">Create</Link>
             </DropdownMenuItem>
             <ThemeToggler />
             <DropdownMenuItem>
