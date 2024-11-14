@@ -50,12 +50,16 @@ export default function Navbar() {
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <UserRound className="h-[1.2rem] w-[1.2rem]" />
-              <Link href="/">Profile</Link>
+              <Link href="/" className="flex justify-between">
+                <UserRound className="h-[1.2rem] w-[1.2rem]" />
+                <span className="ml-2">Profile</span>
+              </Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <BadgePlus className="h-[1.2rem] w-[1.2rem]" />
-              <Link href="/dashboard/create">Create</Link>
+              <Link href="/dashboard/create" className="flex justify-between">
+                <BadgePlus className="h-[1.2rem] w-[1.2rem]" />
+                <span className="ml-2">Create</span>
+              </Link>
             </DropdownMenuItem>
             <ThemeToggler />
             <DropdownMenuItem>
