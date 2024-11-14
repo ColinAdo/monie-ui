@@ -56,7 +56,7 @@ export default function Sidebar() {
             title: "Create",
             icon: BadgePlus,
             variant: "ghost",
-            href: "/dashboard/create",
+            href: "/dashboard/create/account",
           },
           {
             title: "Transaction",

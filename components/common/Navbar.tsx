@@ -56,7 +56,10 @@ export default function Navbar() {
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <Link href="/dashboard/create" className="flex justify-between">
+              <Link
+                href="/dashboard/create/account"
+                className="flex justify-between"
+              >
                 <BadgePlus className="h-[1.2rem] w-[1.2rem]" />
                 <span className="ml-2">Create</span>
               </Link>

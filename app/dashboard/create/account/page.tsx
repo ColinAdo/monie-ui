@@ -7,7 +7,7 @@ export default function Page() {
   const router = useRouter();
   const pathname = usePathname();
 
-  const isCreatePage = pathname === "/dashboard/create";
+  const isCreatePage = pathname === "/dashboard/create/account";
   const onOpenChange = (open = isCreatePage) => {
     !open && router.back();
   };
