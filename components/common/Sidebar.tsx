@@ -12,6 +12,7 @@ import {
   ChevronRight,
   BadgePlus,
   Brain,
+  BadgeDollarSign,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useWindowWidth } from "@react-hook/window-size";
@@ -54,7 +55,13 @@ export default function Sidebar() {
           {
             title: "Create",
             icon: BadgePlus,
-            variant: "default",
+            variant: "ghost",
+            href: "/dashboard/create",
+          },
+          {
+            title: "Transaction",
+            icon: BadgeDollarSign,
+            variant: "ghost",
             href: "/dashboard/create",
           },
           {
