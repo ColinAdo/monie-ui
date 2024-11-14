@@ -62,7 +62,7 @@ export default function Sidebar() {
             title: "Transaction",
             icon: BadgeDollarSign,
             variant: "ghost",
-            href: "/dashboard/create",
+            href: "/dashboard/create/transaction",
           },
           {
             title: "Users",
