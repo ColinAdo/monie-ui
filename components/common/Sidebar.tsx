@@ -10,6 +10,7 @@ import {
   Trash2,
   UserRound,
   ChevronRight,
+  BadgePlus,
   X,
 } from "lucide-react";
 import { useState, useEffect } from "react";
@@ -46,10 +47,15 @@ export default function Sidebar() {
         links={[
           {
             title: "Dashboard",
-            // label: "128",
             icon: LayoutDashboard,
             variant: "default",
             href: "/",
+          },
+          {
+            title: "Create",
+            icon: BadgePlus,
+            variant: "default",
+            href: "/dashboard/create",
           },
           {
             title: "Users",
