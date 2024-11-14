@@ -11,7 +11,7 @@ import {
   UserRound,
   ChevronRight,
   BadgePlus,
-  X,
+  Brain,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useWindowWidth } from "@react-hook/window-size";
@@ -89,6 +89,13 @@ export default function Sidebar() {
             title: "Archive",
             label: "",
             icon: Archive,
+            variant: "ghost",
+            href: "#",
+          },
+          {
+            title: "Ask AI",
+            label: "",
+            icon: Brain,
             variant: "ghost",
             href: "#",
           },
