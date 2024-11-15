@@ -2,12 +2,12 @@
 
 import Link from "next/link";
 import { CreativeCommons } from "lucide-react";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { ThemeToggler } from "@/components/common";
 import { useAppDispatch } from "@/redux/hooks";
-import { useLogoutMutation } from "@/redux/features/authApiSlice";
-import { logout as setLogout } from "@/redux/features/authSlice";
+import { ThemeToggler } from "@/components/common";
 import { LogOut, BadgePlus, UserRound } from "lucide-react";
+import { logout as setLogout } from "@/redux/features/authSlice";
+import { useLogoutMutation } from "@/redux/features/authApiSlice";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 import {
   DropdownMenu,
