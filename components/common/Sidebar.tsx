@@ -1,7 +1,9 @@
 "use client";
 
 import { Nav } from "@/components/ui/nav";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { useWindowWidth } from "@react-hook/window-size";
 import {
   Archive,
   ArchiveX,
@@ -14,8 +16,6 @@ import {
   Brain,
   BadgeDollarSign,
 } from "lucide-react";
-import { useState, useEffect } from "react";
-import { useWindowWidth } from "@react-hook/window-size";
 
 export default function Sidebar() {
   const [isCollapsed, setIsCollapsed] = useState(false);
