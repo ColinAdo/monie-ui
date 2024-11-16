@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
-import { FormDialog, CreateAccountForm } from "@/components/dashboard";
+import { FormDialog, EditAccountForm } from "@/components/dashboard";
 
 export default function Page() {
   const router = useRouter();
@@ -19,7 +19,7 @@ export default function Page() {
         onOpenChange={onOpenChange}
         dialogTitle="Edit account"
       >
-        <CreateAccountForm />
+        <EditAccountForm />
       </FormDialog>
     </div>
   );
