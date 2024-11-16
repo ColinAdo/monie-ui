@@ -2,9 +2,9 @@
 
 import {
   Dialog,
-  DialogContent,
-  DialogHeader,
   DialogTitle,
+  DialogHeader,
+  DialogContent,
 } from "@/components/ui/dialog";
 
 import React from "react";
