@@ -9,12 +9,23 @@ export default function CreateTransactionForm() {
       <form>
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
-              Account name
+            <Label htmlFor="type" className="text-right">
+              Type
             </Label>
             <Input
-              id="name"
-              defaultValue="Pedro Duarte"
+              id="type"
+              defaultValue="Account for managing airtime"
+              className="col-span-3"
+            />
+          </div>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="amount" className="text-right">
+              Amount
+            </Label>
+            <Input
+              id="amount"
+              type="number"
+              defaultValue="50000"
               className="col-span-3"
             />
           </div>
@@ -29,13 +40,12 @@ export default function CreateTransactionForm() {
             />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="amount" className="text-right">
-              Amount
+            <Label htmlFor="name" className="text-right">
+              Account name
             </Label>
             <Input
-              id="amount"
-              type="number"
-              defaultValue="50000"
+              id="name"
+              defaultValue="Pedro Duarte"
               className="col-span-3"
             />
           </div>
