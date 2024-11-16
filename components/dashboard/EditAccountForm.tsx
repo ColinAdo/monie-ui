@@ -41,6 +41,9 @@ export default function CreateAccountForm() {
           </div>
         </div>
         <DialogFooter>
+          <Button type="submit" className="bg-red-500 hover:bg-red-400">
+            Delete
+          </Button>
           <Button type="submit">Submit</Button>
         </DialogFooter>
       </form>
