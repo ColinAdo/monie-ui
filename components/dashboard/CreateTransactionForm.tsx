@@ -2,6 +2,13 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { DialogFooter } from "@/components/ui/dialog";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export default function CreateTransactionForm() {
   return (
@@ -12,11 +19,16 @@ export default function CreateTransactionForm() {
             <Label htmlFor="type" className="text-right">
               Type
             </Label>
-            <Input
-              id="type"
-              defaultValue="Account for managing airtime"
-              className="col-span-3"
-            />
+            <Select>
+              <SelectTrigger id="type" className="w-[340px]">
+                <SelectValue placeholder="Airtime" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="airtime">Airtime</SelectItem>
+                <SelectItem value="dark">Sent</SelectItem>
+                <SelectItem value="system">System</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="amount" className="text-right">
@@ -43,11 +55,16 @@ export default function CreateTransactionForm() {
             <Label htmlFor="name" className="text-right">
               Account name
             </Label>
-            <Input
-              id="name"
-              defaultValue="Pedro Duarte"
-              className="col-span-3"
-            />
+            <Select>
+              <SelectTrigger id="account" className="w-[340px]">
+                <SelectValue placeholder="Savings" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="savings">Savings</SelectItem>
+                <SelectItem value="rent">Rent</SelectItem>
+                <SelectItem value="fee">Fee</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
         </div>
         <DialogFooter>
