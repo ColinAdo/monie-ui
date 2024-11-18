@@ -24,7 +24,7 @@ export default function AnalyticCard() {
     <>
       <Card>
         <CardHeader>
-          <CardTitle>Post analytics</CardTitle>
+          <CardTitle>Transaction analytics</CardTitle>
           <CardDescription>
             Line Chart showing analytic for post
           </CardDescription>
