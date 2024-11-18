@@ -100,6 +100,9 @@ export default function Page() {
                 saleAmount={d.saleAmount}
               />
             ))}
+            <Link className="flex justify-end text-blue-400" href="#">
+              see all
+            </Link>
           </section>
         </CardContent>
         <CardContent>
