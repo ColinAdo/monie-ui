@@ -88,7 +88,7 @@ export default function Page() {
 
         <CardContent>
           <section>
-            <p className="font-semibold">Sales</p>
+            <p className="font-semibold">Transactions</p>
             <p className="text-gray-500 text-sm">
               You have made about 567 sales this month
             </p>
