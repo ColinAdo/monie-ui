@@ -6,8 +6,11 @@ import { useAppDispatch } from "@/redux/hooks";
 import { ThemeToggler } from "@/components/common";
 import { LogOut, BadgePlus, UserRound } from "lucide-react";
 import { logout as setLogout } from "@/redux/features/authSlice";
-import { useLogoutMutation } from "@/redux/features/authApiSlice";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import {
+  useLogoutMutation,
+  useRetrieveUserQuery,
+} from "@/redux/features/authApiSlice";
 
 import {
   DropdownMenu,
@@ -22,6 +25,7 @@ import {
 export default function Navbar() {
   const dispatch = useAppDispatch();
   const [logout] = useLogoutMutation();
+  const { data: user } = useRetrieveUserQuery();
 
   const handleLogout = () => {
     logout(undefined)
@@ -40,14 +44,13 @@ export default function Navbar() {
         <DropdownMenu>
           <DropdownMenuTrigger className="focus:outline-none">
             <Avatar>
-              <AvatarImage src="https://github.com/shadcn.png" alt="avatar" />
-              <AvatarFallback className="text-black dark:text-white">
-                CA
+              <AvatarFallback className="text-black bg-slate-300 font-bold">
+                {user?.username[0]}
               </AvatarFallback>
             </Avatar>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
-            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <DropdownMenuLabel>{user?.username}</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
               <Link href="/" className="flex justify-between">
