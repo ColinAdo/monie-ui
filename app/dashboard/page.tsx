@@ -1,9 +1,9 @@
-import Card, { CardProps } from "@/components/dashboard/Card";
-import { CardContent } from "@/components/dashboard/Card";
-import { PageTitle, Chart, AnalyticChart } from "@/components/dashboard";
-import { Activity, CreditCard, DollarSign, Users } from "lucide-react";
-import SalesCard, { SalesProps } from "@/components/dashboard/SalesCard";
 import Link from "next/link";
+import { CardContent } from "@/components/dashboard/Card";
+import Card, { CardProps } from "@/components/dashboard/Card";
+import { Activity, CreditCard, DollarSign, Users } from "lucide-react";
+import { PageTitle, Chart, AnalyticChart } from "@/components/dashboard";
+import SalesCard, { SalesProps } from "@/components/dashboard/SalesCard";
 
 const CardData: CardProps[] = [
   {
