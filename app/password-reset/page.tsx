@@ -1,5 +1,5 @@
-import PasswordResetForm from "@/components/auth/PasswordResetForm";
 import { CreativeCommons } from "lucide-react";
+import PasswordResetForm from "@/components/auth/PasswordResetForm";
 
 export default function Page() {
   return (
