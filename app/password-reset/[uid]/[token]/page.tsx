@@ -1,5 +1,5 @@
-import PasswordResetConfirmForm from "@/components/auth/PasswordResetConfirmForm";
 import { CreativeCommons } from "lucide-react";
+import PasswordResetConfirmForm from "@/components/auth/PasswordResetConfirmForm";
 
 interface Props {
   params: {
