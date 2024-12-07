@@ -1,7 +1,7 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { RegisterForm } from "@/components/forms";
 import { SocialButtons } from "@/components/common";
-import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Monie | Register",
