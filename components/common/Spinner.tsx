@@ -1,5 +1,5 @@
-import { ImSpinner3 } from "react-icons/im";
 import cn from "classnames";
+import { ImSpinner3 } from "react-icons/im";
 
 interface Props {
   sm?: boolean;
