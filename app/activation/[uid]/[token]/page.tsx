@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect } from "react";
-import { useActivationMutation } from "@/redux/features/authApiSlice";
-import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
+import { useActivationMutation } from "@/redux/features/authApiSlice";
 
 interface Props {
   params: {
