@@ -1,5 +1,5 @@
-import AuthTabs from "@/components/auth/AuthTabs";
 import { CreativeCommons } from "lucide-react";
+import AuthTabs from "@/components/auth/AuthTabs";
 
 export default function Page() {
   return (
