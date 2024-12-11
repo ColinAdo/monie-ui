@@ -53,3 +53,9 @@ export const resetPasswordConfirmSchema = z.object({
     message: "confirm new password is required",
   }),
 });
+
+export const accountSchema = z.object({
+  name: z.string().min(1, "Account name is required."),
+  description: z.string().optional(),
+  amount: z.string().min(1, "Account amount is required."),
+});
