@@ -4,7 +4,7 @@ import Link from "next/link";
 import { CreativeCommons } from "lucide-react";
 import { useAppDispatch } from "@/redux/hooks";
 import { ThemeToggler } from "@/components/common";
-import { LogOut, BadgePlus, UserRound } from "lucide-react";
+import { LogOut, BadgePlus, UserRound, BadgeDollarSign } from "lucide-react";
 import { logout as setLogout } from "@/redux/features/authSlice";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import {
@@ -65,6 +65,15 @@ export default function Navbar() {
               >
                 <BadgePlus className="h-[1.2rem] w-[1.2rem]" />
                 <span className="ml-2">Create</span>
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link
+                href="/dashboard/create/transaction"
+                className="flex justify-between"
+              >
+                <BadgeDollarSign className="h-[1.2rem] w-[1.2rem]" />
+                <span className="ml-2">Transation</span>
               </Link>
             </DropdownMenuItem>
             <ThemeToggler />
