@@ -1,24 +1,30 @@
 import { LucideIcon } from "lucide-react";
+import { AccountType } from "@/lib/exports";
 
-export type CardProps = {
-  lebal: string;
-  amount: string;
-  icon: LucideIcon;
-  description: string;
-};
+interface Props {
+  accounts: AccountType[];
+}
 
-export default function Card(props: CardProps) {
+export default function Card({ accounts }: Props) {
   return (
-    <CardContent>
-      <section className="flex justify-between gap-2">
-        {props.lebal}
-        <props.icon className="h-4 w-4 text-gray-500" />
-      </section>
-      <section className="flex flex-col gap-1">
-        <h2 className="text-xl font-semibold">{props.amount}</h2>
-        <p className="text-sm text-gray-500">{props.description}</p>
-      </section>
-    </CardContent>
+    <>
+      {accounts.map((account, i) => (
+        <CardContent key={i}>
+          <section className="flex justify-between gap-2">
+            {account.name}
+            {account.created_date && (
+              <p className="text-sm text-gray-500">
+                {new Date(account.created_date).toLocaleDateString()}
+              </p>
+            )}
+          </section>
+          <section className="flex justify-between gap-1">
+            <p className="text-sm text-gray-500">{account.description}</p>
+            <p className="text-lg font-semibold">{account.amount}</p>
+          </section>
+        </CardContent>
+      ))}
+    </>
   );
 }
 
