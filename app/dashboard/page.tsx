@@ -1,36 +1,11 @@
+"use client";
+
 import Link from "next/link";
 import { CardContent } from "@/components/dashboard/Card";
-import Card, { CardProps } from "@/components/dashboard/Card";
-import { Activity, CreditCard, DollarSign, Users } from "lucide-react";
+import Card from "@/components/dashboard/Card";
 import { PageTitle, Chart, AnalyticChart } from "@/components/dashboard";
 import SalesCard, { SalesProps } from "@/components/dashboard/SalesCard";
-
-const CardData: CardProps[] = [
-  {
-    lebal: "Sales",
-    icon: CreditCard,
-    amount: "+246,340.00",
-    description: "Sales for the whole month",
-  },
-  {
-    lebal: "Users",
-    icon: Users,
-    amount: "+24,000.00",
-    description: "Users signed up this month",
-  },
-  {
-    lebal: "Activity",
-    icon: Activity,
-    amount: "-10,000.00",
-    description: "Website engagement ",
-  },
-  {
-    lebal: "Total Revenue",
-    icon: DollarSign,
-    amount: "+350,000.00",
-    description: "Revenue of the whole month",
-  },
-];
+import { useGetAccountsQuery } from "@/redux/features/accountSlice";
 
 const SalesData: SalesProps[] = [
   {
@@ -66,19 +41,19 @@ const SalesData: SalesProps[] = [
 ];
 
 export default function Page() {
+  const { data: accounts } = useGetAccountsQuery();
+
+  if (!accounts) {
+    return;
+  }
+
   return (
     <div className="flex flex-col gap-5 w-full">
-      <PageTitle title="Dasboard" />
-      <section className="grid w-full grid-cols-1 gap-2 sm:grid-cols-2 xl:grid-cols-4 transition-all">
-        {CardData.map((d, i) => (
-          <Link href="/dashboard/edit/e">
-            <Card
-              key={i}
-              amount={d.amount}
-              icon={d.icon}
-              lebal={d.lebal}
-              description={d.description}
-            />
+      <PageTitle title="Dashboard" />
+      <section className="grid w-full grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+        {accounts.map((account, i) => (
+          <Link href={`/dashboard/edit/${account.name}`} key={i}>
+            <Card accounts={[account]} />
           </Link>
         ))}
       </section>
@@ -101,7 +76,7 @@ export default function Page() {
               />
             ))}
             <Link className="flex justify-end text-blue-400" href="#">
-              see all
+              See all
             </Link>
           </section>
         </CardContent>
