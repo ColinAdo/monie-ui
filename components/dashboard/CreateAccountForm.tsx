@@ -13,7 +13,6 @@ import { accountSchema } from "@/lib/schemas";
 import { Spinner } from "@/components/common";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Card, CardContent } from "@/components/ui/card";
-import { useAppSelector } from "@/redux/hooks";
 
 import {
   Form,
@@ -26,7 +25,6 @@ import {
 
 export default function CreateAccountForm() {
   const router = useRouter();
-  const { isLoading } = useAppSelector((state) => state.auth);
   const WS_URL = `${process.env.NEXT_PUBLIC_WS_HOST}/api/v1/accounts/`;
 
   const { sendJsonMessage, lastJsonMessage, readyState } = useWebSocket(
@@ -51,7 +49,10 @@ export default function CreateAccountForm() {
   });
 
   const onSubmit = (data: z.infer<typeof accountSchema>) => {
-    sendJsonMessage(data);
+    sendJsonMessage({
+      event: "account_message",
+      data,
+    });
     toast.success("Account created successfully");
     router.push("/dashboard");
   };
@@ -125,11 +126,8 @@ export default function CreateAccountForm() {
               )}
             />
 
-            <Button
-              className="w-full dark:text-black font-bold dark:bg-white"
-              disabled={isLoading}
-            >
-              {isLoading ? <Spinner sm /> : "Submit"}
+            <Button className="w-full dark:text-black font-bold dark:bg-white">
+              Submit
             </Button>
           </form>
         </Form>
