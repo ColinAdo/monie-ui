@@ -1,4 +1,3 @@
-import { LucideIcon } from "lucide-react";
 import { AccountType } from "@/lib/exports";
 
 interface Props {
