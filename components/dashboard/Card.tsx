@@ -1,5 +1,6 @@
 import { AccountType } from "@/lib/exports";
 
+// Card prop
 interface Props {
   accounts: AccountType[];
 }
