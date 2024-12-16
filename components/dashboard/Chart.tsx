@@ -2,6 +2,7 @@
 
 import { ResponsiveContainer, BarChart, XAxis, YAxis, Bar } from "recharts";
 
+// chart data
 const data = [
   {
     name: "Jan",
