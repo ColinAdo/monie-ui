@@ -6,7 +6,7 @@ import { useAppDispatch } from "@/redux/hooks";
 import { ThemeToggler } from "@/components/common";
 import { LogOut, BadgePlus, UserRound, BadgeDollarSign } from "lucide-react";
 import { logout as setLogout } from "@/redux/features/authSlice";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
   useLogoutMutation,
   useRetrieveUserQuery,
