@@ -10,13 +10,13 @@ export default function Layout({ children }: Props) {
   return (
     <RequireAuth>
       <WebSocketProvider>
-      <Navbar />
-      <div className="flex">
-        <div className="hidden md:block">
-          <Sidebar />
+        <Navbar />
+        <div className="flex">
+          <div className="hidden md:block">
+            <Sidebar />
+          </div>
+          <div className="p-5 w-full max-w-[1140px]">{children}</div>
         </div>
-        <div className="p-5 w-full max-w-[1140px]">{children}</div>
-      </div>
       </WebSocketProvider>
     </RequireAuth>
   );
