@@ -6,6 +6,7 @@ import Card from "@/components/dashboard/Card";
 import { PageTitle, Chart, AnalyticChart } from "@/components/dashboard";
 import SalesCard, { SalesProps } from "@/components/dashboard/SalesCard";
 import { useGetAccountsQuery } from "@/redux/features/accountSlice";
+import { useWebSocketContext } from "@/hooks/WebSocketContext";
 
 const SalesData: SalesProps[] = [
   {
@@ -41,6 +42,8 @@ const SalesData: SalesProps[] = [
 ];
 
 export default function Page() {
+  const {lastJsonMessage} = useWebSocketContext();
+  console.log("lastJsonMessage :", lastJsonMessage);
   const { data: accounts } = useGetAccountsQuery();
 
   if (!accounts) {
