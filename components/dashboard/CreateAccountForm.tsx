@@ -1,8 +1,6 @@
 "use client";
 
 import { Input } from "@/components/ui/input";
-import useWebSocket from "react-use-websocket";
-import { useEffect } from "react";
 import { toast } from "sonner";
 
 import * as z from "zod";
@@ -12,6 +10,7 @@ import { accountSchema } from "@/lib/schemas";
 import { Button } from "@/components/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Card, CardContent } from "@/components/ui/card";
+import { useWebSocketContext } from "@/hooks/WebSocketContext";
 
 import {
   Form,
@@ -23,20 +22,8 @@ import {
 } from "@/components/ui/form";
 
 export default function CreateAccountForm() {
+  const {sendJsonMessage} = useWebSocketContext();
   const router = useRouter();
-  const WS_URL = `${process.env.NEXT_PUBLIC_WS_HOST}/api/v1/accounts/`;
-
-  const { sendJsonMessage, lastJsonMessage, readyState } = useWebSocket(
-    WS_URL,
-    {
-      share: false,
-      shouldReconnect: () => true,
-    }
-  );
-
-  useEffect(() => {
-    console.log("Connection state changed", readyState);
-  }, [readyState]);
 
   const form = useForm<z.infer<typeof accountSchema>>({
     resolver: zodResolver(accountSchema),
