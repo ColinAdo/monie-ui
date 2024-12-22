@@ -5,8 +5,9 @@ interface User {
 }
 
 export type AccountType = {
+  id: string;
   name: string;
   description: string;
-  amount: string;
+  amount: number;
   created_date: Date | null;
 };
