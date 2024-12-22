@@ -7,6 +7,8 @@ import { PageTitle, Chart, AnalyticChart } from "@/components/dashboard";
 import SalesCard, { SalesProps } from "@/components/dashboard/SalesCard";
 import { useGetAccountsQuery } from "@/redux/features/accountSlice";
 import { useWebSocketContext } from "@/hooks/WebSocketContext";
+import { useEffect, useState } from "react";
+import { AccountType } from "@/lib/exports";
 
 const SalesData: SalesProps[] = [
   {
@@ -42,9 +44,33 @@ const SalesData: SalesProps[] = [
 ];
 
 export default function Page() {
-  const {lastJsonMessage} = useWebSocketContext();
-  console.log("lastJsonMessage :", lastJsonMessage);
+  const [realtimeMessages, setRealtimeMessages] = useState<AccountType[]>([]);
+  const { lastJsonMessage } = useWebSocketContext();
   const { data: accounts } = useGetAccountsQuery();
+
+  useEffect(() => {
+    if (
+      lastJsonMessage &&
+      typeof lastJsonMessage === "object" &&
+      "name" in lastJsonMessage &&
+      "description" in lastJsonMessage &&
+      "amount" in lastJsonMessage
+    ) {
+      const account: AccountType = {
+        id: "",
+        name: lastJsonMessage.name as string,
+        description: lastJsonMessage.description as string,
+        amount: lastJsonMessage.amount as number,
+        created_date: lastJsonMessage.created_date as Date
+      };
+      setRealtimeMessages([account]);
+    }
+
+  }, [lastJsonMessage]);
+
+  useEffect(() => {
+    console.log("Updated realtimeMessages:", realtimeMessages);
+  }, [realtimeMessages]);
 
   if (!accounts) {
     return;
@@ -54,6 +80,11 @@ export default function Page() {
     <div className="flex flex-col gap-5 w-full">
       <PageTitle title="Dashboard" />
       <section className="grid w-full grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+        {realtimeMessages.map((account, i) => (
+          <Link href={`/dashboard/edit/${account.name}`} key={i}>
+            <Card accounts={[account]} />
+          </Link>
+        ))}
         {accounts.map((account, i) => (
           <Link href={`/dashboard/edit/${account.name}`} key={i}>
             <Card accounts={[account]} />
