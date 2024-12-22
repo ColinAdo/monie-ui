@@ -22,7 +22,7 @@ import {
 } from "@/components/ui/form";
 
 export default function CreateAccountForm() {
-  const {sendJsonMessage} = useWebSocketContext();
+  const { sendJsonMessage } = useWebSocketContext();
   const router = useRouter();
 
   const form = useForm<z.infer<typeof accountSchema>>({
@@ -34,7 +34,7 @@ export default function CreateAccountForm() {
     },
   });
 
-  const onSubmit = (data: z.infer<typeof accountSchema>) => {
+  const onSubmit = async (data: z.infer<typeof accountSchema>) => {
     sendJsonMessage({
       event: "account_message",
       data,
