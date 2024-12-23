@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { CardContent } from "@/components/dashboard/Card";
 import Card from "@/components/dashboard/Card";
+import { CardContent } from "@/components/dashboard/Card";
 import { PageTitle, Chart, AnalyticChart } from "@/components/dashboard";
 import SalesCard, { SalesProps } from "@/components/dashboard/SalesCard";
 import { useGetAccountsQuery } from "@/redux/features/accountSlice";
