@@ -1,8 +1,8 @@
 "use client";
 
-import { toast } from "sonner";
 
 import * as z from "zod";
+import { toast } from "sonner";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { accountSchema } from "@/lib/schemas";
