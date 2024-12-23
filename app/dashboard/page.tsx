@@ -3,10 +3,10 @@
 import Link from "next/link";
 import Card from "@/components/dashboard/Card";
 import { CardContent } from "@/components/dashboard/Card";
+import { useWebSocketContext } from "@/hooks/WebSocketContext";
 import { useGetAccountsQuery } from "@/redux/features/accountSlice";
 import { PageTitle, Chart, AnalyticChart } from "@/components/dashboard";
 import SalesCard, { SalesProps } from "@/components/dashboard/SalesCard";
-import { useWebSocketContext } from "@/hooks/WebSocketContext";
 import { useEffect, useState } from "react";
 import { AccountType } from "@/lib/exports";
 
