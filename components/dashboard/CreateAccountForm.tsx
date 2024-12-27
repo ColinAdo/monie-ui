@@ -36,7 +36,7 @@ export default function CreateAccountForm() {
 
   const onSubmit = async (data: z.infer<typeof accountSchema>) => {
     sendJsonMessage({
-      event: "account_message",
+      event: "create_account",
       data,
     });
     toast.success("Account created successfully");
