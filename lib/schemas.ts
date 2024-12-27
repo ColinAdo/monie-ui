@@ -59,3 +59,10 @@ export const accountSchema = z.object({
   description: z.string().optional(),
   amount: z.string().min(1, "Account amount is required."),
 });
+
+export const editAccountSchema = z.object({
+  id: z.string().optional(),
+  name: z.string().min(1, "Account name is required."),
+  description: z.string().optional(),
+  amount: z.string().min(1, "Account amount is required."),
+});
