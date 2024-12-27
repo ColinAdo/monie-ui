@@ -46,7 +46,7 @@ const SalesData: SalesProps[] = [
 export default function Page() {
   const [realtimeMessages, setRealtimeMessages] = useState<AccountType[]>([]);
   const { lastJsonMessage } = useWebSocketContext();
-  const { data: accounts } = useGetAccountsQuery();
+  const { data: accounts, refetch } = useGetAccountsQuery();
 
   useEffect(() => {
     if (
@@ -65,11 +65,11 @@ export default function Page() {
       };
       setRealtimeMessages([account]);
     }
-
   }, [lastJsonMessage]);
 
   useEffect(() => {
     console.log("Updated realtimeMessages:", realtimeMessages);
+    refetch();
   }, [realtimeMessages]);
 
   if (!accounts) {
@@ -80,18 +80,12 @@ export default function Page() {
     <div className="flex flex-col gap-5 w-full">
       <PageTitle title="Dashboard" />
       <section className="grid w-full grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
-        {realtimeMessages.map((account, i) => (
-          <Link href={`/dashboard/edit/${account.name}`} key={i}>
-            <Card accounts={[account]} />
-          </Link>
-        ))}
         {accounts.map((account, i) => (
           <Link href={`/dashboard/edit/${account.name}`} key={i}>
             <Card accounts={[account]} />
           </Link>
         ))}
       </section>
-
       <section className="grid grid-cols-1 gap-4 lg:grid-cols-2 transition-all">
         <AnalyticChart />
 
