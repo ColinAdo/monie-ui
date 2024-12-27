@@ -8,7 +8,12 @@ const accountSlice = apiSlice.injectEndpoints({
         url: "/accounts/",
       }),
     }),
+    RetrieveAccounts: builder.query<void, string>({
+      query: (accountId) => ({
+        url: `/accounts/${accountId}/`,
+      }),
+    }),
   }),
 });
 
-export const { useGetAccountsQuery } = accountSlice;
+export const { useGetAccountsQuery, useRetrieveAccountsQuery } = accountSlice;
