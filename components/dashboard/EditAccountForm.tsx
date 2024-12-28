@@ -53,7 +53,6 @@ export default function CreateAccountForm({ account }: Props) {
 
   return (
     <>
-      {/* <CardContent className="space-y-2"> */}
       <Form {...form}>
         <input type="hidden" value={account.id} {...form.register("id")} />
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -121,13 +120,11 @@ export default function CreateAccountForm({ account }: Props) {
               </FormItem>
             )}
           />
-
           <Button type="submit" className="w-full dark:text-black font-bold dark:bg-white">
             Submit
           </Button>
         </form>
       </Form>
-      {/* </CardContent> */}
     </>
   );
 }
