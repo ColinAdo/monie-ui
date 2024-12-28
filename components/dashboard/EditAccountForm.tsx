@@ -33,7 +33,6 @@ export default function CreateAccountForm({ account }: Props) {
   const form = useForm<z.infer<typeof editAccountSchema>>({
     resolver: zodResolver(editAccountSchema),
     defaultValues: {
-      // id: account.id,
       name: account.name || "",
       description: account.description || "",
       amount: account?.amount !== undefined ? String(account.amount) : "",
