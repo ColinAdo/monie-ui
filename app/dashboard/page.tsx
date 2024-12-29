@@ -4,75 +4,24 @@ import Link from "next/link";
 import Card from "@/components/dashboard/Card";
 import { CardContent } from "@/components/dashboard/Card";
 import { useWebSocketContext } from "@/hooks/WebSocketContext";
-import { useGetAccountsQuery } from "@/redux/features/accountSlice";
+import { useGetAccountsQuery, useGetTransactionsQuery } from "@/redux/features/accountSlice";
 import { PageTitle, Chart, AnalyticChart } from "@/components/dashboard";
-import SalesCard, { SalesProps } from "@/components/dashboard/SalesCard";
-import { useEffect, useState } from "react";
-import { AccountType } from "@/lib/exports";
-
-const SalesData: SalesProps[] = [
-  {
-    name: "Annie",
-    email: "annie@gmail.com",
-    saleAmount: "+567,000.00",
-  },
-  {
-    name: "Maggie",
-    email: "maggie@gmail.com",
-    saleAmount: "-100,000.00",
-  },
-  {
-    name: "George",
-    email: "george@gmail.com",
-    saleAmount: "+450,000.00",
-  },
-  {
-    name: "Coco",
-    email: "coco@gmail.com",
-    saleAmount: "+900,000.00",
-  },
-  {
-    name: "Boo",
-    email: "boo@gmail.com",
-    saleAmount: "-50,000.00",
-  },
-  {
-    name: "Sasha",
-    email: "sasha@gmail.com",
-    saleAmount: "+370,000.00",
-  },
-];
+import SalesCard from "@/components/dashboard/SalesCard";
+import { useEffect } from "react";
+import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
 
 export default function Page() {
-  const [realtimeMessages, setRealtimeMessages] = useState<AccountType[]>([]);
   const { lastJsonMessage } = useWebSocketContext();
   const { data: accounts, refetch } = useGetAccountsQuery();
+  const { data: transactions } = useGetTransactionsQuery();
+  const { data: user } = useRetrieveUserQuery();
 
   useEffect(() => {
-    if (
-      lastJsonMessage &&
-      typeof lastJsonMessage === "object" &&
-      "name" in lastJsonMessage &&
-      "description" in lastJsonMessage &&
-      "amount" in lastJsonMessage
-    ) {
-      const account: AccountType = {
-        id: "",
-        name: lastJsonMessage.name as string,
-        description: lastJsonMessage.description as string,
-        amount: lastJsonMessage.amount as number,
-        created_date: lastJsonMessage.created_date as Date
-      };
-      setRealtimeMessages([account]);
-    }
+    console.log("Updated realtimeMessages:", lastJsonMessage);
+    refetch();
   }, [lastJsonMessage]);
 
-  useEffect(() => {
-    console.log("Updated realtimeMessages:", realtimeMessages);
-    refetch();
-  }, [realtimeMessages]);
-
-  if (!accounts) {
+  if (!accounts || !transactions || !user) {
     return;
   }
 
@@ -88,19 +37,21 @@ export default function Page() {
       </section>
       <section className="grid grid-cols-1 gap-4 lg:grid-cols-2 transition-all">
         <AnalyticChart />
-
         <CardContent>
           <section>
             <p className="font-semibold">Transactions</p>
             <p className="text-gray-500 text-sm">
-              You have made about 567 sales this month
+              You have made about {transactions.length} {transactions.length === 1 ? "transaction" : "transactions"} this month
             </p>
-            {SalesData.map((d, i) => (
+            {transactions.map((d, i) => (
               <SalesCard
                 key={i}
-                name={d.name}
-                email={d.email}
-                saleAmount={d.saleAmount}
+                accountName={d.account_name}
+                description={d.description}
+                amount={d.amount}
+                transactionType={d.transaction_type}
+                username={user.username}
+                date={d.created_date}
               />
             ))}
             <Link className="flex justify-end text-blue-400" href="#">
@@ -112,7 +63,6 @@ export default function Page() {
           <p className="p-4 font-semibold">Overview</p>
           <Chart />
         </CardContent>
-
         <AnalyticChart />
       </section>
     </div>
