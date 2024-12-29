@@ -29,7 +29,7 @@ export default function CreateAccountForm({ account }: Props) {
   const form = useForm<z.infer<typeof editAccountSchema>>({
     resolver: zodResolver(editAccountSchema),
     defaultValues: {
-      name: account.name || "",
+      accountName: account.name || "",
       description: account.description || "",
       amount: account?.amount !== undefined ? String(account.amount) : "",
     },
@@ -53,7 +53,7 @@ export default function CreateAccountForm({ account }: Props) {
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <FormField
             control={form.control}
-            name="name"
+            name="accountName"
             render={({ field }) => (
               <FormItem>
                 <FormLabel className="uppercase text-xs font-bold text-zinc-500 dark:text-white">
