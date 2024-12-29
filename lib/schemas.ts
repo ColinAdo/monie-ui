@@ -55,7 +55,7 @@ export const resetPasswordConfirmSchema = z.object({
 });
 
 export const accountSchema = z.object({
-  name: z.string().min(1, "Account name is required."),
+  accountName: z.string().min(1, "Account name is required."),
   description: z.string().optional(),
   amount: z.string().min(1, "Account amount is required."),
 });
@@ -63,6 +63,14 @@ export const accountSchema = z.object({
 export const editAccountSchema = z.object({
   id: z.string().optional(),
   name: z.string().min(1, "Account name is required."),
+  description: z.string().optional(),
+  amount: z.string().min(1, "Account amount is required."),
+});
+
+
+export const createTransactionSchema = z.object({
+  accountName: z.string().min(1, "Account name is required."),
+  transactionType: z.string().min(1, "Transaction type is required."),
   description: z.string().optional(),
   amount: z.string().min(1, "Account amount is required."),
 });

@@ -26,7 +26,7 @@ export default function CreateAccountForm() {
   const form = useForm<z.infer<typeof accountSchema>>({
     resolver: zodResolver(accountSchema),
     defaultValues: {
-      name: "",
+      accountName: "",
       description: "",
       amount: "",
     },
@@ -47,7 +47,7 @@ export default function CreateAccountForm() {
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <FormField
             control={form.control}
-            name="name"
+            name="accountName"
             render={({ field }) => (
               <FormItem>
                 <FormLabel className="uppercase text-xs font-bold text-zinc-500 dark:text-white">
