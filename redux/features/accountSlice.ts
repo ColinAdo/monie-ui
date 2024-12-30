@@ -1,4 +1,4 @@
-import { AccountType } from "@/lib/exports";
+import { AccountType, TransactionType } from "@/lib/exports";
 import { apiSlice } from "../services/apiSlice";
 
 const accountSlice = apiSlice.injectEndpoints({
@@ -13,7 +13,16 @@ const accountSlice = apiSlice.injectEndpoints({
         url: `/accounts/${accountId}/`,
       }),
     }),
+    getTransactions: builder.query<TransactionType[], void>({
+      query: () => ({
+        url: "/transactions/",
+      }),
+    }),
   }),
 });
 
-export const { useGetAccountsQuery, useRetrieveAccountsQuery } = accountSlice;
+export const {
+  useGetAccountsQuery,
+  useRetrieveAccountsQuery,
+  useGetTransactionsQuery
+} = accountSlice;
