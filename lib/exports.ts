@@ -18,5 +18,5 @@ export type TransactionType = {
   transaction_type: string;
   description: string;
   amount: number;
-  created_date: Date | null;
+  created_date: Date;
 };

@@ -51,7 +51,7 @@ export default function Page() {
                 amount={d.amount}
                 transactionType={d.transaction_type}
                 username={user.username}
-                date={d.created_date}
+                create_at={d.created_date}
               />
             ))}
             <Link className="flex justify-end text-blue-400" href="#">
