@@ -1,7 +1,15 @@
+'use client';
+
+import * as z from "zod";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { DialogFooter } from "@/components/ui/dialog";
+import { createTransactionSchema } from "@/lib/schemas";
+import { useWebSocketContext } from "@/hooks/WebSocketContext";
+import { useGetAccountsQuery } from "@/redux/features/accountSlice";
 import {
   Select,
   SelectContent,
@@ -9,68 +17,152 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 
 export default function CreateTransactionForm() {
+  const { data: accounts } = useGetAccountsQuery();
+  const { sendJsonMessage } = useWebSocketContext();
+  const router = useRouter();
+
+  const form = useForm<z.infer<typeof createTransactionSchema>>({
+    resolver: zodResolver(createTransactionSchema),
+    defaultValues: {
+      accountName: "",
+      transactionType: "",
+      description: "",
+      amount: "",
+    },
+  });
+
+  const onSubmit = async (data: z.infer<typeof createTransactionSchema>) => {
+    sendJsonMessage({
+      event: "create_transaction",
+      data,
+    });
+    toast.success("transaction created successfully");
+    router.push("/dashboard");
+    console.log("Submitted data :", data)
+  };
+
+  if (!accounts) {
+    return
+  }
+
   return (
-    <div>
-      <form>
-        <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="type" className="text-right">
-              Type
-            </Label>
-            <Select>
-              <SelectTrigger id="type" className="w-[340px]">
-                <SelectValue placeholder="Airtime" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="airtime">Airtime</SelectItem>
-                <SelectItem value="dark">Sent</SelectItem>
-                <SelectItem value="system">System</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="amount" className="text-right">
-              Amount
-            </Label>
-            <Input
-              id="amount"
-              type="number"
-              defaultValue="50000"
-              className="col-span-3"
-            />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="description" className="text-right">
-              Description
-            </Label>
-            <Input
-              id="description"
-              defaultValue="Account for managing airtime"
-              className="col-span-3"
-            />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
-              Account name
-            </Label>
-            <Select>
-              <SelectTrigger id="account" className="w-[340px]">
-                <SelectValue placeholder="Savings" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="savings">Savings</SelectItem>
-                <SelectItem value="rent">Rent</SelectItem>
-                <SelectItem value="fee">Fee</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-        </div>
-        <DialogFooter>
-          <Button type="submit">Submit</Button>
-        </DialogFooter>
-      </form>
-    </div>
+    <>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <FormField
+            control={form.control}
+            name="accountName"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="uppercase text-xs font-bold text-zinc-500 dark:text-white">
+                  Account name
+                </FormLabel>
+                <FormControl>
+                  <Select
+                    onValueChange={field.onChange}
+                    value={field.value}
+                  >
+                    <SelectTrigger id="type" className="w-[480px]">
+                      <SelectValue placeholder="select account name" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {accounts.map((account, i) => (
+                        <SelectItem key={i} value={account.name}>
+                          {account.name}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="transactionType"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="uppercase text-xs font-bold text-zinc-500 dark:text-white">
+                  Transaction Type
+                </FormLabel>
+                <FormControl>
+                  <Select
+                    onValueChange={field.onChange}
+                    value={field.value}
+                  >
+                    <SelectTrigger id="type" className="w-[480px]">
+                      <SelectValue placeholder="select transaction type" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="income">Income</SelectItem>
+                      <SelectItem value="expense">Expense</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="description"
+            render={({ field }) => (
+              <FormItem>
+                <div className="flex justify-between items-center">
+                  <FormLabel className="uppercase text-xs font-bold text-zinc-500 dark:text-white">
+                    Account description
+                  </FormLabel>
+                </div>
+                <FormControl>
+                  <Input
+                    type="text"
+                    placeholder="Enter account description"
+                    {...field}
+                    className="dark:bg-zinc-950  text-black dark:text-slate-100 focus-visible:ring-0 focus-visible:ring-offset-0"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="amount"
+            render={({ field }) => (
+              <FormItem>
+                <div className="flex justify-between items-center">
+                  <FormLabel className="uppercase text-xs font-bold text-zinc-500 dark:text-white">
+                    Amount
+                  </FormLabel>
+                </div>
+                <FormControl>
+                  <Input
+                    type="number"
+                    placeholder="Enter account amount"
+                    {...field}
+                    className="dark:bg-zinc-950  text-black dark:text-slate-100 focus-visible:ring-0 focus-visible:ring-offset-0"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <Button className="w-full dark:text-black font-bold dark:bg-white">
+            Submit
+          </Button>
+        </form>
+      </Form>
+    </>
   );
 }
