@@ -6,7 +6,7 @@ import { CardContent } from "@/components/dashboard/Card";
 import { useWebSocketContext } from "@/hooks/WebSocketContext";
 import { useGetAccountsQuery, useGetTransactionsQuery } from "@/redux/features/accountSlice";
 import { PageTitle, Chart, AnalyticChart } from "@/components/dashboard";
-import SalesCard from "@/components/dashboard/SalesCard";
+import TransactionsCard from "@/components/dashboard/TransactionsCard";
 import { useEffect } from "react";
 import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
 
@@ -44,7 +44,7 @@ export default function Page() {
               You have made about {transactions.length} {transactions.length === 1 ? "transaction" : "transactions"} this month
             </p>
             {transactions.map((d, i) => (
-              <SalesCard
+              <TransactionsCard
                 key={i}
                 accountName={d.account_name}
                 description={d.description}

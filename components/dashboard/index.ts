@@ -1,5 +1,5 @@
 export { default as Chart } from "./Chart";
-export { default as SalesCard } from "./SalesCard";
+export { default as TransactionsCard } from "./TransactionsCard";
 export { default as PageTitle } from "./PageTitile";
 export { default as FormDialog } from "./FormDialog";
 export { default as AnalyticChart } from "./analyticChart";
