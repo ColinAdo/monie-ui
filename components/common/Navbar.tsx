@@ -3,10 +3,12 @@
 import Link from "next/link";
 import { CreativeCommons } from "lucide-react";
 import { useAppDispatch } from "@/redux/hooks";
+import { toast } from "sonner";
 import { ThemeToggler } from "@/components/common";
 import { LogOut, BadgePlus, UserRound, BadgeDollarSign } from "lucide-react";
 import { logout as setLogout } from "@/redux/features/authSlice";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { useGetAccountsQuery } from "@/redux/features/accountSlice";
 import {
   useLogoutMutation,
   useRetrieveUserQuery,
@@ -26,6 +28,7 @@ export default function Navbar() {
   const dispatch = useAppDispatch();
   const [logout] = useLogoutMutation();
   const { data: user } = useRetrieveUserQuery();
+  const { data: accounts } = useGetAccountsQuery();
 
   const handleLogout = () => {
     logout(undefined)
@@ -34,6 +37,10 @@ export default function Navbar() {
         dispatch(setLogout());
       });
   };
+
+  if (!accounts) {
+    return
+  }
   return (
     <div className="text-black px-5 flex justify-between">
       <Link href="/">
@@ -58,15 +65,31 @@ export default function Navbar() {
                 <span className="ml-2">Profile</span>
               </Link>
             </DropdownMenuItem>
-            <DropdownMenuItem>
-              <Link
-                href="/dashboard/create/account"
-                className="flex justify-between"
-              >
-                <BadgePlus className="h-[1.2rem] w-[1.2rem]" />
-                <span className="ml-2">Create</span>
-              </Link>
-            </DropdownMenuItem>
+            {accounts.length === 8 ? (
+              <DropdownMenuItem>
+                <Link
+                  href="/dashboard/create/account"
+                  className="flex justify-between"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    toast.error("You can only create 8 accounts");
+                  }}
+                >
+                  <BadgePlus className="h-[1.2rem] w-[1.2rem]" />
+                  <span className="ml-2">Create</span>
+                </Link>
+              </DropdownMenuItem>
+            ) : (
+              <DropdownMenuItem>
+                <Link
+                  href="/dashboard/create/account"
+                  className="flex justify-between"
+                >
+                  <BadgePlus className="h-[1.2rem] w-[1.2rem]" />
+                  <span className="ml-2">Create</span>
+                </Link>
+              </DropdownMenuItem>
+            )}
             <DropdownMenuItem>
               <Link
                 href="/dashboard/create/transaction"

@@ -1,10 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import { toast } from "sonner";
 import { LucideIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
+import { useGetAccountsQuery } from "@/redux/features/accountSlice";
 import {
   Tooltip,
   TooltipContent,
@@ -24,6 +26,7 @@ interface NavProps {
 }
 
 export function Nav({ links, isCollapsed }: NavProps) {
+  const { data: accounts } = useGetAccountsQuery();
   const pathname = usePathname();
   return (
     <TooltipProvider>
@@ -36,21 +39,43 @@ export function Nav({ links, isCollapsed }: NavProps) {
             isCollapsed ? (
               <Tooltip key={index} delayDuration={0}>
                 <TooltipTrigger asChild>
-                  <Link
-                    href={link.href}
-                    className={cn(
-                      buttonVariants({
-                        variant: link.href === pathname ? "default" : "ghost",
-                        size: "icon",
-                      }),
-                      "h-9 w-9",
-                      link.variant === "default" &&
+                  {link.title === "Create" && accounts?.length === 8 ? (
+                    <Link
+                      href={link.href}
+                      className={cn(
+                        buttonVariants({
+                          variant: link.href === pathname ? "default" : "ghost",
+                          size: "icon",
+                        }),
+                        "h-9 w-9",
+                        link.variant === "default" &&
                         "dark:bg-muted dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-white"
-                    )}
-                  >
-                    <link.icon className="h-4 w-4" />
-                    <span className="sr-only">{link.title}</span>
-                  </Link>
+                      )}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        toast.error("You can only create 8 accounts");
+                      }}
+                    >
+                      <link.icon className="h-4 w-4" />
+                      <span className="sr-only">{link.title}</span>
+                    </Link>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      className={cn(
+                        buttonVariants({
+                          variant: link.href === pathname ? "default" : "ghost",
+                          size: "icon",
+                        }),
+                        "h-9 w-9",
+                        link.variant === "default" &&
+                        "dark:bg-muted dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-white"
+                      )}
+                    >
+                      <link.icon className="h-4 w-4" />
+                      <span className="sr-only">{link.title}</span>
+                    </Link>
+                  )}
                 </TooltipTrigger>
                 <TooltipContent
                   side="right"
@@ -65,33 +90,69 @@ export function Nav({ links, isCollapsed }: NavProps) {
                 </TooltipContent>
               </Tooltip>
             ) : (
-              <Link
-                key={index}
-                href={link.href}
-                className={cn(
-                  buttonVariants({
-                    variant: link.href === pathname ? "default" : "ghost",
-                    size: "sm",
-                  }),
-                  link.variant === "default" &&
-                    "dark:bg-muted dark:text-white dark:hover:bg-muted dark:hover:text-white",
-                  "justify-start"
-                )}
-              >
-                <link.icon className="mr-2 h-4 w-4" />
-                {link.title}
-                {link.label && (
-                  <span
+              <>
+                {link.title === "Create" && accounts?.length === 8 ? (
+                  <Link
+                    key={index}
+                    href={link.href}
                     className={cn(
-                      "ml-auto",
+                      buttonVariants({
+                        variant: link.href === pathname ? "default" : "ghost",
+                        size: "sm",
+                      }),
                       link.variant === "default" &&
-                        "text-background dark:text-white"
+                      "dark:bg-muted dark:text-white dark:hover:bg-muted dark:hover:text-white",
+                      "justify-start"
+                    )}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      toast.error("You can only create 8 accounts");
+                    }}
+                  >
+                    <link.icon className="mr-2 h-4 w-4" />
+                    {link.title}
+                    {link.label && (
+                      <span
+                        className={cn(
+                          "ml-auto",
+                          link.variant === "default" &&
+                          "text-background dark:text-white"
+                        )}
+                      >
+                        {link.label}
+                      </span>
+                    )}
+                  </Link>
+                ) : (
+                  <Link
+                    key={index}
+                    href={link.href}
+                    className={cn(
+                      buttonVariants({
+                        variant: link.href === pathname ? "default" : "ghost",
+                        size: "sm",
+                      }),
+                      link.variant === "default" &&
+                      "dark:bg-muted dark:text-white dark:hover:bg-muted dark:hover:text-white",
+                      "justify-start"
                     )}
                   >
-                    {link.label}
-                  </span>
+                    <link.icon className="mr-2 h-4 w-4" />
+                    {link.title}
+                    {link.label && (
+                      <span
+                        className={cn(
+                          "ml-auto",
+                          link.variant === "default" &&
+                          "text-background dark:text-white"
+                        )}
+                      >
+                        {link.label}
+                      </span>
+                    )}
+                  </Link>
                 )}
-              </Link>
+              </>
             )
           )}
         </nav>
