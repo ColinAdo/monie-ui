@@ -13,12 +13,13 @@ import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
 export default function Page() {
   const { lastJsonMessage } = useWebSocketContext();
   const { data: accounts, refetch } = useGetAccountsQuery();
-  const { data: transactions } = useGetTransactionsQuery();
+  const { data: transactions, refetch: refetchTransactions } = useGetTransactionsQuery();
   const { data: user } = useRetrieveUserQuery();
 
   useEffect(() => {
     console.log("Updated realtimeMessages:", lastJsonMessage);
     refetch();
+    refetchTransactions();
   }, [lastJsonMessage]);
 
   if (!accounts || !transactions || !user) {
@@ -43,7 +44,7 @@ export default function Page() {
             <p className="text-gray-500 text-sm">
               You have made about {transactions.length} {transactions.length === 1 ? "transaction" : "transactions"} this month
             </p>
-            {transactions.map((d, i) => (
+            {transactions.slice(0, 6).map((d, i) => (
               <TransactionsCard
                 key={i}
                 accountName={d.account_name}
@@ -54,9 +55,15 @@ export default function Page() {
                 create_at={d.created_date}
               />
             ))}
-            <Link className="flex justify-end text-blue-400" href="#">
-              See all
-            </Link>
+            {transactions.length === 0 ? (
+              <span className="flex justify-center font-semibold text-gray-400">
+                You have not made transaction yet
+              </span>
+            ) : (
+              <Link className="flex justify-end text-blue-400" href="dashboard/transactions">
+                {transactions.length > 6 ? "See all" : ""}
+              </Link>
+            )}
           </section>
         </CardContent>
         <CardContent>
