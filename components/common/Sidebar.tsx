@@ -4,20 +4,22 @@ import { Nav } from "@/components/ui/nav";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { useWindowWidth } from "@react-hook/window-size";
+import { useGetTransactionsQuery } from "@/redux/features/accountSlice";
 import {
   Archive,
   ArchiveX,
   LayoutDashboard,
-  ShoppingCart,
   Trash2,
   UserRound,
   ChevronRight,
   BadgePlus,
   Brain,
   BadgeDollarSign,
+  DiamondPlus
 } from "lucide-react";
 
 export default function Sidebar() {
+  const { data: transactions } = useGetTransactionsQuery();
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [mobilewidth, setMobileWidth] = useState(false);
   const onlyWidth = useWindowWidth();
@@ -53,14 +55,21 @@ export default function Sidebar() {
             href: "/",
           },
           {
+            title: "Transaction",
+            label: `${transactions?.length}`,
+            icon: BadgeDollarSign,
+            variant: "ghost",
+            href: "/dashboard/transactions",
+          },
+          {
             title: "Create",
             icon: BadgePlus,
             variant: "ghost",
             href: "/dashboard/create/account",
           },
           {
-            title: "Transaction",
-            icon: BadgeDollarSign,
+            title: "Transact",
+            icon: DiamondPlus,
             variant: "ghost",
             href: "/dashboard/create/transaction",
           },
@@ -70,13 +79,6 @@ export default function Sidebar() {
             icon: UserRound,
             variant: "ghost",
             href: "/users",
-          },
-          {
-            title: "Order",
-            label: "",
-            icon: ShoppingCart,
-            variant: "ghost",
-            href: "/order",
           },
           {
             title: "Junk",

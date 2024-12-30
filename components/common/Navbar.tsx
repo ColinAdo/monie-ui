@@ -5,7 +5,7 @@ import { CreativeCommons } from "lucide-react";
 import { useAppDispatch } from "@/redux/hooks";
 import { toast } from "sonner";
 import { ThemeToggler } from "@/components/common";
-import { LogOut, BadgePlus, UserRound, BadgeDollarSign } from "lucide-react";
+import { LogOut, BadgePlus, UserRound, DiamondPlus, BadgeDollarSign } from "lucide-react";
 import { logout as setLogout } from "@/redux/features/authSlice";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { useGetAccountsQuery } from "@/redux/features/accountSlice";
@@ -93,6 +93,15 @@ export default function Navbar() {
             <DropdownMenuItem>
               <Link
                 href="/dashboard/create/transaction"
+                className="flex justify-between"
+              >
+                <DiamondPlus className="h-[1.2rem] w-[1.2rem]" />
+                <span className="ml-2">Transact</span>
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link
+                href="/dashboard/transactions"
                 className="flex justify-between"
               >
                 <BadgeDollarSign className="h-[1.2rem] w-[1.2rem]" />
