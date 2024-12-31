@@ -52,7 +52,7 @@ export default function Sidebar() {
             title: "Dashboard",
             icon: LayoutDashboard,
             variant: "default",
-            href: "/",
+            href: "/dashboard",
           },
           {
             title: "Transaction",
