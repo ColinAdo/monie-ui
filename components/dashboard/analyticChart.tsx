@@ -17,16 +17,22 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-import data from "@/data/analytics";
+import { useGetTransactionAnalyticsQuery } from "@/redux/features/accountSlice";
 
 export default function AnalyticCard() {
+  const { data } = useGetTransactionAnalyticsQuery();
+
+  if (!data) {
+    return
+  }
+
   return (
     <>
       <Card>
         <CardHeader>
           <CardTitle>Transaction analytics</CardTitle>
           <CardDescription>
-            Line Chart showing analytic for post
+            Line Chart showing analytic for monthly transaction
           </CardDescription>
         </CardHeader>
         <CardContent>
