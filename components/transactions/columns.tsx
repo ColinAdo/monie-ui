@@ -1,7 +1,9 @@
 "use client"
 
+import { toast } from "sonner";
 import { ColumnDef } from "@tanstack/react-table"
 import { MoreHorizontal, Trash2 } from 'lucide-react'
+import { useWebSocketContext } from "@/hooks/WebSocketContext";
 
 import { Button } from "@/components/ui/button"
 import {
@@ -59,6 +61,17 @@ export const columns: ColumnDef<TransactionType>[] = [
         id: "actions",
         cell: ({ row }) => {
             const timetable = row.original
+            const id = timetable.id
+            const { sendJsonMessage } = useWebSocketContext();
+
+            const handleDelete = async () => {
+                sendJsonMessage({
+                    event: "delete_transaction",
+                    id,
+                });
+                toast.success("transaction deleted successfully");
+                console.log("Deleting transaction with ID:", id);
+            };
 
             return (
                 <DropdownMenu>
@@ -71,11 +84,13 @@ export const columns: ColumnDef<TransactionType>[] = [
                     <DropdownMenuContent align="end">
                         <DropdownMenuLabel>Actions</DropdownMenuLabel>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem className="text-red-600 cursor-pointer hover:text-red-400"><Trash2 /> Delete</DropdownMenuItem>
+                        <DropdownMenuItem
+                            className="text-red-600 cursor-pointer hover:bg-red-100"
+                            onClick={() => handleDelete()}
+                        ><Trash2 /> Delete</DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
             )
         },
     },
 ]
-
