@@ -31,9 +31,7 @@ export default function Page() {
       <PageTitle title="Dashboard" />
       <section className="grid w-full grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
         {accounts.map((account, i) => (
-          <Link href={`/dashboard/edit/${account.id}`} key={i}>
-            <Card accounts={[account]} />
-          </Link>
+          <Card key={i} accounts={[account]} />
         ))}
       </section>
       <section className="grid grid-cols-1 gap-4 lg:grid-cols-2 transition-all">
