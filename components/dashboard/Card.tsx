@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { toast } from "sonner";
-import { AccountType } from "@/lib/exports";
+import { AccountType } from "@/types/exports";
 import { MoreVertical, Trash2, Settings } from "lucide-react";
 import { useWebSocketContext } from "@/hooks/WebSocketContext";
 import {

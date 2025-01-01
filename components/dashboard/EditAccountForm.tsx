@@ -1,6 +1,6 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { AccountType } from "@/lib/exports";
+import { AccountType } from "@/types/exports";
 import { z } from "zod";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";

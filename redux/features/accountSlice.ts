@@ -1,4 +1,4 @@
-import { AccountType, TransactionType, AnalyticType } from "@/lib/exports";
+import { AccountType, TransactionType, AnalyticType } from "@/types/exports";
 import { apiSlice } from "../services/apiSlice";
 
 const accountSlice = apiSlice.injectEndpoints({
