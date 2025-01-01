@@ -1,79 +1,57 @@
 "use client";
 
-import { ResponsiveContainer, BarChart, XAxis, YAxis, Bar } from "recharts";
+import {
+  ResponsiveContainer,
+  CartesianGrid,
+  BarChart,
+  Tooltip,
+  XAxis,
+  Legend,
+  YAxis, Bar
+} from "recharts";
 
-// chart data
-const data = [
-  {
-    name: "Jan",
-    total: Math.floor(Math.random() * 5000) + 1000,
-  },
-  {
-    name: "Feb",
-    total: Math.floor(Math.random() * 5000) + 1000,
-  },
-  {
-    name: "Mat",
-    total: Math.floor(Math.random() * 5000) + 1000,
-  },
-  {
-    name: "Apr",
-    total: Math.floor(Math.random() * 5000) + 1000,
-  },
-  {
-    name: "May",
-    total: Math.floor(Math.random() * 5000) + 1000,
-  },
-  {
-    name: "Jun",
-    total: Math.floor(Math.random() * 5000) + 1000,
-  },
-  {
-    name: "Jul",
-    total: Math.floor(Math.random() * 5000) + 1000,
-  },
-  {
-    name: "Aug",
-    total: Math.floor(Math.random() * 5000) + 1000,
-  },
-  {
-    name: "Sep",
-    total: Math.floor(Math.random() * 5000) + 1000,
-  },
-  {
-    name: "Oct",
-    total: Math.floor(Math.random() * 5000) + 1000,
-  },
-  {
-    name: "Nov",
-    total: Math.floor(Math.random() * 5000) + 1000,
-  },
-  {
-    name: "Dec",
-    total: Math.floor(Math.random() * 5000) + 1000,
-  },
-];
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { useGetTransactionAnalyticsQuery } from "@/redux/features/accountSlice";
 
 export default function Chart() {
+  const { data } = useGetTransactionAnalyticsQuery();
+  if (!data) {
+    return
+  }
   return (
-    <ResponsiveContainer width={"100%"} height={350}>
-      <BarChart data={data}>
-        <XAxis
-          dataKey={"name"}
-          tickLine={false}
-          axisLine={false}
-          stroke="#888888"
-          fontSize={12}
-        />
-        <YAxis
-          tickLine={false}
-          axisLine={false}
-          stroke="#888888"
-          fontSize={12}
-          tickFormatter={(value) => `$${value}`}
-        />
-        <Bar dataKey={"total"} fill="gray" radius={[4, 4, 0, 0]} />
-      </BarChart>
-    </ResponsiveContainer>
+    <>
+      <Card>
+        <CardHeader>
+          <CardTitle>Transaction analytics</CardTitle>
+          <CardDescription>
+            Bar Chart showing analytic for your monthly transaction
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div style={{ width: "100%", height: 300 }}>
+            <ResponsiveContainer>
+              <BarChart
+                width={500}
+                height={300}
+                data={data}
+              >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Bar dataKey="amount" fill="gray" />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </CardContent>
+      </Card>
+    </>
   );
 }
