@@ -5,6 +5,7 @@ import {
   Line,
   XAxis,
   YAxis,
+  Tooltip,
   CartesianGrid,
   ResponsiveContainer,
 } from "recharts";
@@ -32,7 +33,7 @@ export default function AnalyticCard() {
         <CardHeader>
           <CardTitle>Transaction analytics</CardTitle>
           <CardDescription>
-            Line Chart showing analytic for monthly transaction
+            Line Chart showing analytic for your monthly transaction
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -41,7 +42,8 @@ export default function AnalyticCard() {
               <LineChart width={1100} height={300} data={data}>
                 <XAxis dataKey="name" />
                 <YAxis />
-                <Line type="monotone" dataKey="uv" stroke="#8884d8" />
+                <Tooltip />
+                <Line type="monotone" dataKey="amount" stroke="#8884d8" />
                 <CartesianGrid type="monotone" stroke="#ccc" />
               </LineChart>
             </ResponsiveContainer>
