@@ -18,9 +18,18 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { useGetTransactionAnalyticsQuery } from "@/redux/features/accountSlice";
+import { useState } from "react";
+import { ChevronsLeft, ChevronsRight } from "lucide-react";
 
 export default function Chart() {
-  const { data } = useGetTransactionAnalyticsQuery();
+  const [year, setYear] = useState(new Date().getFullYear());
+  const { data: response } = useGetTransactionAnalyticsQuery(year) || {};
+  const data = response?.data || [];
+
+  const handleYearChange = (newYear: number) => {
+    setYear(newYear);
+  };
+
   if (!data) {
     return
   }
@@ -28,12 +37,34 @@ export default function Chart() {
     <>
       <Card>
         <CardHeader>
-          <CardTitle>Transaction analytics</CardTitle>
+          <CardTitle>Transaction Analytics</CardTitle>
           <CardDescription>
-            Bar Chart showing analytic for your monthly transaction
+            Bar Chart showing analytics for your monthly transactions in {year}
           </CardDescription>
         </CardHeader>
         <CardContent>
+          <div>
+            <button
+              disabled={year <= 2024}
+              onClick={() => handleYearChange(year - 1)}
+              className={year <= 2024 ? "disable" : ""}
+            >
+              <ChevronsLeft
+                className={`h-4 w-4 ${year <= 2024 ? "text-gray-400" : "text-black"}`}
+              />
+            </button>
+
+            <span className="p-2 font-bold">{year}</span>
+            <button
+              disabled={year === 2025}
+              onClick={() => handleYearChange(year + 1)}
+              className={year === 2025 ? "disable" : ""}
+            >
+              <ChevronsRight
+                className={`h-4 w-4 ${year === 2025 ? "text-gray-400" : "text-black"}`}
+              />
+            </button>
+          </div>
           <div style={{ width: "100%", height: 300 }}>
             <ResponsiveContainer>
               <BarChart

@@ -22,6 +22,6 @@ export type TransactionType = {
 };
 
 export type AnalyticType = {
-  name: string;
-  uv: number;
+  data: { name: string; amount: number }[];
+  year: number;
 }

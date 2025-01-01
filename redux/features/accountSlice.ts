@@ -23,9 +23,10 @@ const accountSlice = apiSlice.injectEndpoints({
         url: "/transactions/",
       }),
     }),
-    getTransactionAnalytics: builder.query<AnalyticType[], void>({
-      query: () => ({
-        url: "/transaction-analytics/",
+    getTransactionAnalytics: builder.query<AnalyticType, number | void>({
+      query: (year = new Date().getFullYear()) => ({
+        url: `/transaction/analytics/`,
+        params: { year },
       }),
     }),
   }),

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Card from "@/components/dashboard/Card";
 import { CardContent } from "@/components/dashboard/Card";
 import { useWebSocketContext } from "@/hooks/WebSocketContext";
@@ -16,11 +16,13 @@ import {
 } from "@/redux/features/accountSlice";
 
 export default function Page() {
+  const [year, setYear] = useState(new Date().getFullYear());
+
   const { data: user } = useRetrieveUserQuery();
   const { lastJsonMessage } = useWebSocketContext();
   const { data: accounts, refetch } = useGetAccountsQuery();
   const { refetch: refetchAccountAnalytics } = useGetAccountAnalyticsQuery();
-  const { refetch: refetchTransactionAnalytics } = useGetTransactionAnalyticsQuery();
+  const { refetch: refetchTransactionAnalytics } = useGetTransactionAnalyticsQuery(year);
   const { data: transactions, refetch: refetchTransactions } = useGetTransactionsQuery();
 
   useEffect(() => {
