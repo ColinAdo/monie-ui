@@ -1,25 +1,34 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect } from "react";
 import Card from "@/components/dashboard/Card";
 import { CardContent } from "@/components/dashboard/Card";
 import { useWebSocketContext } from "@/hooks/WebSocketContext";
-import { useGetAccountsQuery, useGetTransactionsQuery } from "@/redux/features/accountSlice";
-import { PageTitle, Chart, AnalyticChart } from "@/components/dashboard";
-import TransactionsCard from "@/components/dashboard/TransactionsCard";
-import { useEffect } from "react";
 import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
+import TransactionsCard from "@/components/dashboard/TransactionsCard";
+import { PageTitle, Chart, AnalyticChart, AnalyticPieChart } from "@/components/dashboard";
+import {
+  useGetAccountsQuery,
+  useGetTransactionsQuery,
+  useGetAccountAnalyticsQuery,
+  useGetTransactionAnalyticsQuery
+} from "@/redux/features/accountSlice";
 
 export default function Page() {
+  const { data: user } = useRetrieveUserQuery();
   const { lastJsonMessage } = useWebSocketContext();
   const { data: accounts, refetch } = useGetAccountsQuery();
+  const { refetch: refetchAccountAnalytics } = useGetAccountAnalyticsQuery();
+  const { refetch: refetchTransactionAnalytics } = useGetTransactionAnalyticsQuery();
   const { data: transactions, refetch: refetchTransactions } = useGetTransactionsQuery();
-  const { data: user } = useRetrieveUserQuery();
 
   useEffect(() => {
     console.log("Updated realtimeMessages:", lastJsonMessage);
     refetch();
     refetchTransactions();
+    refetchAccountAnalytics();
+    refetchTransactionAnalytics();
   }, [lastJsonMessage]);
 
   if (!accounts || !transactions || !user) {
@@ -64,11 +73,8 @@ export default function Page() {
             )}
           </section>
         </CardContent>
-        <CardContent>
-          <p className="p-4 font-semibold">Overview</p>
-          <Chart />
-        </CardContent>
-        <AnalyticChart />
+        <Chart />
+        <AnalyticPieChart />
       </section>
     </div>
   );
