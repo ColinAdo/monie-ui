@@ -20,3 +20,8 @@ export type TransactionType = {
   amount: number;
   created_date: Date;
 };
+
+export type AnalyticType = {
+  name: string;
+  uv: number;
+}
