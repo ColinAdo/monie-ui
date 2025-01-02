@@ -43,7 +43,7 @@ export default function Navbar() {
   }
   return (
     <div className="text-black px-5 flex justify-between">
-      <Link href="/">
+      <Link href="/dashboard">
         <CreativeCommons className="dark:text-white" />
       </Link>
 
