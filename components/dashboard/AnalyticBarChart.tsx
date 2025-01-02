@@ -50,7 +50,7 @@ export default function Chart() {
               className={year <= 2024 ? "disable" : ""}
             >
               <ChevronsLeft
-                className={`h-4 w-4 ${year <= 2024 ? "text-gray-400" : "text-black"}`}
+                className={`h-4 w-4 ${year <= 2024 ? "text-gray-400" : "text-black dark:text-white"}`}
               />
             </button>
 
@@ -61,7 +61,7 @@ export default function Chart() {
               className={year === 2025 ? "disable" : ""}
             >
               <ChevronsRight
-                className={`h-4 w-4 ${year === 2025 ? "text-gray-400" : "text-black"}`}
+                className={`h-4 w-4 ${year === 2025 ? "text-gray-400" : "text-black dark:text-white"}`}
               />
             </button>
           </div>
