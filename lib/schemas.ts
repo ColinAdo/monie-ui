@@ -68,7 +68,6 @@ export const editAccountSchema = z.object({
     .min(1, "Account name is required.")
     .max(13, "Account name must be at most 13 characters"),
   description: z.string().max(18, "Description must be at most 19 characters.").optional(),
-  amount: z.string().min(1, "Account amount is required."),
 });
 
 
