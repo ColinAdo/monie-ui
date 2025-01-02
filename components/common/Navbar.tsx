@@ -90,15 +90,32 @@ export default function Navbar() {
                 </Link>
               </DropdownMenuItem>
             )}
-            <DropdownMenuItem>
-              <Link
-                href="/dashboard/create/transaction"
-                className="flex justify-between"
-              >
-                <DiamondPlus className="h-[1.2rem] w-[1.2rem]" />
-                <span className="ml-2">Transact</span>
-              </Link>
-            </DropdownMenuItem>
+            {accounts.length === 0 ? (
+              <DropdownMenuItem>
+                <Link
+                  href="/dashboard/create/transaction"
+                  className="flex justify-between"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    toast.error("You have to create account first, before you transact");
+                  }}
+                >
+                  <DiamondPlus className="h-[1.2rem] w-[1.2rem]" />
+                  <span className="ml-2">Transact</span>
+                </Link>
+              </DropdownMenuItem>
+            ) : (
+              <DropdownMenuItem>
+                <Link
+                  href="/dashboard/create/transaction"
+                  className="flex justify-between"
+                >
+                  <DiamondPlus className="h-[1.2rem] w-[1.2rem]" />
+                  <span className="ml-2">Transact</span>
+                </Link>
+                {/* You have to create account first, before you transact */}
+              </DropdownMenuItem>
+            )}
             <DropdownMenuItem>
               <Link
                 href="/dashboard/transactions"

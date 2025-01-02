@@ -60,21 +60,69 @@ export function Nav({ links, isCollapsed }: NavProps) {
                       <span className="sr-only">{link.title}</span>
                     </Link>
                   ) : (
-                    <Link
-                      href={link.href}
-                      className={cn(
-                        buttonVariants({
-                          variant: link.href === pathname ? "default" : "ghost",
-                          size: "icon",
-                        }),
-                        "h-9 w-9",
-                        link.variant === "default" &&
-                        "dark:bg-muted dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-white"
+                    <>
+                      {link.title === "Transact" && accounts?.length === 0 ? (
+                        <Link
+                          key={index}
+                          href={link.href}
+                          className={cn(
+                            buttonVariants({
+                              variant: link.href === pathname ? "default" : "ghost",
+                              size: "sm",
+                            }),
+                            link.variant === "default" &&
+                            "dark:bg-muted dark:text-white dark:hover:bg-muted dark:hover:text-white",
+                            "justify-start"
+                          )}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            toast.error("You have to create account first, before you transact");
+                          }}
+                        >
+                          <link.icon className="mr-2 h-4 w-4" />
+                          {link.title}
+                          {link.label && (
+                            <span
+                              className={cn(
+                                "ml-auto",
+                                link.variant === "default" &&
+                                "text-background dark:text-white"
+                              )}
+                            >
+                              {link.label}
+                            </span>
+                          )}
+                        </Link>
+                      ) : (
+                        <Link
+                          key={index}
+                          href={link.href}
+                          className={cn(
+                            buttonVariants({
+                              variant: link.href === pathname ? "default" : "ghost",
+                              size: "sm",
+                            }),
+                            link.variant === "default" &&
+                            "dark:bg-muted dark:text-white dark:hover:bg-muted dark:hover:text-white",
+                            "justify-start"
+                          )}
+                        >
+                          <link.icon className="mr-2 h-4 w-4" />
+                          {link.title}
+                          {link.label && (
+                            <span
+                              className={cn(
+                                "ml-auto",
+                                link.variant === "default" &&
+                                "text-background dark:text-white"
+                              )}
+                            >
+                              {link.label}
+                            </span>
+                          )}
+                        </Link>
                       )}
-                    >
-                      <link.icon className="h-4 w-4" />
-                      <span className="sr-only">{link.title}</span>
-                    </Link>
+                    </>
                   )}
                 </TooltipTrigger>
                 <TooltipContent
@@ -124,33 +172,69 @@ export function Nav({ links, isCollapsed }: NavProps) {
                     )}
                   </Link>
                 ) : (
-                  <Link
-                    key={index}
-                    href={link.href}
-                    className={cn(
-                      buttonVariants({
-                        variant: link.href === pathname ? "default" : "ghost",
-                        size: "sm",
-                      }),
-                      link.variant === "default" &&
-                      "dark:bg-muted dark:text-white dark:hover:bg-muted dark:hover:text-white",
-                      "justify-start"
-                    )}
-                  >
-                    <link.icon className="mr-2 h-4 w-4" />
-                    {link.title}
-                    {link.label && (
-                      <span
+                  <>
+                    {link.title === "Transact" && accounts?.length === 0 ? (
+                      <Link
+                        key={index}
+                        href={link.href}
                         className={cn(
-                          "ml-auto",
+                          buttonVariants({
+                            variant: link.href === pathname ? "default" : "ghost",
+                            size: "sm",
+                          }),
                           link.variant === "default" &&
-                          "text-background dark:text-white"
+                          "dark:bg-muted dark:text-white dark:hover:bg-muted dark:hover:text-white",
+                          "justify-start"
+                        )}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          toast.error("You have to create account first, before you transact");
+                        }}
+                      >
+                        <link.icon className="mr-2 h-4 w-4" />
+                        {link.title}
+                        {link.label && (
+                          <span
+                            className={cn(
+                              "ml-auto",
+                              link.variant === "default" &&
+                              "text-background dark:text-white"
+                            )}
+                          >
+                            {link.label}
+                          </span>
+                        )}
+                      </Link>
+                    ) : (
+                      <Link
+                        key={index}
+                        href={link.href}
+                        className={cn(
+                          buttonVariants({
+                            variant: link.href === pathname ? "default" : "ghost",
+                            size: "sm",
+                          }),
+                          link.variant === "default" &&
+                          "dark:bg-muted dark:text-white dark:hover:bg-muted dark:hover:text-white",
+                          "justify-start"
                         )}
                       >
-                        {link.label}
-                      </span>
+                        <link.icon className="mr-2 h-4 w-4" />
+                        {link.title}
+                        {link.label && (
+                          <span
+                            className={cn(
+                              "ml-auto",
+                              link.variant === "default" &&
+                              "text-background dark:text-white"
+                            )}
+                          >
+                            {link.label}
+                          </span>
+                        )}
+                      </Link>
                     )}
-                  </Link>
+                  </>
                 )}
               </>
             )
