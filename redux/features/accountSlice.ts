@@ -10,7 +10,7 @@ const accountSlice = apiSlice.injectEndpoints({
     }),
     getAccountAnalytics: builder.query<AnalyticType[], void>({
       query: () => ({
-        url: "/account-pie-chart/",
+        url: "/account/pie/chart/",
       }),
     }),
     RetrieveAccounts: builder.query<void, string>({
