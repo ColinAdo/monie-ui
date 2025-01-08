@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import { toast } from "sonner";
+import { cn } from "@/lib/utils";
 import { LucideIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { useGetAccountsQuery } from "@/redux/features/accountSlice";
 import {
