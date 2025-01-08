@@ -2,6 +2,7 @@
 
 import { toast } from "sonner";
 import { ColumnDef } from "@tanstack/react-table"
+import { TransactionType } from "@/types/exports"
 import { MoreHorizontal, Trash2 } from 'lucide-react'
 import { useWebSocketContext } from "@/hooks/WebSocketContext";
 
@@ -14,7 +15,6 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { TransactionType } from "@/types/exports"
 
 export const columns: ColumnDef<TransactionType>[] = [
     {
