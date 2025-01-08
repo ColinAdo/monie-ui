@@ -22,8 +22,8 @@ import {
   TableRow,
 } from "@/components/ui/table"
 
-import { DataTablePagination } from "@/components/transactions/data-table-pagination"
 import { DataTableToolbar } from "@/components/transactions/data-table-toolbar"
+import { DataTablePagination } from "@/components/transactions/data-table-pagination"
 
 interface DataTableProps<TransactionType, TValue> {
   columns: ColumnDef<TransactionType, TValue>[]
