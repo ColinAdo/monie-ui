@@ -5,7 +5,6 @@ import { CreativeCommons } from "lucide-react";
 import { useAppDispatch } from "@/redux/hooks";
 import { toast } from "sonner";
 import { ThemeToggler } from "@/components/common";
-import { LogOut, BadgePlus, UserRound, DiamondPlus, BadgeDollarSign } from "lucide-react";
 import { logout as setLogout } from "@/redux/features/authSlice";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { useGetAccountsQuery } from "@/redux/features/accountSlice";
@@ -13,6 +12,13 @@ import {
   useLogoutMutation,
   useRetrieveUserQuery,
 } from "@/redux/features/authApiSlice";
+import {
+  LogOut,
+  BadgePlus,
+  UserRound,
+  DiamondPlus,
+  BadgeDollarSign
+} from "lucide-react";
 
 import {
   DropdownMenu,
