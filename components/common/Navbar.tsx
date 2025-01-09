@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import { toast } from "sonner";
 import { CreativeCommons } from "lucide-react";
 import { useAppDispatch } from "@/redux/hooks";
-import { toast } from "sonner";
 import { ThemeToggler } from "@/components/common";
 import { logout as setLogout } from "@/redux/features/authSlice";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
