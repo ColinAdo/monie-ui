@@ -1,5 +1,5 @@
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Timestamp } from "@/components/dashboard";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 interface Props {
   create_at: Date;
