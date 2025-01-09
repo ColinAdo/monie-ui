@@ -17,9 +17,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { useGetTransactionAnalyticsQuery } from "@/redux/features/accountSlice";
 import { useState } from "react";
 import { ChevronsLeft, ChevronsRight } from "lucide-react";
+import { useGetTransactionAnalyticsQuery } from "@/redux/features/accountSlice";
 
 export default function Chart() {
   const [year, setYear] = useState(new Date().getFullYear());
