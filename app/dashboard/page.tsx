@@ -7,7 +7,12 @@ import { CardContent } from "@/components/dashboard/Card";
 import { useWebSocketContext } from "@/hooks/WebSocketContext";
 import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
 import TransactionsCard from "@/components/dashboard/TransactionsCard";
-import { PageTitle, Chart, AnalyticChart, AnalyticPieChart } from "@/components/dashboard";
+import {
+  PageTitle,
+  Chart,
+  AnalyticChart,
+  AnalyticPieChart
+} from "@/components/dashboard";
 import {
   useGetAccountsQuery,
   useGetTransactionsQuery,
