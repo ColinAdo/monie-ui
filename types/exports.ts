@@ -1,9 +1,3 @@
-interface User {
-  id: string;
-  username: string;
-  email: string;
-}
-
 export type AccountType = {
   id: string;
   name: string;
