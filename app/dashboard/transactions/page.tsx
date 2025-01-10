@@ -3,9 +3,9 @@
 import { useEffect } from "react";
 import { PageTitle } from "@/components/dashboard";
 import { columns } from "@/components/transactions/columns"
+import { useWebSocketContext } from "@/hooks/WebSocketContext";
 import { DataTable } from "@/components/transactions/data-table"
 import { useGetTransactionsQuery } from "@/redux/features/accountSlice";
-import { useWebSocketContext } from "@/hooks/WebSocketContext";
 
 export default function Page() {
     const { lastJsonMessage } = useWebSocketContext();
