@@ -3,14 +3,14 @@
 import * as React from "react"
 import {
   ColumnDef,
-  ColumnFiltersState,
-  SortingState,
   flexRender,
+  SortingState,
+  useReactTable,
   getCoreRowModel,
+  getSortedRowModel,
+  ColumnFiltersState,
   getFilteredRowModel,
   getPaginationRowModel,
-  getSortedRowModel,
-  useReactTable,
 } from "@tanstack/react-table"
 
 import {
