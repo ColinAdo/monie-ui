@@ -1,5 +1,9 @@
-import { AccountType, TransactionType, AnalyticType } from "@/types/exports";
 import { apiSlice } from "../services/apiSlice";
+import {
+  AccountType,
+  TransactionType,
+  AnalyticType
+} from "@/types/exports";
 
 const accountSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
