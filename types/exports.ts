@@ -19,3 +19,10 @@ export type AnalyticType = {
   data: { name: string; amount: number }[];
   year: number;
 }
+
+export type AccountAnalyticType = {
+  data: {
+    name: string;
+    value: number
+  }[];
+}
