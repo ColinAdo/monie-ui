@@ -1,12 +1,12 @@
 "use client";
 
 import {
-  BarChart,
   Bar,
   Cell,
   XAxis,
   YAxis,
   Tooltip,
+  BarChart,
   CartesianGrid,
   ResponsiveContainer
 } from 'recharts';
