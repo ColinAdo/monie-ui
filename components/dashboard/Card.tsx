@@ -5,8 +5,8 @@ import { MoreVertical, Trash2, Settings } from "lucide-react";
 import { useWebSocketContext } from "@/hooks/WebSocketContext";
 import {
   DropdownMenu,
-  DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
