@@ -1,8 +1,8 @@
 import { apiSlice } from "../services/apiSlice";
 import {
   AccountType,
-  TransactionType,
   AnalyticType,
+  TransactionType,
   AccountAnalyticType
 } from "@/types/exports";
 

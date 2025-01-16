@@ -1,11 +1,15 @@
 "use client";
 
 import {
-  PieChart,
-  Pie,
+  BarChart,
+  Bar,
+  Cell,
+  XAxis,
+  YAxis,
   Tooltip,
-  ResponsiveContainer,
-} from "recharts";
+  CartesianGrid,
+  ResponsiveContainer
+} from 'recharts';
 
 import {
   Card,
@@ -24,6 +28,20 @@ export default function AnalyticPieChart() {
     return
   }
 
+  const colors = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', 'red', 'brown', '#6b34eb'];
+  const getPath = (x: any, y: any, width: any, height: any) => {
+    return `M${x},${y + height}C${x + width / 3},${y + height} ${x + width / 2},${y + height / 3}
+    ${x + width / 2}, ${y}
+    C${x + width / 2},${y + height / 3} ${x + (2 * width) / 3},${y + height} ${x + width}, ${y + height}
+    Z`;
+  };
+
+  const TriangleBar = (props: any) => {
+    const { fill, x, y, width, height } = props;
+
+    return <path d={getPath(x, y, width, height)} stroke="none" fill={fill} />;
+  };
+
   return (
     <>
       <Card>
@@ -36,15 +54,27 @@ export default function AnalyticPieChart() {
         <CardContent>
           <div style={{ width: "100%", height: 300 }}>
             <ResponsiveContainer>
-              <PieChart width={400} height={400}>
-                <Pie
-                  dataKey="value"
-                  data={data}
-                  fill="gray"
-                  label={({ name, value }) => `${name}: ${value}`}
-                />
+              <BarChart
+                width={500}
+                height={400}
+                data={data}
+                margin={{
+                  top: 20,
+                  right: 30,
+                  left: 20,
+                  bottom: 5,
+                }}
+              >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" hide={true} />
+                <YAxis />
                 <Tooltip />
-              </PieChart>
+                <Bar dataKey="value" fill="#8884d8" shape={<TriangleBar />} label={{ position: 'top' }}>
+                  {data.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={colors[index % 20]} />
+                  ))}
+                </Bar>
+              </BarChart>
             </ResponsiveContainer>
           </div>
         </CardContent>
