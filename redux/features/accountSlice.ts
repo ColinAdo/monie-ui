@@ -2,7 +2,8 @@ import { apiSlice } from "../services/apiSlice";
 import {
   AccountType,
   TransactionType,
-  AnalyticType
+  AnalyticType,
+  AccountAnalyticType
 } from "@/types/exports";
 
 const accountSlice = apiSlice.injectEndpoints({
@@ -12,7 +13,7 @@ const accountSlice = apiSlice.injectEndpoints({
         url: "/accounts/",
       }),
     }),
-    getAccountAnalytics: builder.query<AnalyticType[], void>({
+    getAccountAnalytics: builder.query<AccountAnalyticType[], void>({
       query: () => ({
         url: "/account/pie/chart/",
       }),
