@@ -13,10 +13,10 @@ import {
 
 import {
   Card,
+  CardTitle,
+  CardHeader,
   CardContent,
   CardDescription,
-  CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
 
 import { useGetAccountAnalyticsQuery } from "@/redux/features/accountSlice";
