@@ -11,7 +11,7 @@ import {
   PageTitle,
   Chart,
   AnalyticChart,
-  AnalyticPieChart
+  AnalyticCustomBarChart
 } from "@/components/dashboard";
 import {
   useGetAccountsQuery,
@@ -81,7 +81,7 @@ export default function Page() {
           </section>
         </CardContent>
         <Chart />
-        <AnalyticPieChart />
+        <AnalyticCustomBarChart />
       </section>
     </div>
   );

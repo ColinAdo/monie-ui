@@ -5,6 +5,6 @@ export { default as Chart } from "./AnalyticBarChart";
 export { default as AnalyticChart } from "./analyticLineChart";
 export { default as EditAccountForm } from "./EditAccountForm";
 export { default as TransactionsCard } from "./TransactionsCard";
-export { default as AnalyticPieChart } from "./AnalyticPieChart";
 export { default as CreateAccountForm } from "./CreateAccountForm";
 export { default as CreateTransactionForm } from "./CreateTransactionForm";
+export { default as AnalyticCustomBarChart } from "./AnalyticCustomBarChart";
