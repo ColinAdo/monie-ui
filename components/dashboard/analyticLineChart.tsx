@@ -75,7 +75,20 @@ export default function AnalyticCard() {
             <LineChart width={1100} height={300} data={data}>
               <XAxis dataKey="name" />
               <YAxis />
-              <Tooltip />
+              <Tooltip
+                content={({ payload }) => {
+                  if (payload && payload.length > 0) {
+                    const { name, amount } = payload[0].payload; // Extract data from the payload
+                    return (
+                      <div style={{ backgroundColor: "white", padding: "5px", border: "1px solid #ccc" }}>
+                        <p className='text-black'>{name}</p>
+                        <p className='text-black'>{`Amount: ${amount}`}</p>
+                      </div>
+                    );
+                  }
+                  return null;
+                }}
+              />
               <Line type="monotone" dataKey="amount" stroke="#8884d8" />
               <CartesianGrid stroke="#ccc" />
             </LineChart>

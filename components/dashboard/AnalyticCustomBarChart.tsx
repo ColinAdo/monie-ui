@@ -66,9 +66,22 @@ export default function AnalyticPieChart() {
                 }}
               >
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" hide={true} />
+                <XAxis dataKey="name" hide={true} /> {/* Ensure dataKey matches */}
                 <YAxis />
-                <Tooltip />
+                <Tooltip
+                  content={({ payload }) => {
+                    if (payload && payload.length > 0) {
+                      const { name, value } = payload[0].payload; // Extract data from the payload
+                      return (
+                        <div style={{ backgroundColor: "white", padding: "5px", border: "1px solid #ccc" }}>
+                          <p className='text-black'>{name}</p>
+                          <p className='text-black'>{`Amount: ${value}`}</p>
+                        </div>
+                      );
+                    }
+                    return null;
+                  }}
+                />
                 <Bar dataKey="value" fill="#8884d8" shape={<TriangleBar />} label={{ position: 'top' }}>
                   {data.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={colors[index % 20]} />
@@ -76,6 +89,7 @@ export default function AnalyticPieChart() {
                 </Bar>
               </BarChart>
             </ResponsiveContainer>
+
           </div>
         </CardContent>
       </Card>

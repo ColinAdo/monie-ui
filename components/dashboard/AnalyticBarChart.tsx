@@ -75,7 +75,20 @@ export default function Chart() {
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="name" />
                 <YAxis />
-                <Tooltip />
+                <Tooltip
+                  content={({ payload }) => {
+                    if (payload && payload.length > 0) {
+                      const { name, amount } = payload[0].payload; // Extract data from the payload
+                      return (
+                        <div style={{ backgroundColor: "white", padding: "5px", border: "1px solid #ccc" }}>
+                          <p className='text-black'>{name}</p>
+                          <p className='text-black'>{`Amount: ${amount}`}</p>
+                        </div>
+                      );
+                    }
+                    return null;
+                  }}
+                />
                 <Legend />
                 <Bar dataKey="amount" fill="gray" />
               </BarChart>
