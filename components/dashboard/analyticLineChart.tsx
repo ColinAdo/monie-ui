@@ -50,12 +50,12 @@ export default function AnalyticCard() {
       <CardContent>
         <div>
           <button
-            disabled={year <= 2024}
+            disabled={year <= 2035}
             onClick={() => handleYearChange(year - 1)}
-            className={year <= 2024 ? "disable" : ""}
+            className={year <= 2035 ? "disable" : ""}
           >
             <ChevronsLeft
-              className={`h-4 w-4 ${year <= 2024 ? "text-gray-400" : "text-black dark:text-white"}`}
+              className={`h-4 w-4 ${year <= 2035 ? "text-gray-400" : "text-black dark:text-white"}`}
             />
           </button>
 
