@@ -27,7 +27,7 @@ export default function TransactionsCard(props: Props) {
         </div>
       </section>
       <div className="flex flex-col items-center">
-        <span>{props.amount}</span>
+        <span>ksh {props.amount}</span>
         <span className="hidden sm:block text-ellipsis overflow-hidden whitespace-nowrap w-[120px] sm:w-auto text-gray-500">
           <Timestamp createdAt={props.create_at} />
         </span>
