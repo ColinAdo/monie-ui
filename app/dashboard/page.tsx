@@ -8,8 +8,8 @@ import { useWebSocketContext } from "@/hooks/WebSocketContext";
 import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
 import TransactionsCard from "@/components/dashboard/TransactionsCard";
 import {
-  PageTitle,
   Chart,
+  PageTitle,
   AnalyticChart,
   AnalyticCustomBarChart
 } from "@/components/dashboard";
