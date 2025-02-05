@@ -43,7 +43,7 @@ export default function Page() {
   }
 
   return (
-    <div className="flex flex-col gap-5 w-full">
+    <div className="flex flex-col gap-5 w-full mt-12">
       <PageTitle title="Dashboard" />
       <section className="grid w-full grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
         {accounts.map((account, i) => (
