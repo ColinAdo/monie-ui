@@ -19,7 +19,7 @@ export default function Page() {
         return
     }
     return (
-        <div className="flex flex-col gap-5 w-full">
+        <div className="flex flex-col gap-5 w-full mt-12">
             <PageTitle title="All Transactions" />
             <DataTable columns={columns} data={transactions} />
         </div>

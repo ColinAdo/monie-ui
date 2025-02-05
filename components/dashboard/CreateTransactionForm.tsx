@@ -72,7 +72,7 @@ export default function CreateTransactionForm() {
                     onValueChange={field.onChange}
                     value={field.value}
                   >
-                    <SelectTrigger id="type" className="w-[480px]">
+                    <SelectTrigger id="type" className="w-[350px]">
                       <SelectValue placeholder="select account name" />
                     </SelectTrigger>
                     <SelectContent>
@@ -101,7 +101,7 @@ export default function CreateTransactionForm() {
                     onValueChange={field.onChange}
                     value={field.value}
                   >
-                    <SelectTrigger id="type" className="w-[480px]">
+                    <SelectTrigger id="type" className="w-[350px]">
                       <SelectValue placeholder="select transaction type" />
                     </SelectTrigger>
                     <SelectContent>

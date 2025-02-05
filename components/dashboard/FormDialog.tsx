@@ -24,7 +24,7 @@ export default function FormDialog({
 }: Props) {
   return (
     <Dialog open={requiredRoute} onOpenChange={onOpenChange}>
-      <DialogContent className="rounded">
+      <DialogContent className="rounded px-4 w-96 mt-7">
         <DialogHeader>
           <DialogTitle>{dialogTitle}</DialogTitle>
         </DialogHeader>
