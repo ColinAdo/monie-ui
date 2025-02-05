@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { toast } from "sonner";
+import { usePathname } from "next/navigation";
 import { CreativeCommons } from "lucide-react";
 import { useAppDispatch } from "@/redux/hooks";
 import { ThemeToggler } from "@/components/common";
@@ -31,6 +32,7 @@ import {
 
 // Stateless Function components (sfc)
 export default function Navbar() {
+  const pathname = usePathname();
   const dispatch = useAppDispatch();
   const [logout] = useLogoutMutation();
   const { data: user } = useRetrieveUserQuery();
@@ -48,12 +50,17 @@ export default function Navbar() {
     return
   }
   return (
-    <div className="text-black px-5 flex justify-between">
+    <div
+      className={`header left-0 sm:left-8 p-2 top-0 z-40 flex justify-between w-full items-center
+      "dark:bg-black fixed z-[9999] bg-white ${pathname === "/dashboard/create/transaction" || pathname === "/dashboard/create/account" ? "bg-transparent" : ""} dark:bg-black !bg-opacity-80 shadow-sticky backdrop-blur-sm transition"
+      "absolute bg-transparent"
+     `}
+    >
       <Link href="/dashboard">
         <CreativeCommons className="dark:text-white" />
       </Link>
 
-      <div className="flex item-center">
+      <div className="flex item-center lg:px-14">
         <DropdownMenu>
           <DropdownMenuTrigger className="focus:outline-none">
             <Avatar>
