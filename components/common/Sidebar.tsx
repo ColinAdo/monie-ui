@@ -10,7 +10,6 @@ import {
   ArchiveX,
   LayoutDashboard,
   Trash2,
-  UserRound,
   ChevronRight,
   BadgePlus,
   Brain,
@@ -72,13 +71,6 @@ export default function Sidebar() {
             icon: DiamondPlus,
             variant: "ghost",
             href: "/dashboard/create/transaction",
-          },
-          {
-            title: "Users",
-            label: "9",
-            icon: UserRound,
-            variant: "ghost",
-            href: "/users",
           },
           {
             title: "Junk",
