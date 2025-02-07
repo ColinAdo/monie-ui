@@ -52,7 +52,7 @@ export default function Navbar() {
   return (
     <div
       className={`header left-0 sm:left-8 p-2 top-0 z-40 flex justify-between w-full items-center
-      "dark:bg-black fixed z-[9999] bg-white ${pathname === "/dashboard/create/transaction" || pathname === "/dashboard/create/account" ? "bg-transparent" : ""} dark:bg-black !bg-opacity-80 shadow-sticky backdrop-blur-sm transition"
+      "dark:bg-black fixed z-[9999] bg-white ${pathname === "/dashboard/create/transaction" || pathname === "/dashboard/create/account" ? "!bg-transparent" : ""} dark:bg-black !bg-opacity-80 shadow-sticky backdrop-blur-sm transition"
       "absolute bg-transparent"
      `}
     >
