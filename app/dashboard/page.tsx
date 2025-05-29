@@ -37,7 +37,7 @@ export default function Page() {
     refetchTransactions();
     refetchAccountAnalytics();
     refetchTransactionAnalytics();
-  }, [lastJsonMessage, refetch]);
+  }, [lastJsonMessage, refetch, refetchTransactions, refetchAccountAnalytics, refetchTransactionAnalytics]);
 
   if (!accounts || !transactions || !user) {
     return;
