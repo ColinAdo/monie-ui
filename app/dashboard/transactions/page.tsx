@@ -13,7 +13,7 @@ export default function Page() {
 
     useEffect(() => {
         refetch();
-    }, [lastJsonMessage]);
+    }, [lastJsonMessage, refetch]);
 
     if (!transactions) {
         return
