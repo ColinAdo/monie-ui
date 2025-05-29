@@ -22,7 +22,8 @@ export default function useSocialAuth(authenticate: any, provider: string) {
           toast.success("Login successful");
           router.push("/dashboard");
         })
-        .catch(() => {
+        .catch((error: any) => {
+          console.error("OAuth Error:", error)
           toast.error("Login failed");
         });
     }
