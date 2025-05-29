@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Card from "@/components/dashboard/Card";
+import { Card as C, CardHeader, CardTitle, CardDescription, CardContent as CC } from "@/components/ui/card";
 import { CardContent } from "@/components/dashboard/Card";
 import { useWebSocketContext } from "@/hooks/WebSocketContext";
 import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
@@ -51,7 +52,23 @@ export default function Page() {
         ))}
       </section>
       <section className="grid grid-cols-1 gap-4 lg:grid-cols-2 transition-all">
-        <AnalyticChart />
+        {transactions.length === 0 ? (
+
+          <C>
+              <CardHeader>
+                <CardTitle>Transaction Analytics</CardTitle>
+                <CardDescription>
+                  Line Chart showing analytics for your monthly transactions in {year}
+                </CardDescription>
+              </CardHeader>
+        <CC>
+                <span className="text-gray-500 text-sm">You have not made transaction yet, you will see bar chart here...</span>
+        </CC>
+        </C>
+                
+        ) : (
+          <AnalyticChart />
+        )}
         <CardContent>
           <section>
             <p className="font-semibold">Transactions</p>
@@ -80,8 +97,45 @@ export default function Page() {
             )}
           </section>
         </CardContent>
-        <Chart />
-        <AnalyticCustomBarChart />
+        
+        {transactions.length === 0 ? (
+
+          <C>
+              <CardHeader>
+                <CardTitle>Transaction Analytics</CardTitle>
+                <CardDescription>
+                  Bar Chart showing analytics for your monthly transactions in {year}
+                </CardDescription>
+              </CardHeader>
+        <CC>
+                <span className="text-gray-500 text-sm">You have not made transaction yet, you will see bar chart here...</span>
+        </CC>
+        </C>
+                
+        ) : (
+          <Chart />
+        )}
+        
+
+        
+        {transactions.length === 0 ? (
+          <C>
+              <CardHeader>
+                <CardTitle>Account Analytics</CardTitle>
+                <CardDescription>
+                  Pie Chart showing analytic for your accounts
+                </CardDescription>
+              </CardHeader>
+        <CC>
+                <span className="text-gray-500 text-sm">Created account with their transactions will show on pie chart here...</span>
+        </CC>
+        </C>
+                
+        ) : (
+          <AnalyticCustomBarChart />
+        )}
+        
+        
       </section>
     </div>
   );
