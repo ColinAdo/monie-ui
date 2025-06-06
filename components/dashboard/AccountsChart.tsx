@@ -21,7 +21,7 @@ import {
 
 import { useGetAccountAnalyticsQuery } from "@/redux/features/accountSlice";
 
-export default function AnalyticPieChart() {
+export default function AccountsChart() {
   const { data } = useGetAccountAnalyticsQuery();
 
   if (!data) {
@@ -46,7 +46,7 @@ export default function AnalyticPieChart() {
     <>
       <Card>
         <CardHeader>
-          <CardTitle>Account analytics</CardTitle>
+          <CardTitle className='text-md font-semibold'>Accounts analytics</CardTitle>
           <CardDescription>
             Pie Chart showing analytic for your accounts
           </CardDescription>

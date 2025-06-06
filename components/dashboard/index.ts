@@ -1,10 +1,10 @@
 export { default as Timestamp } from "./Timestamp";
 export { default as PageTitle } from "./PageTitile";
 export { default as FormDialog } from "./FormDialog";
-export { default as Chart } from "./AnalyticBarChart";
-export { default as AnalyticChart } from "./analyticLineChart";
+export { default as ExpensesBarChart } from "./ExpensesBarChart";
+export { default as ExpensesLineChart } from "./ExpensesLineChart";
 export { default as EditAccountForm } from "./EditAccountForm";
 export { default as TransactionsCard } from "./TransactionsCard";
 export { default as CreateAccountForm } from "./CreateAccountForm";
 export { default as CreateTransactionForm } from "./CreateTransactionForm";
-export { default as AnalyticCustomBarChart } from "./AnalyticCustomBarChart";
+export { default as AccountsChart } from "./AccountsChart";

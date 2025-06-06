@@ -9,16 +9,16 @@ import { useWebSocketContext } from "@/hooks/WebSocketContext";
 import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
 import TransactionsCard from "@/components/dashboard/TransactionsCard";
 import {
-  Chart,
   PageTitle,
-  AnalyticChart,
-  AnalyticCustomBarChart
+  AccountsChart,
+  ExpensesBarChart,
+  ExpensesLineChart,
 } from "@/components/dashboard";
 import {
   useGetAccountsQuery,
   useGetTransactionsQuery,
   useGetAccountAnalyticsQuery,
-  useGetTransactionAnalyticsQuery
+  useGetExpensesAnalyticsQuery
 } from "@/redux/features/accountSlice";
 
 export default function Page() {
@@ -28,7 +28,7 @@ export default function Page() {
   const { lastJsonMessage } = useWebSocketContext();
   const { data: accounts, refetch } = useGetAccountsQuery();
   const { refetch: refetchAccountAnalytics } = useGetAccountAnalyticsQuery();
-  const { refetch: refetchTransactionAnalytics } = useGetTransactionAnalyticsQuery(year);
+  const { refetch: refetchExpensesAnalytics } = useGetExpensesAnalyticsQuery(year);
   const { data: transactions, refetch: refetchTransactions } = useGetTransactionsQuery();
 
   useEffect(() => {
@@ -36,8 +36,8 @@ export default function Page() {
     refetch();
     refetchTransactions();
     refetchAccountAnalytics();
-    refetchTransactionAnalytics();
-  }, [lastJsonMessage, refetch, refetchTransactions, refetchAccountAnalytics, refetchTransactionAnalytics]);
+    refetchExpensesAnalytics();
+  }, [lastJsonMessage, refetch, refetchTransactions, refetchAccountAnalytics, refetchExpensesAnalytics]);
 
   if (!accounts || !transactions || !user) {
     return;
@@ -56,9 +56,9 @@ export default function Page() {
 
           <C>
               <CardHeader>
-                <CardTitle>Transaction Analytics</CardTitle>
+                <CardTitle>Expenses analytics</CardTitle>
                 <CardDescription>
-                  Line Chart showing analytics for your monthly transactions in {year}
+                  Line Chart showing expenses analytics for your monthly transactions in {year}
                 </CardDescription>
               </CardHeader>
         <CC>
@@ -67,11 +67,11 @@ export default function Page() {
         </C>
                 
         ) : (
-          <AnalyticChart />
+          <ExpensesLineChart />
         )}
         <CardContent>
           <section>
-            <p className="font-semibold">Transactions History</p>
+            <p className="text-md font-semibold">Transactions History</p>
             <p className="text-gray-500 text-sm">
               You have made about {transactions.length} {transactions.length === 1 ? "transaction" : "transactions"} this month
             </p>
@@ -102,9 +102,9 @@ export default function Page() {
 
           <C>
               <CardHeader>
-                <CardTitle>Transaction Analytics</CardTitle>
+                <CardTitle className="text-md font-semibold">Expenses analytics</CardTitle>
                 <CardDescription>
-                  Bar Chart showing analytics for your monthly transactions in {year}
+                  Bar Chart showing your monthly expenses in {year}
                 </CardDescription>
               </CardHeader>
         <CC>
@@ -113,7 +113,7 @@ export default function Page() {
         </C>
                 
         ) : (
-          <Chart />
+          <ExpensesBarChart />
         )}
         
 
@@ -121,7 +121,7 @@ export default function Page() {
         {transactions.length === 0 ? (
           <C>
               <CardHeader>
-                <CardTitle>Account Analytics</CardTitle>
+                <CardTitle className="text-md font-semibold">Account analytics</CardTitle>
                 <CardDescription>
                   Pie Chart showing analytic for your accounts
                 </CardDescription>
@@ -132,7 +132,7 @@ export default function Page() {
         </C>
                 
         ) : (
-          <AnalyticCustomBarChart />
+          <AccountsChart />
         )}
         
         

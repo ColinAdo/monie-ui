@@ -20,19 +20,20 @@ import {
 
 import { useState } from "react";
 import { ChevronsLeft, ChevronsRight } from "lucide-react";
-import { useGetTransactionAnalyticsQuery } from "@/redux/features/accountSlice";
+import { useGetExpensesAnalyticsQuery } from "@/redux/features/accountSlice";
+import { Spinner } from "../common";
 
-export default function AnalyticCard() {
+export default function ExpensesLineChart() {
   const [year, setYear] = useState(new Date().getFullYear());
-  const { data: response } = useGetTransactionAnalyticsQuery(year) || {};
-  const data = response?.data || [];
+  const { data: expenses } = useGetExpensesAnalyticsQuery(year) || {};
+  const data = expenses?.data || [];
 
   const handleYearChange = (newYear: number) => {
     setYear(newYear);
   };
 
-  if (!response) {
-    return <p>Loading transaction analytics...</p>;
+  if (!expenses) {
+    return <Spinner sm />;
   }
 
   if (data.length === 0) {
@@ -42,9 +43,9 @@ export default function AnalyticCard() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Transaction Analytics</CardTitle>
+        <CardTitle className="text-md font-semibold">Expenses analytics</CardTitle>
         <CardDescription>
-          Line Chart showing analytics for your monthly transactions in {year}
+          Line Chart showing your monthly expenses in {year}
         </CardDescription>
       </CardHeader>
       <CardContent>

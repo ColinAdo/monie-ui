@@ -20,12 +20,12 @@ import {
 } from "@/components/ui/card";
 import { useState } from "react";
 import { ChevronsLeft, ChevronsRight } from "lucide-react";
-import { useGetTransactionAnalyticsQuery } from "@/redux/features/accountSlice";
+import { useGetExpensesAnalyticsQuery } from "@/redux/features/accountSlice";
 
-export default function Chart() {
+export default function ExpensesBarChart() {
   const [year, setYear] = useState(new Date().getFullYear());
-  const { data: response } = useGetTransactionAnalyticsQuery(year) || {};
-  const data = response?.data || [];
+  const { data: expenses } = useGetExpensesAnalyticsQuery(year) || {};
+  const data = expenses?.data || [];
 
   const handleYearChange = (newYear: number) => {
     setYear(newYear);
@@ -38,9 +38,9 @@ export default function Chart() {
     <>
       <Card>
         <CardHeader>
-          <CardTitle>Transaction Analytics</CardTitle>
+          <CardTitle className="text-md font-semibold">Expenses analytics</CardTitle>
           <CardDescription>
-            Bar Chart showing analytics for your monthly transactions in {year}
+            Bar Chart showing your monthly expenses in {year}
           </CardDescription>
         </CardHeader>
         <CardContent>
