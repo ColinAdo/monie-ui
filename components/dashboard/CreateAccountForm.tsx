@@ -28,7 +28,6 @@ export default function CreateAccountForm() {
     defaultValues: {
       accountName: "",
       description: "",
-      amount: "",
     },
   });
 
@@ -86,29 +85,6 @@ export default function CreateAccountForm() {
               </FormItem>
             )}
           />
-          <FormField
-            control={form.control}
-            name="amount"
-            render={({ field }) => (
-              <FormItem>
-                <div className="flex justify-between items-center">
-                  <FormLabel className="uppercase text-xs font-bold text-zinc-500 dark:text-white">
-                    Account Amount
-                  </FormLabel>
-                </div>
-                <FormControl>
-                  <Input
-                    type="number"
-                    placeholder="Enter account amount"
-                    {...field}
-                    className="dark:bg-zinc-950  text-blak dark:text-slate-100 focus-visible:ring-0 focus-visible:ring-offset-0"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
           <Button className="w-full dark:text-black font-bold dark:bg-white">
             Submit
           </Button>
