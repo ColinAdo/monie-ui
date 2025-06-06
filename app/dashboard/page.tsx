@@ -71,7 +71,7 @@ export default function Page() {
         )}
         <CardContent>
           <section>
-            <p className="font-semibold">Transactions</p>
+            <p className="font-semibold">Transactions History</p>
             <p className="text-gray-500 text-sm">
               You have made about {transactions.length} {transactions.length === 1 ? "transaction" : "transactions"} this month
             </p>
