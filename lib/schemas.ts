@@ -72,7 +72,6 @@ export const editAccountSchema = z.object({
 
 export const createTransactionSchema = z.object({
   accountName: z.string().min(1, "Account name is required."),
-  transactionType: z.string().min(1, "Transaction type is required."),
   description: z.string().max(34, "Description must be at most 34 characters.").optional(),
   amount: z.string().min(1, "Account amount is required."),
 });

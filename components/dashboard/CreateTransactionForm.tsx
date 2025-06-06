@@ -35,7 +35,6 @@ export default function CreateTransactionForm() {
     resolver: zodResolver(createTransactionSchema),
     defaultValues: {
       accountName: "",
-      transactionType: "",
       description: "",
       amount: "",
     },
@@ -90,38 +89,12 @@ export default function CreateTransactionForm() {
           />
           <FormField
             control={form.control}
-            name="transactionType"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="uppercase text-xs font-bold text-zinc-500 dark:text-white">
-                  Transaction Type
-                </FormLabel>
-                <FormControl>
-                  <Select
-                    onValueChange={field.onChange}
-                    value={field.value}
-                  >
-                    <SelectTrigger id="type" className="w-[350px]">
-                      <SelectValue placeholder="select transaction type" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="income">Income</SelectItem>
-                      <SelectItem value="expense">Expense</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
             name="description"
             render={({ field }) => (
               <FormItem>
                 <div className="flex justify-between items-center">
                   <FormLabel className="uppercase text-xs font-bold text-zinc-500 dark:text-white">
-                    Account description
+                    Transaction description
                   </FormLabel>
                 </div>
                 <FormControl>

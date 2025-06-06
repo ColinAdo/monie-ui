@@ -18,9 +18,9 @@ export const columns: ColumnDef<TransactionType>[] = [
     cell: ({ row }) => {
       const transactionType = row.original.transaction_type;
       const textColorClass =
-        transactionType === "income"
+        transactionType === "Income"
           ? "text-green-500"
-          : transactionType === "expense"
+          : transactionType === "Expense"
           ? "text-red-600"
           : "";
 

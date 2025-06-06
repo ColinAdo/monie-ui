@@ -28,7 +28,7 @@ export function DataTableToolbar<TData>({
                 <div className="relative w-64">
                     <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
                     <Input
-                        placeholder="Search transaction..."
+                        placeholder="Search account..."
                         value={(table.getColumn("account_name")?.getFilterValue() as string) ?? ""}
                         onChange={(event) =>
                             table.getColumn("account_name")?.setFilterValue(event.target.value)
@@ -50,8 +50,8 @@ export function DataTableToolbar<TData>({
                     </SelectTrigger>
                     <SelectContent>
                         <SelectItem value="all">All transactions</SelectItem>
-                        <SelectItem value="income">Incomes</SelectItem>
-                        <SelectItem value="expense">Expenses</SelectItem>
+                        <SelectItem value="Income">Incomes</SelectItem>
+                        <SelectItem value="Expense">Expenses</SelectItem>
                     </SelectContent>
                 </Select>
                 {isFiltered && (
