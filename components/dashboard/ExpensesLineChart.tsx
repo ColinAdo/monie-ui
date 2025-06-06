@@ -20,10 +20,11 @@ import {
 
 import { useState } from "react";
 import { ChevronsLeft, ChevronsRight } from "lucide-react";
-import { useGetExpensesAnalyticsQuery } from "@/redux/features/accountSlice";
+import { useGetExpensesAnalyticsQuery, useGetTransactionsQuery } from "@/redux/features/accountSlice";
 import { Spinner } from "../common";
 
 export default function ExpensesLineChart() {
+  const { data: transactions } = useGetTransactionsQuery();
   const [year, setYear] = useState(new Date().getFullYear());
   const { data: expenses } = useGetExpensesAnalyticsQuery(year) || {};
   const data = expenses?.data || [];
@@ -49,6 +50,11 @@ export default function ExpensesLineChart() {
         </CardDescription>
       </CardHeader>
       <CardContent>
+        {transactions?.length === 0 ? (
+          <span className="text-gray-500 text-sm">You have not transactions yet, you will see line chart here...</span>
+        ) : (
+
+          <>
         <div>
           <button
             disabled={year <= 2035}
@@ -95,6 +101,8 @@ export default function ExpensesLineChart() {
             </LineChart>
           </ResponsiveContainer>
         </div>
+        </>
+         )}
       </CardContent>
     </Card>
   );

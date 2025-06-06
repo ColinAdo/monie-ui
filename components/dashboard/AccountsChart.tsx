@@ -19,9 +19,10 @@ import {
   CardDescription,
 } from "@/components/ui/card";
 
-import { useGetAccountAnalyticsQuery } from "@/redux/features/accountSlice";
+import { useGetAccountAnalyticsQuery, useGetTransactionsQuery } from "@/redux/features/accountSlice";
 
 export default function AccountsChart() {
+  const { data: transactions } = useGetTransactionsQuery();
   const { data } = useGetAccountAnalyticsQuery();
 
   if (!data) {
@@ -52,6 +53,9 @@ export default function AccountsChart() {
           </CardDescription>
         </CardHeader>
         <CardContent>
+          {transactions?.length === 0 ? (
+          <span className="text-gray-500 text-sm">You have not account yet, you will see a chart here...</span>
+          ): (
           <div style={{ width: "100%", height: 300 }}>
             <ResponsiveContainer>
               <BarChart
@@ -91,6 +95,7 @@ export default function AccountsChart() {
             </ResponsiveContainer>
 
           </div>
+          )}
         </CardContent>
       </Card>
     </>
