@@ -20,14 +20,14 @@ export default function TransactionsCard(props: Props) {
           </AvatarFallback>
         </Avatar>
         <div className="text-sm">
-          <p>{props.accountName}</p>
+          <p className="pt-2 sm:pt-0">{props.accountName}</p>
           <div className="hidden sm:block text-ellipsis overflow-hidden whitespace-nowrap w-[120px] sm:w-auto text-gray-500">
             <p>{props.description}</p>
           </div>
         </div>
       </section>
       <div className="flex flex-col items-center">
-        <span>ksh {props.amount}</span>
+        <span className="pt-3 sm:pt-0">{props.amount}</span>
         <span className="hidden sm:block text-ellipsis overflow-hidden whitespace-nowrap w-[120px] sm:w-auto text-gray-500">
           <Timestamp createdAt={props.create_at} />
         </span>
