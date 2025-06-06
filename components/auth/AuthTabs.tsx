@@ -9,7 +9,7 @@ import {
 
 export default function AuthTabs() {
   return (
-    <Tabs defaultValue="signIn" className="w-[320px] sm:w-[300px] font-mono">
+    <Tabs defaultValue="signIn" className="lg:w-[400px] sm:w-[320px] font-mono">
       <TabsList className="grid w-full grid-cols-2">
         <TabsTrigger value="signIn">Sign In</TabsTrigger>
         <TabsTrigger value="signUp">Sign Up</TabsTrigger>
