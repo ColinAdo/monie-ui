@@ -52,7 +52,6 @@ export default function Page() {
       </section>
       <section className="grid grid-cols-1 gap-4 lg:grid-cols-2 transition-all">
         
-        <ExpensesLineChart />
         <CardContent>
           <section>
             <p className="text-md font-semibold">Transactions History</p>
@@ -81,7 +80,7 @@ export default function Page() {
             )}
           </section>
         </CardContent>
-        
+        <ExpensesLineChart />
         <ExpensesBarChart />
         <AccountsChart />
 
