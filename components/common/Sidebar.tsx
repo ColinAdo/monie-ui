@@ -1,7 +1,6 @@
 "use client";
 
 import { Nav } from "@/components/ui/nav";
-import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { useWindowWidth } from "@react-hook/window-size";
 import { useGetTransactionsQuery } from "@/redux/features/accountSlice";
@@ -14,38 +13,41 @@ import {
   BadgePlus,
   Brain,
   BadgeDollarSign,
-  DiamondPlus
+  DiamondPlus,
 } from "lucide-react";
 
-export default function Sidebar() {
+interface SidebarProps {
+  isCollapsed: boolean;
+  toggleCollapse: () => void;
+}
+
+export default function Sidebar({ isCollapsed, toggleCollapse }: SidebarProps) {
   const { data: transactions } = useGetTransactionsQuery();
-  const [isCollapsed, setIsCollapsed] = useState(false);
-  const [mobilewidth, setMobileWidth] = useState(false);
   const onlyWidth = useWindowWidth();
+  const isMobile = onlyWidth < 768;
 
-  useEffect(() => {
-    // Update mobilewidth state when window width changes
-    setMobileWidth(onlyWidth < 768);
-  }, [onlyWidth]);
-
-  function toggleSidebar() {
-    setIsCollapsed(!isCollapsed);
-  }
+  if (isMobile) return null; // Hide completely on mobile
 
   return (
-    <div className="relative min-w-[80px] border-r px-3 pt-20 pb-10">
-      {!mobilewidth && (
-        <div className="absolute top-7">
-          <Button
-            onClick={toggleSidebar}
-            className="bg-white text-black hover:bg-slate-300"
-          >
-            <ChevronRight />
-          </Button>
-        </div>
-      )}
+    <div
+      className={`h-screen top-12 dark:bg-zinc-950 left-4 fixed z-20 bg-white border-r pt-20 pb-10 px-3 transition-all duration-300`}
+      style={{ width: isCollapsed ? "80px" : "180px" }}
+    >
+      <div className="absolute top-7">
+        <Button
+          onClick={toggleCollapse}
+          className="bg-white text-black hover:bg-slate-300"
+        >
+          <ChevronRight
+            className={`transform transition-transform duration-300 ${
+              isCollapsed ? "rotate-180" : ""
+            }`}
+          />
+        </Button>
+      </div>
+
       <Nav
-        isCollapsed={mobilewidth ? true : isCollapsed}
+        isCollapsed={isCollapsed}
         links={[
           {
             title: "Dashboard",
