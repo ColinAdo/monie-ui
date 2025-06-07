@@ -18,18 +18,30 @@ export default function Page({ params }: Props) {
   const [activation] = useActivationMutation();
 
   useEffect(() => {
+    let isMounted = true;
     const { uid, token } = params;
+
     activation({ uid, token })
       .unwrap()
       .then(() => {
-        toast.success("Account activated successfully");
-        router.push("/auth/login");
+        if (isMounted) {
+          toast.success("Account activated successfully");
+        }
       })
       .catch(() => {
-        toast.error("Failed to activate account");
+        if (isMounted) {
+          toast.error("Failed to activate account, contact support!");
+        }
+      })
+      .finally(() => {
         router.push("/auth/login");
       });
+
+    return () => {
+      isMounted = false;
+    };
   }, [activation, params, router]);
+
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
