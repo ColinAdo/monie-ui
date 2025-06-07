@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/card";
 import { useState } from "react";
 import { ChevronsLeft, ChevronsRight } from "lucide-react";
+import { Spinner } from "@/components/common";
 import {
   useGetIncomeAnalyticsQuery,
   useGetTransactionsQuery,
@@ -35,8 +36,12 @@ export default function IncomeBarChart() {
     setYear(newYear);
   };
 
-  if (!data) {
-    return;
+  if (!incomes) {
+    return (
+      <div className="flex justify-center items-center my-20">
+        <Spinner sm />
+      </div>
+    );
   }
   return (
     <>

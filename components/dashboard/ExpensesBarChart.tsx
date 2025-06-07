@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/card";
 import { useState } from "react";
 import { ChevronsLeft, ChevronsRight } from "lucide-react";
+import { Spinner } from "@/components/common";
 import {
   useGetExpensesAnalyticsQuery,
   useGetTransactionsQuery,
@@ -35,8 +36,12 @@ export default function ExpensesBarChart() {
     setYear(newYear);
   };
 
-  if (!data) {
-    return;
+  if (!expenses) {
+    return (
+      <div className="flex justify-center items-center my-20">
+        <Spinner sm />
+      </div>
+    );
   }
   return (
     <>

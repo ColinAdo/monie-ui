@@ -29,7 +29,7 @@ function GitHubAuthPage() {
   useSocialAuth(githubAuthenticate, "github");
 
   return (
-    <div className="flex justify-center items-center my-8">
+    <div className="flex justify-center items-center my-80">
       <Spinner lg />
     </div>
   );
@@ -37,7 +37,13 @@ function GitHubAuthPage() {
 
 export default function PageWrapper() {
   return (
-    <Suspense fallback={<div className="flex justify-center items-center h-screen">Loading...</div>}>
+    <Suspense
+      fallback={
+        <div className="flex justify-center items-center h-screen">
+          Loading...
+        </div>
+      }
+    >
       <GitHubAuthPage />
     </Suspense>
   );

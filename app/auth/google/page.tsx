@@ -29,7 +29,7 @@ function GoogleAuthPage() {
   useSocialAuth(googleAuthenticate, "google-oauth2");
 
   return (
-    <div className="flex justify-center items-center my-8">
+    <div className="flex justify-center items-center my-80">
       <Spinner lg />
     </div>
   );
@@ -37,9 +37,14 @@ function GoogleAuthPage() {
 
 export default function PageWrapper() {
   return (
-    <Suspense fallback={<div className="flex justify-center items-center h-screen">Loading...</div>}>
+    <Suspense
+      fallback={
+        <div className="flex justify-center items-center h-screen">
+          Loading...
+        </div>
+      }
+    >
       <GoogleAuthPage />
     </Suspense>
   );
 }
-

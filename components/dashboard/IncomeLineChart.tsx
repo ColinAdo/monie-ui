@@ -37,7 +37,11 @@ export default function IncomeLineChart() {
   };
 
   if (!incomes) {
-    return <Spinner sm />;
+    return (
+      <div className="flex justify-center items-center my-20">
+        <Spinner sm />
+      </div>
+    );
   }
 
   if (data.length === 0) {
