@@ -10,6 +10,8 @@ import TransactionsCard from "@/components/dashboard/TransactionsCard";
 import {
   PageTitle,
   AccountsChart,
+  IncomeBarChart,
+  IncomeLineChart,
   ExpensesBarChart,
   ExpensesLineChart,
 } from "@/components/dashboard";
@@ -83,6 +85,8 @@ export default function Page() {
         <ExpensesLineChart />
         <ExpensesBarChart />
         <AccountsChart />
+        <IncomeLineChart />
+        <IncomeBarChart />
 
       </section>
     </div>

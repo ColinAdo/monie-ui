@@ -8,3 +8,5 @@ export { default as TransactionsCard } from "./TransactionsCard";
 export { default as CreateAccountForm } from "./CreateAccountForm";
 export { default as CreateTransactionForm } from "./CreateTransactionForm";
 export { default as AccountsChart } from "./AccountsChart";
+export { default as IncomeBarChart } from "./IncomeBarChart";
+export { default as IncomeLineChart } from "./IncomeLineChart";

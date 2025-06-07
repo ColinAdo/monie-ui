@@ -34,6 +34,12 @@ const accountSlice = apiSlice.injectEndpoints({
         params: { year },
       }),
     }),
+    getIncomeAnalytics: builder.query<AnalyticType, number | void>({
+      query: (year = new Date().getFullYear()) => ({
+        url: `/income/analytics/`,
+        params: { year },
+      }),
+    }),
   }),
 });
 
@@ -42,5 +48,6 @@ export const {
   useGetAccountAnalyticsQuery,
   useRetrieveAccountsQuery,
   useGetTransactionsQuery,
+  useGetIncomeAnalyticsQuery,
   useGetExpensesAnalyticsQuery,
 } = accountSlice;
