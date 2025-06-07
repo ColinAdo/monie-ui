@@ -8,7 +8,7 @@ import {
   DropdownMenuItem,
   DropdownMenuContent,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
 
 interface Props {
   accounts: AccountType[];
@@ -32,16 +32,24 @@ export default function Card({ accounts }: Props) {
           <section className="flex justify-between gap-2">
             {account.name}
             <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <button className="text-dark h-4 w-4 p-0 flex justify-center items-center">
-                  <span className="sr-only">Open menu</span>
-                  <MoreVertical className="h-4 w-4" />
-                </button>
-              </DropdownMenuTrigger>
+              {account.name === "Income" ? (
+                <span className="text-sm text-green-500">KSH</span>
+              ) : (
+                <DropdownMenuTrigger asChild>
+                  <div className="flex items-center gap-1">
+                    <span className="text-sm text-red-500">KSH</span>
+                    <button className="text-dark h-4 w-4 p-0 flex justify-center items-center">
+                      <span className="sr-only">Open menu</span>
+                      <MoreVertical className="h-4 w-4 text-red-500" />
+                    </button>
+                  </div>
+                </DropdownMenuTrigger>
+              )}
+
               <DropdownMenuContent
                 align="end"
                 className="w-[50px] min-w-[50px] p-2"
-                style={{ maxWidth: '50px' }}
+                style={{ maxWidth: "50px" }}
               >
                 <DropdownMenuItem className="text-gray-600 dark:text-white cursor-pointer">
                   <Link href={`/dashboard/edit/${account.id}`} key={i}>
@@ -60,11 +68,16 @@ export default function Card({ accounts }: Props) {
 
           <section className="flex justify-between gap-1">
             <p className="text-sm text-gray-500">{account.description}</p>
-            <p className="text-lg font-semibold">{account.amount}</p>
+            <p
+              className={`${
+                account.name === "Income" ? "text-green-500" : "text-red-500"
+              } font-semibold`}
+            >
+              {account.amount}
+            </p>
           </section>
-        </CardContent >
-      ))
-      }
+        </CardContent>
+      ))}
     </>
   );
 }
