@@ -100,7 +100,7 @@ export default function Sidebar({ isCollapsed, toggleCollapse }: SidebarProps) {
             label: "",
             icon: Brain,
             variant: "ghost",
-            href: "#",
+            href: "/dashboard/chat",
           },
         ]}
       />
