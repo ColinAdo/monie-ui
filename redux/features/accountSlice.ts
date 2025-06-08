@@ -3,7 +3,7 @@ import {
   AccountType,
   AnalyticType,
   TransactionType,
-  AccountAnalyticType
+  AccountAnalyticType,
 } from "@/types/exports";
 
 const accountSlice = apiSlice.injectEndpoints({
@@ -40,6 +40,13 @@ const accountSlice = apiSlice.injectEndpoints({
         params: { year },
       }),
     }),
+    chatWithAI: builder.mutation({
+      query: (prompt) => ({
+        url: "/chat/ai/analytics/",
+        method: "POST",
+        body: { prompt },
+      }),
+    }),
   }),
 });
 
@@ -50,4 +57,5 @@ export const {
   useGetTransactionsQuery,
   useGetIncomeAnalyticsQuery,
   useGetExpensesAnalyticsQuery,
+  useChatWithAIMutation,
 } = accountSlice;
