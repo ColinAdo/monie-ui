@@ -109,8 +109,8 @@ export default function ExpensesBarChart() {
                                 border: "1px solid #ef4444",
                               }}
                             >
-                              <p className="text-red-500">{name}</p>
-                              <p className="text-red-500">{`Amount: ${amount}`}</p>
+                              <p className="text-red-700">{name}</p>
+                              <p className="text-red-700">{`Amount: ${amount}`}</p>
                             </div>
                           );
                         }
