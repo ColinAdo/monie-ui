@@ -38,7 +38,6 @@ export default function Page() {
     useGetTransactionsQuery();
 
   useEffect(() => {
-    console.log("Updated realtimeMessages:", lastJsonMessage);
     refetch();
     refetchIncomes();
     refetchTransactions();

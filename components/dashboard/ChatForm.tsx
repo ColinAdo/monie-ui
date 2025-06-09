@@ -13,7 +13,7 @@ import { useGetChatsQuery } from "@/redux/features/accountSlice";
 import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
 
 export default function ChatForm() {
-  const { data: chats } = useGetChatsQuery();
+  const { data: chats, refetch } = useGetChatsQuery();
   const { data: user } = useRetrieveUserQuery();
   const bottomRef = useRef<HTMLDivElement | null>(null);
   const { lastJsonMessage } = useWebSocketContext();
@@ -56,11 +56,11 @@ export default function ChatForm() {
   };
 
   useEffect(() => {
+    refetch();
     if (lastJsonMessage?.type === "chat_event") {
       scrollIfNotVisible();
       const fullContent = lastJsonMessage.response;
 
-      // Replace the last loading message
       setMessages((prev) => {
         const updated = [...prev];
         const lastIndex = updated.length - 1;
