@@ -132,6 +132,14 @@ export default function ChatForm() {
     }
   }, [chats, messages.length]);
 
+  const scrollToBottom = () => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
   if (!chats) {
     return (
       <div className="flex justify-center items-center my-20">
