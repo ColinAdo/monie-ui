@@ -10,9 +10,11 @@ import { Send } from "lucide-react";
 import { useChatWithAIMutation } from "@/redux/features/accountSlice";
 import { useWebSocketContext } from "@/hooks/WebSocketContext";
 import { useGetChatsQuery } from "@/redux/features/accountSlice";
+import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
 
 export default function ChatForm() {
   const { data: chats } = useGetChatsQuery();
+  const { data: user } = useRetrieveUserQuery();
   const bottomRef = useRef<HTMLDivElement | null>(null);
   const { lastJsonMessage } = useWebSocketContext();
   const [chatWithAI, { isLoading }] = useChatWithAIMutation();
@@ -156,7 +158,7 @@ export default function ChatForm() {
             messages.length === 0 && "py-40"
           } text-base lg:text-lg font-bold text-center mb-8`}
         >
-          Hello Deluxe 👋, I am your AI assistant. I am here for you!
+          Hello {user?.username} 👋, I am your AI assistant. I am here for you!
         </h1>
 
         <div className="ms:p-4 bg-card">
