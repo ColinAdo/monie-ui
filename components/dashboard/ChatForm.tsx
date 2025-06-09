@@ -92,6 +92,7 @@ export default function ChatForm() {
           if (index > fullContent.length) {
             last.isTyping = false;
             clearInterval(typingInterval);
+            scrollToBottom();
           }
 
           return [...updated];
@@ -121,26 +122,29 @@ export default function ChatForm() {
         const msgs = [];
 
         if (chat.prompt) {
-          msgs.push({ role: "user" as "user", content: chat.prompt });
+          msgs.push({ role: "user" as const, content: chat.prompt });
         }
         if (chat.response) {
-          msgs.push({ role: "ai" as "ai", content: chat.response });
+          msgs.push({ role: "ai" as const, content: chat.response });
         }
 
         return msgs;
       });
 
       setMessages(formattedChats);
+
+      setTimeout(() => {
+        scrollToBottom();
+      }, 100);
     }
   }, [chats, messages.length]);
 
   const scrollToBottom = () => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    bottomRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
   };
-
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
 
   if (!chats) {
     return (
@@ -161,7 +165,7 @@ export default function ChatForm() {
           Hello {user?.username} 👋, I am your AI assistant. I am here for you!
         </h1>
 
-        <div className="ms:p-4 bg-card">
+        <div className="ms:p-4 bg-card pb-20">
           {messages.map((msg, index) => (
             <div
               key={index}
