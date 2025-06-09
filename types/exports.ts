@@ -18,11 +18,17 @@ export type TransactionType = {
 export type AnalyticType = {
   data: { name: string; amount: number }[];
   year: number;
-}
+};
 
 export type AccountAnalyticType = {
   data: {
     name: string;
-    value: number
+    value: number;
   }[];
-}
+};
+
+export type ChatType = {
+  id: string;
+  prompt: string;
+  response: string;
+};
