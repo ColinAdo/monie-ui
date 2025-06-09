@@ -62,7 +62,7 @@ export default function Navbar() {
      `}
     >
       <Link href="/dashboard">
-        <CreativeCommons className="dark:text-white" />
+        <CreativeCommons className="h-10 w-10 dark:text-white" />
       </Link>
 
       <div className="flex item-center lg:px-14">
