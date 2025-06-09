@@ -130,7 +130,7 @@ export default function ChatForm() {
 
       setMessages(formattedChats);
     }
-  }, [chats]);
+  }, [chats, messages.length]);
 
   if (!chats) {
     return (

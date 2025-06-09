@@ -47,6 +47,7 @@ export default function Page() {
   }, [
     lastJsonMessage,
     refetch,
+    refetchIncomes,
     refetchTransactions,
     refetchAccountAnalytics,
     refetchExpensesAnalytics,
