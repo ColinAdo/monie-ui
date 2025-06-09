@@ -160,8 +160,8 @@ export default function ChatForm() {
               }`}
             >
               <div
-                className={`p-0 rounded-lg text-sm lg:text-base max-w-[80%] ${
-                  msg.role === "ai" ? "rounded-tl-none max-w-[100%]" : ""
+                className={`p-0 rounded-lg text-sm lg:text-base max-w-[100%] ${
+                  msg.role === "ai" ? "rounded-tl-none" : ""
                 }`}
               >
                 <p
