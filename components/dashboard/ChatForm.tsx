@@ -9,8 +9,10 @@ import { Spinner } from "@/components/common";
 import { Send } from "lucide-react";
 import { useChatWithAIMutation } from "@/redux/features/accountSlice";
 import { useWebSocketContext } from "@/hooks/WebSocketContext";
+import { useGetChatsQuery } from "@/redux/features/accountSlice";
 
 export default function ChatForm() {
+  const { data: chats } = useGetChatsQuery();
   const bottomRef = useRef<HTMLDivElement | null>(null);
   const { lastJsonMessage } = useWebSocketContext();
   const [chatWithAI, { isLoading }] = useChatWithAIMutation();
@@ -110,6 +112,33 @@ export default function ChatForm() {
       el.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+  useEffect(() => {
+    if (chats && messages.length === 0) {
+      const formattedChats = chats.flatMap((chat: any) => {
+        const msgs = [];
+
+        if (chat.prompt) {
+          msgs.push({ role: "user" as "user", content: chat.prompt });
+        }
+        if (chat.response) {
+          msgs.push({ role: "ai" as "ai", content: chat.response });
+        }
+
+        return msgs;
+      });
+
+      setMessages(formattedChats);
+    }
+  }, [chats]);
+
+  if (!chats) {
+    return (
+      <div className="flex justify-center items-center my-20">
+        <Spinner md />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background">
