@@ -1,5 +1,6 @@
 import { apiSlice } from "../services/apiSlice";
 import {
+  ChatType,
   AccountType,
   AnalyticType,
   TransactionType,
@@ -47,6 +48,11 @@ const accountSlice = apiSlice.injectEndpoints({
         body: { prompt },
       }),
     }),
+    getChats: builder.query<ChatType[], void>({
+      query: () => ({
+        url: "/chats/",
+      }),
+    }),
   }),
 });
 
@@ -58,4 +64,5 @@ export const {
   useGetIncomeAnalyticsQuery,
   useGetExpensesAnalyticsQuery,
   useChatWithAIMutation,
+  useGetChatsQuery,
 } = accountSlice;
