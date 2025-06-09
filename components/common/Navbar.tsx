@@ -14,11 +14,11 @@ import {
   useRetrieveUserQuery,
 } from "@/redux/features/authApiSlice";
 import {
+  Brain,
   LogOut,
   BadgePlus,
-  UserRound,
   DiamondPlus,
-  BadgeDollarSign
+  BadgeDollarSign,
 } from "lucide-react";
 
 import {
@@ -47,12 +47,17 @@ export default function Navbar() {
   };
 
   if (!accounts) {
-    return
+    return;
   }
   return (
     <div
       className={`header left-0 sm:left-8 p-2 top-0 z-40 flex justify-between w-full items-center
-      "dark:bg-black fixed z-[9999] bg-white ${pathname === "/dashboard/create/transaction" || pathname === "/dashboard/create/account" ? "!bg-transparent" : ""} dark:bg-black !bg-opacity-80 shadow-sticky backdrop-blur-sm transition"
+      "dark:bg-black fixed z-[9999] bg-white ${
+        pathname === "/dashboard/create/transaction" ||
+        pathname === "/dashboard/create/account"
+          ? "!bg-transparent"
+          : ""
+      } dark:bg-black !bg-opacity-80 shadow-sticky backdrop-blur-sm transition"
       "absolute bg-transparent"
      `}
     >
@@ -72,12 +77,7 @@ export default function Navbar() {
           <DropdownMenuContent>
             <DropdownMenuLabel>{user?.username}</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <Link href="/" className="flex justify-between">
-                <UserRound className="h-[1.2rem] w-[1.2rem]" />
-                <span className="ml-2">Profile</span>
-              </Link>
-            </DropdownMenuItem>
+            <ThemeToggler />
             {accounts.length === 8 ? (
               <DropdownMenuItem>
                 <Link
@@ -110,7 +110,9 @@ export default function Navbar() {
                   className="flex justify-between"
                   onClick={(e) => {
                     e.preventDefault();
-                    toast.error("You have to create account first, before you transact");
+                    toast.error(
+                      "You have to create account first, before you transact"
+                    );
                   }}
                 >
                   <DiamondPlus className="h-[1.2rem] w-[1.2rem]" />
@@ -138,7 +140,12 @@ export default function Navbar() {
                 <span className="ml-2">Transation</span>
               </Link>
             </DropdownMenuItem>
-            <ThemeToggler />
+            <DropdownMenuItem>
+              <Link href="/dashboard/chat" className="flex justify-between">
+                <Brain className="h-[1.2rem] w-[1.2rem]" />
+                <span className="ml-2">Aski AI</span>
+              </Link>
+            </DropdownMenuItem>
             <DropdownMenuItem>
               <LogOut className="h-[1.2rem] w-[1.2rem]" />
               <button onClick={handleLogout}>Logout</button>
