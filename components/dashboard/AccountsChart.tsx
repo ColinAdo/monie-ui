@@ -75,7 +75,7 @@ export default function AccountsChart() {
         <CardContent>
           {transactions?.length === 0 ? (
             <span className="text-gray-500 text-sm">
-              You have not account yet, you will see a chart here...
+              You have no account yet, you will see a chart here...
             </span>
           ) : (
             <div style={{ width: "100%", height: 300 }}>
