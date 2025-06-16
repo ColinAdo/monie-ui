@@ -28,7 +28,7 @@ export default function useResetPasswordConfirm(uid: string, token: string) {
         router.push("/auth/login");
       })
       .catch(() => {
-        toast.error("Password reset failed");
+        toast.error("Passwords does not match or is invalid");
       });
   };
 
