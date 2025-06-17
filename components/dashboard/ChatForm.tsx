@@ -101,7 +101,7 @@ export default function ChatForm() {
 
       return () => clearInterval(typingInterval);
     }
-  }, [lastJsonMessage]);
+  }, [lastJsonMessage, refetch]);
 
   const scrollIfNotVisible = () => {
     const el = bottomRef.current;

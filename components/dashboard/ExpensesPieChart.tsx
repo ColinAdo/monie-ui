@@ -62,7 +62,7 @@ export default function ExpensesPieChart() {
       <CardContent>
         {transactions?.length === 0 ? (
           <span className="text-gray-500 text-sm">
-            You have no transactions yet, you'll see a pie chart here...
+            You have no transactions yet, you&apos;ll see a pie chart here...
           </span>
         ) : (
           <div style={{ width: "100%", height: 300 }}>
