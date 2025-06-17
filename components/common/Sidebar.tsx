@@ -3,10 +3,13 @@
 import { Nav } from "@/components/ui/nav";
 import { Button } from "@/components/ui/button";
 import { useWindowWidth } from "@react-hook/window-size";
-import { useGetTransactionsQuery } from "@/redux/features/accountSlice";
+import {
+  useGetTransactionsQuery,
+  useGetIncomeTransactionQuery,
+} from "@/redux/features/accountSlice";
 import {
   Archive,
-  ArchiveX,
+  TrendingUp,
   LayoutDashboard,
   Trash2,
   ChevronRight,
@@ -23,6 +26,8 @@ interface SidebarProps {
 
 export default function Sidebar({ isCollapsed, toggleCollapse }: SidebarProps) {
   const { data: transactions } = useGetTransactionsQuery();
+  const { data: incomeTransactions, refetch: refetchTransactions } =
+    useGetIncomeTransactionQuery();
   const onlyWidth = useWindowWidth();
   const isMobile = onlyWidth < 768;
 
@@ -75,11 +80,11 @@ export default function Sidebar({ isCollapsed, toggleCollapse }: SidebarProps) {
             href: "/dashboard/create/transaction",
           },
           {
-            title: "Junk",
-            label: "23",
-            icon: ArchiveX,
+            title: "Incomes",
+            label: `${incomeTransactions?.transactions.length}`,
+            icon: TrendingUp,
             variant: "ghost",
-            href: "#",
+            href: "/dashboard/incomes",
           },
           {
             title: "Trash",

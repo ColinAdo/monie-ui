@@ -9,7 +9,7 @@ import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
 import TransactionsCard from "@/components/dashboard/TransactionsCard";
 import {
   PageTitle,
-  AccountsChart,
+  IncomePieChart,
   IncomeBarChart,
   IncomeLineChart,
   ExpensesBarChart,
@@ -24,6 +24,7 @@ import {
   useGetIncomeTransactionQuery,
 } from "@/redux/features/accountSlice";
 import { CardTitle, CardDescription } from "@/components/ui/card";
+import { ChevronsLeft, ChevronsRight } from "lucide-react";
 
 export default function Page() {
   const [year, setYear] = useState(new Date().getFullYear());
@@ -36,9 +37,7 @@ export default function Page() {
   const { refetch: refetchExpensesAnalytics } =
     useGetExpensesAnalyticsQuery(year);
   const { data: transactions, refetch: refetchTransactions } =
-    useGetTransactionsQuery();
-  const { data: incomeTransactions, refetch: refectchIncomeTransactions } =
-    useGetIncomeTransactionQuery();
+    useGetIncomeTransactionQuery(year);
 
   useEffect(() => {
     refetch();
@@ -46,7 +45,6 @@ export default function Page() {
     refetchTransactions();
     refetchAccountAnalytics();
     refetchExpensesAnalytics();
-    refectchIncomeTransactions();
   }, [
     lastJsonMessage,
     refetch,
@@ -54,34 +52,70 @@ export default function Page() {
     refetchTransactions,
     refetchAccountAnalytics,
     refetchExpensesAnalytics,
-    refectchIncomeTransactions,
   ]);
 
   if (!accounts || !transactions || !user) {
     return;
   }
 
+  const handleYearChange = (newYear: number) => {
+    setYear(newYear);
+  };
+
   return (
     <div className="flex flex-col gap-5 w-full mt-12">
-      <PageTitle title="Dashboard" />
-      <section className="grid w-full grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
-        {accounts.map((account, i) => (
-          <Card key={i} accounts={[account]} />
-        ))}
-      </section>
+      <div className="flex items-center justify-between">
+        <PageTitle title="Incomes" />
+        <span className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
+          <button
+            disabled={year <= 2035}
+            onClick={() => handleYearChange(year - 1)}
+            className={year <= 2035 ? "opacity-50 cursor-not-allowed" : ""}
+          >
+            <ChevronsLeft
+              className={`h-4 w-4 ${
+                year <= 2035 ? "text-gray-400" : "text-black dark:text-white"
+              }`}
+            />
+          </button>
+
+          <span className="font-bold text-2xl">{year}</span>
+
+          <button
+            disabled={year === 2025}
+            onClick={() => handleYearChange(year + 1)}
+            className={year === 2025 ? "opacity-50 cursor-not-allowed" : ""}
+          >
+            <ChevronsRight
+              className={`h-4 w-4 ${
+                year === 2025 ? "text-gray-400" : "text-black dark:text-white"
+              }`}
+            />
+          </button>
+        </span>
+      </div>
+
       <section className="grid grid-cols-1 gap-4 lg:grid-cols-2 transition-all">
         <CardContent>
           <section>
-            <CardTitle className="text-md font-semibold pb-2">
-              Transactions History
-            </CardTitle>
+            <div className="flex justify-between items-center pb-2">
+              <CardTitle className="text-md font-semibold">
+                Income Transactions History
+              </CardTitle>
+              <span className="text-md font-semibold text-green-600">
+                KSH {transactions?.total_income}
+              </span>
+            </div>
+
             <CardDescription className="pb-6">
-              You have made about {transactions.length}{" "}
-              {transactions.length === 1 ? "transaction" : "transactions"} this
-              month
+              You have about {transactions.transactions.length}{" "}
+              {transactions.transactions.length === 1
+                ? "income transaction"
+                : "income transactions"}{" "}
+              this year
             </CardDescription>
 
-            {transactions.slice(0, 6).map((d, i) => (
+            {transactions.transactions.slice(0, 6).map((d, i) => (
               <TransactionsCard
                 key={i}
                 accountName={d.account_name}
@@ -92,7 +126,7 @@ export default function Page() {
                 create_at={d.created_date}
               />
             ))}
-            {transactions.length === 0 ? (
+            {transactions.transactions.length === 0 ? (
               <span className="text-gray-500 text-sm">
                 You have not made transaction yet, you will see them here...
               </span>
@@ -101,14 +135,12 @@ export default function Page() {
                 className="flex justify-end text-blue-400"
                 href="dashboard/transactions"
               >
-                {transactions.length > 6 ? "See all" : ""}
+                {transactions.transactions.length > 6 ? "See all" : ""}
               </Link>
             )}
           </section>
         </CardContent>
-        <AccountsChart />
-        <ExpensesLineChart />
-        <ExpensesBarChart />
+        <IncomePieChart />
         <IncomeLineChart />
         <IncomeBarChart />
       </section>
