@@ -43,6 +43,9 @@ export default function CTA() {
                 <span className="flex items-center gap-1 text-gray-500 dark:text-gray-400">
                   <LockKeyhole /> 100% secure
                 </span>
+                <span className="hidden lg:block text-black dark:text-white">
+                  •
+                </span>
                 <span className="flex items-center gap-1 text-gray-500 dark:text-gray-400">
                   <CreditCard /> No credit card required
                 </span>
