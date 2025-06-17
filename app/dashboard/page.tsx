@@ -101,9 +101,9 @@ export default function Page() {
             )}
           </section>
         </CardContent>
+        <AccountsChart />
         <ExpensesLineChart />
         <ExpensesBarChart />
-        <AccountsChart />
         <IncomeLineChart />
         <IncomeBarChart />
       </section>
