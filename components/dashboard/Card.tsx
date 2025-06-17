@@ -32,7 +32,7 @@ export default function Card({ accounts }: Props) {
           <section className="flex justify-between gap-2">
             {account.name}
             <DropdownMenu>
-              {account.name === "Income" ? (
+              {account.name === "Main" ? (
                 <span className="text-sm text-green-500">KSH</span>
               ) : (
                 <DropdownMenuTrigger asChild>
@@ -70,7 +70,7 @@ export default function Card({ accounts }: Props) {
             <p className="text-sm text-gray-500">{account.description}</p>
             <p
               className={`${
-                account.name === "Income" ? "text-green-500" : "text-red-500"
+                account.name === "Main" ? "text-green-500" : "text-red-500"
               } font-semibold`}
             >
               {account.amount}

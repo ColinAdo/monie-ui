@@ -29,7 +29,7 @@ export default function TransactionsCard(props: Props) {
       <div className="flex flex-col items-center">
         <span
           className={`${
-            props.accountName === "Income" ? "text-green-500" : "text-red-500"
+            props.accountName === "Main" ? "text-green-500" : "text-red-500"
           } pt-3 sm:pt-0`}
         >
           {props.amount}
