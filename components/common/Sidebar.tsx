@@ -6,6 +6,7 @@ import { useWindowWidth } from "@react-hook/window-size";
 import {
   useGetTransactionsQuery,
   useGetIncomeTransactionQuery,
+  useGetExpensesTransactionQuery,
 } from "@/redux/features/accountSlice";
 import {
   Archive,
@@ -17,6 +18,7 @@ import {
   Brain,
   BadgeDollarSign,
   DiamondPlus,
+  TrendingDown,
 } from "lucide-react";
 
 interface SidebarProps {
@@ -26,8 +28,8 @@ interface SidebarProps {
 
 export default function Sidebar({ isCollapsed, toggleCollapse }: SidebarProps) {
   const { data: transactions } = useGetTransactionsQuery();
-  const { data: incomeTransactions, refetch: refetchTransactions } =
-    useGetIncomeTransactionQuery();
+  const { data: incomeTransactions } = useGetIncomeTransactionQuery();
+  const { data: expensesTransactions } = useGetExpensesTransactionQuery();
   const onlyWidth = useWindowWidth();
   const isMobile = onlyWidth < 768;
 
@@ -87,12 +89,13 @@ export default function Sidebar({ isCollapsed, toggleCollapse }: SidebarProps) {
             href: "/dashboard/incomes",
           },
           {
-            title: "Trash",
-            label: "",
-            icon: Trash2,
+            title: "Expenses",
+            label: `${expensesTransactions?.transactions.length}`,
+            icon: TrendingDown,
             variant: "ghost",
-            href: "#",
+            href: "/dashboard/expenses",
           },
+
           {
             title: "Archive",
             label: "",
