@@ -9,7 +9,7 @@ import {
   CardDescription,
 } from "@/components/ui/card";
 import {
-  useGetIncomeAnalyticsQuery,
+  useGetExpensesAnalyticsQuery,
   useGetTransactionsQuery,
 } from "@/redux/features/accountSlice";
 import { Spinner } from "@/components/common";
@@ -21,7 +21,7 @@ const COLORS = [
   "#22c55e",
   "#047857",
   "#064e3b",
-  "#22c55e",
+  "#ef4444",
   "#d97706",
   "#065f46",
   "#f59e0b",
@@ -30,18 +30,18 @@ const COLORS = [
   "#8b5cf6",
 ];
 
-export default function IncomePieChart() {
+export default function ExpensesPieChart() {
   const { data: transactions } = useGetTransactionsQuery();
   const [year, setYear] = useState(new Date().getFullYear());
-  const { data: incomes } = useGetIncomeAnalyticsQuery(year) || {};
-  const rawData = incomes?.data || [];
+  const { data: expenses } = useGetExpensesAnalyticsQuery(year) || {};
+  const rawData = expenses?.data || [];
 
   const pieData = rawData.map((item: any) => ({
     name: item.name,
     value: item.amount,
   }));
 
-  if (!incomes) {
+  if (!expenses) {
     return (
       <div className="flex justify-center items-center my-20">
         <Spinner sm />
@@ -53,10 +53,10 @@ export default function IncomePieChart() {
     <Card>
       <CardHeader>
         <CardTitle className="text-md font-semibold">
-          Income distribution
+          Expenses distribution
         </CardTitle>
         <CardDescription>
-          Pie Chart showing income by month for {year}
+          Pie Chart showing expenses by month for {year}
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -90,7 +90,7 @@ export default function IncomePieChart() {
                       return (
                         <div
                           style={{
-                            backgroundColor: "white darK:bg-zinc-800",
+                            backgroundColor: "white dark:black",
                             padding: "5px",
                             border: "1px solid #efffff",
                           }}

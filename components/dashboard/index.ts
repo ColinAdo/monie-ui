@@ -3,6 +3,7 @@ export { default as PageTitle } from "./PageTitile";
 export { default as FormDialog } from "./FormDialog";
 export { default as ExpensesBarChart } from "./ExpensesBarChart";
 export { default as ExpensesLineChart } from "./ExpensesLineChart";
+export { default as ExpensesPieChart } from "./ExpensesPieChart";
 export { default as EditAccountForm } from "./EditAccountForm";
 export { default as TransactionsCard } from "./TransactionsCard";
 export { default as CreateAccountForm } from "./CreateAccountForm";
