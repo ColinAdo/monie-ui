@@ -36,7 +36,7 @@ export default function Features() {
     <section className="py-20 px-6">
       <div className="mx-auto max-w-7xl">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4 animate-fade-in">
+          <h2 className="lg:text-4xl text-3xl font-bold text-gray-900 mb-4 animate-fade-in">
             Why Choose Our Expense Tracker?
           </h2>
           <p

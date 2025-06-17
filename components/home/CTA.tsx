@@ -20,7 +20,7 @@ export default function CTA() {
             </div>
 
             {/* Heading */}
-            <h2 className="mb-4 text-4xl font-bold text-white sm:text-5xl">
+            <h2 className="mb-4 lg:text-4xl text-3xl font-bold text-white sm:text-5xl">
               Ready to Transform Your Finances?
             </h2>
 

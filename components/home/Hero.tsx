@@ -31,7 +31,7 @@ export default function Hero() {
           </div>
 
           {/* Main heading */}
-          <h1 className="mx-auto max-w-4xl text-5xl font-bold tracking-tight text-gray-900 sm:text-6xl lg:text-7xl animate-fade-in">
+          <h1 className="mx-auto max-w-4xl text-3xl font-bold tracking-tight text-gray-900 sm:text-6xl lg:text-7xl animate-fade-in">
             Take Control of Your{" "}
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               Spending
