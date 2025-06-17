@@ -10,4 +10,5 @@ export { default as CreateTransactionForm } from "./CreateTransactionForm";
 export { default as AccountsChart } from "./AccountsChart";
 export { default as IncomeBarChart } from "./IncomeBarChart";
 export { default as IncomeLineChart } from "./IncomeLineChart";
+export { default as IncomePieChart } from "./IncomePieChart";
 export { default as ChatForm } from "./ChatForm";

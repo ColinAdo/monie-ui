@@ -32,3 +32,8 @@ export type ChatType = {
   prompt: string;
   response: string;
 };
+
+export type IncomeTransactionType = {
+  total_income: number;
+  transactions: TransactionType[];
+};

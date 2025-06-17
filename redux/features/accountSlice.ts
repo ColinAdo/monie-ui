@@ -5,6 +5,7 @@ import {
   AnalyticType,
   TransactionType,
   AccountAnalyticType,
+  IncomeTransactionType,
 } from "@/types/exports";
 
 const accountSlice = apiSlice.injectEndpoints({
@@ -53,6 +54,12 @@ const accountSlice = apiSlice.injectEndpoints({
         url: "/chats/",
       }),
     }),
+    getIncomeTransaction: builder.query<IncomeTransactionType, number | void>({
+      query: (year = new Date().getFullYear()) => ({
+        url: "/income/transactions/",
+        params: { year },
+      }),
+    }),
   }),
 });
 
@@ -65,4 +72,5 @@ export const {
   useGetExpensesAnalyticsQuery,
   useChatWithAIMutation,
   useGetChatsQuery,
+  useGetIncomeTransactionQuery,
 } = accountSlice;

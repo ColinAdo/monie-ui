@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { toast } from "sonner";
 import { usePathname } from "next/navigation";
-import { CreativeCommons } from "lucide-react";
+import { CreativeCommons, TrendingUp } from "lucide-react";
 import { useAppDispatch } from "@/redux/hooks";
 import { ThemeToggler } from "@/components/common";
 import { logout as setLogout } from "@/redux/features/authSlice";
@@ -138,6 +138,12 @@ export default function Navbar() {
               >
                 <BadgeDollarSign className="h-[1.2rem] w-[1.2rem]" />
                 <span className="ml-2">Transation</span>
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link href="/dashboard/incomes" className="flex justify-between">
+                <TrendingUp className="h-[1.2rem] w-[1.2rem]" />
+                <span className="ml-2">Icomes</span>
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
