@@ -31,7 +31,7 @@ export default function Hero() {
           </div>
 
           {/* Main heading */}
-          <h1 className="mx-auto max-w-4xl text-3xl font-bold tracking-tight text-gray-900 sm:text-6xl lg:text-7xl animate-fade-in">
+          <h1 className="mx-auto max-w-4xl dark:text-gray-300 text-3xl font-bold tracking-tight text-gray-900 sm:text-6xl lg:text-7xl animate-fade-in">
             Take Control of Your{" "}
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               Spending
@@ -40,7 +40,7 @@ export default function Hero() {
 
           {/* Subheading */}
           <p
-            className="mx-auto mt-6 max-w-2xl text-xl text-gray-600 animate-fade-in"
+            className="mx-auto mt-6 max-w-2xl dark:text-gray-400 text-xl text-gray-600 animate-fade-in"
             style={{ animationDelay: "0.2s" }}
           >
             Create separate accounts for rent, food, transport, and more. Track
@@ -64,7 +64,7 @@ export default function Hero() {
             className="mt-12 animate-fade-in"
             style={{ animationDelay: "0.6s" }}
           >
-            <p className="text-sm text-gray-500 mb-4">
+            <p className="text-sm dark:text-gray-400 text-gray-500 mb-4">
               Trusted by smart spenders everywhere
             </p>
             <div className="flex justify-center space-x-8 opacity-60">

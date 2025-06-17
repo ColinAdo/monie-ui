@@ -5,27 +5,22 @@ export default function CTA() {
   return (
     <section className="py-20 px-6">
       <div className="mx-auto max-w-4xl">
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-blue-500 via-purple-400 to-pink-500 p-12 text-center shadow-2xl animate-fade-in">
-          {/* Background decoration */}
-          <div className="absolute inset-0 bg-black/10" />
-          <div className="absolute -top-4 -left-4 h-24 w-24 rounded-full bg-white/10 blur-xl" />
-          <div className="absolute -bottom-4 -right-4 h-32 w-32 rounded-full bg-white/10 blur-xl" />
-
+        <div className="relative overflow-hidden border border-purple-500 rounded-3xl p-12 text-center shadow-2xl animate-fade-in">
           <div className="relative">
             {/* Icon */}
             <div className="mb-6 flex justify-center">
-              <div className="rounded-full bg-white/20 p-4 backdrop-blur-sm">
-                <Sparkles className="h-8 w-8 text-white" />
+              <div className="rounded-full bg-blcak/20 dark:bg-white/20 p-4 backdrop-blur-sm">
+                <Sparkles className="h-8 w-8 text-purple-500" />
               </div>
             </div>
 
             {/* Heading */}
-            <h2 className="mb-4 lg:text-4xl text-3xl font-bold text-white sm:text-5xl">
+            <h2 className="mb-4 lg:text-4xl text-3xl font-bold text-black dark:text-gray-300 sm:text-5xl">
               Ready to Transform Your Finances?
             </h2>
 
             {/* Description */}
-            <p className="mb-8 text-xl text-white/90 max-w-2xl mx-auto">
+            <p className="mb-8 text-xl text-gray-500 dark:text-gray-400 max-w-2xl mx-auto">
               Join thousands of users who have already taken control of their
               spending. Start organizing your expenses like a pro in just 2
               minutes.
@@ -45,10 +40,10 @@ export default function CTA() {
             {/* Social proof */}
             <div className="mt-8 text-white/80 sm:ml-[30%] ">
               <p className="text-sm flex flex-col sm:flex-row items-start sm:items-center gap-2">
-                <span className="flex items-center gap-1">
+                <span className="flex items-center gap-1 text-gray-500 dark:text-gray-400">
                   <LockKeyhole /> 100% secure
                 </span>
-                <span className="flex items-center gap-1">
+                <span className="flex items-center gap-1 text-gray-500 dark:text-gray-400">
                   <CreditCard /> No credit card required
                 </span>
               </p>

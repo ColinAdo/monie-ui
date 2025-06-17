@@ -36,11 +36,11 @@ export default function Features() {
     <section className="py-20 px-6">
       <div className="mx-auto max-w-7xl">
         <div className="text-center mb-16">
-          <h2 className="lg:text-4xl text-3xl font-bold text-gray-900 mb-4 animate-fade-in">
+          <h2 className="lg:text-4xl text-3xl dark:text-gray-300 font-bold text-gray-900 mb-4 animate-fade-in">
             Why Choose Our Expense Tracker?
           </h2>
           <p
-            className="text-xl text-gray-600 max-w-2xl mx-auto animate-fade-in"
+            className="text-xl dark:text-gray-400 text-gray-600 max-w-2xl mx-auto animate-fade-in"
             style={{ animationDelay: "0.1s" }}
           >
             Built for people who want to understand their money, not just track
@@ -52,7 +52,7 @@ export default function Features() {
           {features.map((feature, index) => (
             <div
               key={feature.title}
-              className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 animate-fade-in"
+              className="group relative dark:bg-transparent border border-purple-500 bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 animate-fade-in"
               style={{ animationDelay: `${0.2 + index * 0.1}s` }}
             >
               <div
@@ -61,16 +61,16 @@ export default function Features() {
                 <feature.icon className="h-6 w-6 text-white" />
               </div>
 
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">
+              <h3 className="text-xl font-semibold dark:text-gray-300 text-gray-900 mb-3">
                 {feature.title}
               </h3>
 
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
                 {feature.description}
               </p>
 
               {/* Hover effect background */}
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-50 to-purple-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900 dark:to-purple-900 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
             </div>
           ))}
         </div>
