@@ -37,3 +37,8 @@ export type IncomeTransactionType = {
   total_income: number;
   transactions: TransactionType[];
 };
+
+export type ExpensesTransactionType = {
+  total_income: number;
+  transactions: TransactionType[];
+};
