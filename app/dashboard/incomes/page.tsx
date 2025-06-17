@@ -1,30 +1,26 @@
 "use client";
 
-import Link from "next/link";
-import { useEffect, useState } from "react";
-import Card from "@/components/dashboard/Card";
-import { CardContent } from "@/components/dashboard/Card";
-import { useWebSocketContext } from "@/hooks/WebSocketContext";
-import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
-import TransactionsCard from "@/components/dashboard/TransactionsCard";
 import {
-  PageTitle,
-  IncomePieChart,
   IncomeBarChart,
   IncomeLineChart,
-  ExpensesBarChart,
-  ExpensesLineChart,
+  IncomePieChart,
+  PageTitle,
 } from "@/components/dashboard";
+import { CardContent } from "@/components/dashboard/Card";
+import TransactionsCard from "@/components/dashboard/TransactionsCard";
+import { CardDescription, CardTitle } from "@/components/ui/card";
+import { useWebSocketContext } from "@/hooks/WebSocketContext";
 import {
-  useGetAccountsQuery,
-  useGetTransactionsQuery,
   useGetAccountAnalyticsQuery,
+  useGetAccountsQuery,
   useGetExpensesAnalyticsQuery,
   useGetIncomeAnalyticsQuery,
   useGetIncomeTransactionQuery,
 } from "@/redux/features/accountSlice";
-import { CardTitle, CardDescription } from "@/components/ui/card";
+import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
 import { ChevronsLeft, ChevronsRight } from "lucide-react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function Page() {
   const [year, setYear] = useState(new Date().getFullYear());

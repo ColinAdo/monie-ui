@@ -1,30 +1,22 @@
 "use client";
 
-import Link from "next/link";
-import { useEffect, useState } from "react";
-import Card from "@/components/dashboard/Card";
-import { CardContent } from "@/components/dashboard/Card";
-import { useWebSocketContext } from "@/hooks/WebSocketContext";
-import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
+import { AccountsChart, PageTitle } from "@/components/dashboard";
+import Card, { CardContent } from "@/components/dashboard/Card";
 import TransactionsCard from "@/components/dashboard/TransactionsCard";
+import { CardDescription, CardTitle } from "@/components/ui/card";
+import { useWebSocketContext } from "@/hooks/WebSocketContext";
 import {
-  PageTitle,
-  AccountsChart,
-  IncomeBarChart,
-  IncomeLineChart,
-  ExpensesBarChart,
-  ExpensesLineChart,
-} from "@/components/dashboard";
-import {
-  useGetAccountsQuery,
-  useGetTransactionsQuery,
   useGetAccountAnalyticsQuery,
+  useGetAccountsQuery,
   useGetExpensesAnalyticsQuery,
+  useGetExpensesTransactionQuery,
   useGetIncomeAnalyticsQuery,
   useGetIncomeTransactionQuery,
-  useGetExpensesTransactionQuery,
+  useGetTransactionsQuery,
 } from "@/redux/features/accountSlice";
-import { CardTitle, CardDescription } from "@/components/ui/card";
+import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function Page() {
   const [year, setYear] = useState(new Date().getFullYear());
@@ -112,10 +104,6 @@ export default function Page() {
           </section>
         </CardContent>
         <AccountsChart />
-        <ExpensesLineChart />
-        <ExpensesBarChart />
-        <IncomeLineChart />
-        <IncomeBarChart />
       </section>
     </div>
   );
