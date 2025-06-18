@@ -36,13 +36,14 @@ export default function AccountsChart() {
   }
 
   const colors = [
-    "#0088FE",
     "#00C49F",
+    "#0088FE",
     "#FFBB28",
     "#FF8042",
     "red",
     "brown",
     "#6b34eb",
+    "yellow",
   ];
   const getPath = (x: any, y: any, width: any, height: any) => {
     return `M${x},${y + height}C${x + width / 3},${y + height} ${
