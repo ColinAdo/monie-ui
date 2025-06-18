@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRegister } from "@/hooks";
 import { useRouter } from "next/navigation";
 import { Spinner } from "@/components/common";
@@ -122,10 +123,32 @@ export default function RegisterForm() {
               {isLoading ? <Spinner sm /> : "Submit"}
             </Button>
           </form>
-          <div className="relative flex items-center my-3 font-bold">
-            <span className="flex-grow border-t border-gray-950 dark:border-gray-300"></span>
-            <span className="mx-3">OR</span>
-            <span className="flex-grow border-t border-gray-950 dark:border-gray-300"></span>
+          <div className="my-3">
+            {/* Links row */}
+            <div className="flex justify-center items-center space-x-2 font-bold mb-2">
+              <Link
+                href="/privacy-policy"
+                className="text-blue-600 hover:underline"
+              >
+                Privacy Policy
+              </Link>
+              <span>•</span>
+              <Link
+                href="/terms-of-service"
+                className="text-blue-600 hover:underline"
+              >
+                Terms of Service
+              </Link>
+            </div>
+
+            {/* OR separator */}
+            <div className="flex items-center text-sm text-gray-500">
+              <span className="flex-grow border-t border-gray-950 dark:border-gray-300"></span>
+              <span className="mx-3 font-bold dark:text-white text-black">
+                OR
+              </span>
+              <span className="flex-grow border-t border-gray-950 dark:border-gray-300"></span>
+            </div>
           </div>
           <SocialButtons />
         </Form>
