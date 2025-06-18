@@ -8,8 +8,8 @@ export default function TermsOfService() {
       <p className="mb-6 dark:text-gray-300">
         Welcome to <strong>Monie</strong>! By using our web-based financial
         tracking application (the “Service”), you agree to these Terms of
-        Service (“Terms”). If you do not agree with any part of these Terms,
-        please do not use the Service.
+        Service (&quot;Terms&quot;). If you do not agree with any part of these
+        Terms, please do not use the Service.
       </p>
 
       <section className="mb-8">

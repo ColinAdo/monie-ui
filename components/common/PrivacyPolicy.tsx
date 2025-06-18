@@ -7,10 +7,10 @@ export default function PrivacyPolicy() {
       <p className="mb-4 dark:text-white">Effective Date: 12/JUN/2025</p>
 
       <p className="mb-6 dark:text-gray-300">
-        Welcome to <strong>Monie</strong> ("we", "our", or "us"). Your privacy
-        is important to us. This Privacy Policy explains how we collect, use,
-        and protect your information when you use our web-based money tracker
-        application.
+        Welcome to <strong>Monie</strong> (&quot;we&quot;, &quot;our&quot;, or
+        &quot;us&quot;). Your privacy is important to us. This Privacy Policy
+        explains how we collect, use, and protect your information when you use
+        our web-based money tracker application.
       </p>
 
       <section className="mb-8">
