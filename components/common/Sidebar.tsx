@@ -63,7 +63,7 @@ export default function Sidebar({ isCollapsed, toggleCollapse }: SidebarProps) {
             href: "/dashboard",
           },
           {
-            title: "Transaction",
+            title: "Transactions",
             label: `${transactions?.length}`,
             icon: BadgeDollarSign,
             variant: "ghost",

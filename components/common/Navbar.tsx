@@ -137,7 +137,7 @@ export default function Navbar() {
                 className="flex justify-between"
               >
                 <BadgeDollarSign className="h-[1.2rem] w-[1.2rem]" />
-                <span className="ml-2">Transation</span>
+                <span className="ml-2">Transations</span>
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
