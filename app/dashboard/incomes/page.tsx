@@ -129,7 +129,7 @@ export default function Page() {
             ) : (
               <Link
                 className="flex justify-end text-blue-400"
-                href="dashboard/transactions"
+                href="/dashboard/transactions"
               >
                 {transactions.transactions.length > 6 ? "See all" : ""}
               </Link>
