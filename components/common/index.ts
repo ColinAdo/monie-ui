@@ -6,3 +6,5 @@ export { default as Sidebar } from "./Sidebar";
 export { default as ThemeToggler } from "./ThemeToggler";
 export { default as SocialButton } from "./SocialButton";
 export { default as SocialButtons } from "./SocialButtons";
+export { default as PrivacyPolicy } from "./PrivacyPolicy";
+export { default as TermsOfService } from "./TermsOfService";
