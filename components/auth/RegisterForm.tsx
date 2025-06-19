@@ -125,7 +125,7 @@ export default function RegisterForm() {
           </form>
           <div className="my-3">
             {/* Links row */}
-            <div className="flex justify-center items-center space-x-2 font-bold mb-2">
+            <div className="flex justify-center items-center space-x-2 font-bold text-[12px] sm:text-[5px] md:text-base lg:text-lg mb-2">
               <Link
                 href="/privacy-policy"
                 className="text-blue-600 hover:underline"
