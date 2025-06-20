@@ -63,13 +63,15 @@ export default function Navbar() {
      `}
     >
       <div className="mb-0 mt-2 flex justify-center space-x-4">
-        <Image
-          src="/assets/logo1.png"
-          width={40}
-          height={40}
-          alt="Log"
-          className="rounded-full"
-        />
+        <Link href="/dashboard">
+          <Image
+            src="/assets/logo1.png"
+            width={40}
+            height={40}
+            alt="Log"
+            className="rounded-full"
+          />
+        </Link>
       </div>
 
       <div className="flex item-center lg:px-14">
