@@ -29,6 +29,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import Image from "next/image";
 
 // Stateless Function components (sfc)
 export default function Navbar() {
@@ -61,9 +62,15 @@ export default function Navbar() {
       "absolute bg-transparent"
      `}
     >
-      <Link href="/dashboard">
-        <CreativeCommons className="h-10 w-10 dark:text-white" />
-      </Link>
+      <div className="mb-0 mt-2 flex justify-center space-x-4">
+        <Image
+          src="/assets/logo1.png"
+          width={40}
+          height={40}
+          alt="Log"
+          className="rounded-full"
+        />
+      </div>
 
       <div className="flex item-center lg:px-14">
         <DropdownMenu>
