@@ -16,6 +16,7 @@ export default function ChatForm() {
   const { data: chats, refetch } = useGetChatsQuery();
   const { data: user } = useRetrieveUserQuery();
   const bottomRef = useRef<HTMLDivElement | null>(null);
+  const chatContainerRef = useRef<HTMLDivElement | null>(null);
   const { lastJsonMessage } = useWebSocketContext();
   const [chatWithAI, { isLoading }] = useChatWithAIMutation();
   const [prompt, setPrompt] = useState("");
@@ -28,6 +29,7 @@ export default function ChatForm() {
       displayedContent?: string;
     }[]
   >([]);
+  const [isAtBottom, setIsAtBottom] = useState(true);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -55,10 +57,32 @@ export default function ChatForm() {
       });
   };
 
+  const scrollToBottom = (behavior: ScrollBehavior = "smooth") => {
+    bottomRef.current?.scrollIntoView({
+      behavior,
+      block: "nearest",
+    });
+    setIsAtBottom(true);
+  };
+
+  const checkScrollPosition = () => {
+    if (!chatContainerRef.current) return;
+
+    const { scrollTop, scrollHeight, clientHeight } = chatContainerRef.current;
+    const threshold = 50; // pixels from bottom
+    setIsAtBottom(scrollHeight - (scrollTop + clientHeight) < threshold);
+  };
+
   useEffect(() => {
-    refetch();
+    const container = chatContainerRef.current;
+    if (container) {
+      container.addEventListener("scroll", checkScrollPosition);
+      return () => container.removeEventListener("scroll", checkScrollPosition);
+    }
+  }, []);
+
+  useEffect(() => {
     if (lastJsonMessage?.type === "chat_event") {
-      scrollIfNotVisible();
       const fullContent = lastJsonMessage.response;
 
       setMessages((prev) => {
@@ -89,10 +113,14 @@ export default function ChatForm() {
           last.displayedContent = fullContent.slice(0, index);
           index++;
 
+          // Automatically scroll as it types
+          if (isAtBottom) {
+            scrollToBottom("auto");
+          }
+
           if (index > fullContent.length) {
             last.isTyping = false;
             clearInterval(typingInterval);
-            scrollToBottom();
           }
 
           return [...updated];
@@ -101,20 +129,7 @@ export default function ChatForm() {
 
       return () => clearInterval(typingInterval);
     }
-  }, [lastJsonMessage, refetch]);
-
-  const scrollIfNotVisible = () => {
-    const el = bottomRef.current;
-    if (!el) return;
-
-    const rect = el.getBoundingClientRect();
-
-    const isVisible = rect.top >= 0 && rect.bottom <= window.innerHeight;
-
-    if (!isVisible) {
-      el.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  }, [lastJsonMessage, isAtBottom]);
 
   useEffect(() => {
     if (chats && messages.length === 0) {
@@ -133,18 +148,12 @@ export default function ChatForm() {
 
       setMessages(formattedChats);
 
+      // Always scroll to bottom on chat load
       setTimeout(() => {
-        scrollToBottom();
-      }, 100);
+        scrollToBottom("auto");
+      }, 200); // Slight delay ensures DOM is ready
     }
   }, [chats, messages.length]);
-
-  const scrollToBottom = () => {
-    bottomRef.current?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-  };
 
   if (!chats) {
     return (
@@ -165,7 +174,10 @@ export default function ChatForm() {
           Hello {user?.username} 👋, I am your AI assistant. I am here for you!
         </h1>
 
-        <div className="ms:p-4 bg-card pb-20">
+        <div
+          ref={chatContainerRef}
+          className="ms:p-4 bg-card max-h-[70vh] pb-32 scrollbar-hide overflow-y-auto"
+        >
           {messages.map((msg, index) => (
             <div
               key={index}
@@ -212,7 +224,7 @@ export default function ChatForm() {
             </div>
           ))}
 
-          <div ref={bottomRef} />
+          <div ref={bottomRef} className="bottom-20 h-px w-full" />
         </div>
       </div>
 
