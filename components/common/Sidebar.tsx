@@ -64,7 +64,7 @@ export default function Sidebar({ isCollapsed, toggleCollapse }: SidebarProps) {
           },
           {
             title: "Transactions",
-            label: `${transactions?.length}`,
+            label: `${transactions?.length ?? 0}`,
             icon: BadgeDollarSign,
             variant: "ghost",
             href: "/dashboard/transactions",
@@ -83,14 +83,14 @@ export default function Sidebar({ isCollapsed, toggleCollapse }: SidebarProps) {
           },
           {
             title: "Incomes",
-            label: `${incomeTransactions?.transactions.length}`,
+            label: `${incomeTransactions?.transactions.length ?? 0}`,
             icon: TrendingUp,
             variant: "ghost",
             href: "/dashboard/incomes",
           },
           {
             title: "Expenses",
-            label: `${expensesTransactions?.transactions.length}`,
+            label: `${expensesTransactions?.transactions.length ?? 0}`,
             icon: TrendingDown,
             variant: "ghost",
             href: "/dashboard/expenses",
