@@ -14,7 +14,7 @@ export default function Spinner({ sm, md, lg }: Props) {
     "w-8 h-8": lg,
   });
   return (
-    <div role="status">
+    <div role="status" className="text-green-500">
       <ImSpinner3 className={className} />
     </div>
   );
