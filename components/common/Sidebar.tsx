@@ -95,14 +95,6 @@ export default function Sidebar({ isCollapsed, toggleCollapse }: SidebarProps) {
             variant: "ghost",
             href: "/dashboard/expenses",
           },
-
-          {
-            title: "Archive",
-            label: "",
-            icon: Archive,
-            variant: "ghost",
-            href: "#",
-          },
           {
             title: "Ask AI",
             label: "",
