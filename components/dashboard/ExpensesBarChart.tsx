@@ -25,6 +25,7 @@ import {
   useGetExpensesAnalyticsQuery,
   useGetTransactionsQuery,
 } from "@/redux/features/accountSlice";
+import { formatAmount } from "@/types/exports";
 
 export default function ExpensesBarChart() {
   const { data: transactions } = useGetTransactionsQuery();
@@ -96,7 +97,7 @@ export default function ExpensesBarChart() {
                   <BarChart width={500} height={300} data={data}>
                     <CartesianGrid stroke="#fca5a5" strokeDasharray="3 3" />
                     <XAxis dataKey="name" />
-                    <YAxis />
+                    <YAxis tickFormatter={formatAmount} />
                     <Tooltip
                       content={({ payload }) => {
                         if (payload && payload.length > 0) {

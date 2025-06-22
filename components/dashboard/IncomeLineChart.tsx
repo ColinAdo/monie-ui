@@ -25,6 +25,7 @@ import {
   useGetTransactionsQuery,
 } from "@/redux/features/accountSlice";
 import { Spinner } from "@/components/common";
+import { formatAmount } from "@/types/exports";
 
 export default function IncomeLineChart() {
   const { data: transactions } = useGetTransactionsQuery();
@@ -99,7 +100,7 @@ export default function IncomeLineChart() {
               <ResponsiveContainer>
                 <LineChart width={1100} height={300} data={data}>
                   <XAxis dataKey="name" />
-                  <YAxis />
+                  <YAxis tickFormatter={formatAmount} />
                   <Tooltip
                     content={({ payload }) => {
                       if (payload && payload.length > 0) {

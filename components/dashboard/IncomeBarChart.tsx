@@ -25,6 +25,7 @@ import {
   useGetIncomeAnalyticsQuery,
   useGetTransactionsQuery,
 } from "@/redux/features/accountSlice";
+import { formatAmount } from "@/types/exports";
 
 export default function IncomeBarChart() {
   const { data: transactions } = useGetTransactionsQuery();
@@ -96,7 +97,7 @@ export default function IncomeBarChart() {
                   <BarChart width={500} height={300} data={data}>
                     <CartesianGrid stroke="#86efac" strokeDasharray="3 3" />
                     <XAxis dataKey="name" />
-                    <YAxis />
+                    <YAxis tickFormatter={formatAmount} />
                     <Tooltip
                       content={({ payload }) => {
                         if (payload && payload.length > 0) {

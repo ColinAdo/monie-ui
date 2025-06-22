@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { toast } from "sonner";
-import { AccountType } from "@/types/exports";
+import { AccountType, formatAmount } from "@/types/exports";
 import { MoreVertical, Trash2, Settings } from "lucide-react";
 import { useWebSocketContext } from "@/hooks/WebSocketContext";
 import {
@@ -73,7 +73,7 @@ export default function Card({ accounts }: Props) {
                 account.name === "Main" ? "text-green-500" : "text-red-500"
               } font-semibold`}
             >
-              {account.amount}
+              {formatAmount(account.amount)}
             </p>
           </section>
         </CardContent>

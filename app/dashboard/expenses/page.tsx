@@ -18,6 +18,7 @@ import {
   useGetIncomeAnalyticsQuery,
 } from "@/redux/features/accountSlice";
 import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
+import { formatWithCommas } from "@/types/exports";
 import { ChevronsLeft, ChevronsRight } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -94,12 +95,16 @@ export default function Page() {
       <section className="grid grid-cols-1 gap-4 lg:grid-cols-2 transition-all">
         <CardContent>
           <section>
-            <div className="flex justify-between items-center pb-2">
-              <CardTitle className="text-md font-semibold">
-                Expenses Transactions History
+            <div
+              className={`${
+                transactions?.total_income >= 1000000 ? "text-sm" : "text-base"
+              } flex justify-between items-center pb-2`}
+            >
+              <CardTitle className="font-semibold text-sm sm:text-base">
+                Total Income
               </CardTitle>
-              <span className="text-md font-semibold text-red-600">
-                KSH {transactions?.total_income}
+              <span className="font-semibold text-red-600 text-[10px] sm:text-xs truncate max-w-[50%] text-right">
+                KSH {formatWithCommas(transactions?.total_income)}
               </span>
             </div>
 

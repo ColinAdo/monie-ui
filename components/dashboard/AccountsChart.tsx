@@ -24,6 +24,7 @@ import {
   useGetTransactionsQuery,
 } from "@/redux/features/accountSlice";
 import { Spinner } from "@/components/common";
+import { formatAmount } from "@/types/exports";
 
 export default function AccountsChart() {
   const { data: transactions } = useGetTransactionsQuery();
@@ -95,7 +96,7 @@ export default function AccountsChart() {
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="name" hide={true} />{" "}
                   {/* Ensure dataKey matches */}
-                  <YAxis />
+                  <YAxis tickFormatter={formatAmount} />
                   <Tooltip
                     content={({ payload }) => {
                       if (payload && payload.length > 0) {

@@ -1,5 +1,6 @@
 import { Timestamp } from "@/components/dashboard";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { formatAmount } from "@/types/exports";
 
 interface Props {
   create_at: Date;
@@ -32,7 +33,7 @@ export default function TransactionsCard(props: Props) {
             props.accountName === "Main" ? "text-green-500" : "text-red-500"
           } pt-3 sm:pt-0`}
         >
-          {props.amount}
+          {formatAmount(props.amount)}
         </span>
         <span className="hidden sm:block text-ellipsis overflow-hidden whitespace-nowrap w-[120px] sm:w-auto text-gray-500">
           <Timestamp createdAt={props.create_at} />
