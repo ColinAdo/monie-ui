@@ -164,7 +164,7 @@ export default function Navbar() {
             <DropdownMenuItem>
               <Link href="/dashboard/chat" className="flex justify-between">
                 <Brain className="h-[1.2rem] w-[1.2rem]" />
-                <span className="ml-2">Aski AI</span>
+                <span className="ml-2">Ask AI</span>
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
