@@ -4,7 +4,7 @@ export default function PrivacyPolicy() {
       <h1 className="text-3xl font-bold mb-6 dark:text-white">
         Privacy Policy
       </h1>
-      <p className="mb-4 dark:text-white">Effective Date: 12/JUN/2025</p>
+      <p className="mb-4 dark:text-white">Effective Date: 01/JUL/2025</p>
 
       <p className="mb-6 dark:text-gray-300">
         Welcome to <strong>Monie</strong> (&quot;we&quot;, &quot;our&quot;, or

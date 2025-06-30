@@ -4,7 +4,7 @@ export default function TermsOfService() {
       <h1 className="text-3xl font-bold mb-6 dark:text-white">
         Terms of Service
       </h1>
-      <p className="mb-4 dark:text-white">Effective Date: 21/JUN/2025</p>
+      <p className="mb-4 dark:text-white">Effective Date: 01/JUL/2025</p>
       <p className="mb-6 dark:text-gray-300">
         Welcome to <strong>Monie</strong>! By using our web-based financial
         tracking application (the “Service”), you agree to these Terms of
