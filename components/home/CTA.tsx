@@ -28,13 +28,22 @@ export default function CTA() {
 
             {/* CTA Buttons */}
             <div
-              className="w-fit mx-auto mt-6 animate-fade-in group bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-3 py-2 text-sm font-medium rounded-full shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105"
+              className="flex flex-col md:flex-row justify-center items-center gap-4 mt-6 animate-fade-in"
               style={{ animationDelay: "0.4s" }}
             >
-              <Link href="/auth/login" className="flex items-center">
-                Start Tracking
-                <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Link>
+              <div className="group bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-4 py-2 text-sm font-medium rounded-full shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105">
+                <Link href="/auth/login" className="flex items-center">
+                  Start Tracking
+                  <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Link>
+              </div>
+
+              <div className="group bg-gradient-to-r from-green-600 to-pink-600 hover:from-blue-700 hover:to-green-700 text-white px-4 py-2 text-sm font-medium rounded-full shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105">
+                <Link href="/help" className="flex items-center">
+                  User Guide
+                  <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Link>
+              </div>
             </div>
 
             {/* Social proof */}
