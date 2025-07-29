@@ -39,7 +39,7 @@ export type IncomeTransactionType = {
 };
 
 export type ExpensesTransactionType = {
-  total_income: number;
+  total_expenses: number;
   transactions: TransactionType[];
 };
 

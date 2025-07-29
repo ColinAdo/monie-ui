@@ -97,14 +97,16 @@ export default function Page() {
           <section>
             <div
               className={`${
-                transactions?.total_income >= 1000000 ? "text-sm" : "text-base"
+                transactions?.total_expenses >= 1000000
+                  ? "text-sm"
+                  : "text-base"
               } flex justify-between items-center pb-2`}
             >
               <CardTitle className="font-semibold text-sm sm:text-base">
                 Total Income
               </CardTitle>
               <span className="font-semibold text-red-600 text-[10px] sm:text-xs truncate max-w-[50%] text-right">
-                KSH {formatWithCommas(transactions?.total_income)}
+                KSH {formatWithCommas(transactions?.total_expenses)}
               </span>
             </div>
 
